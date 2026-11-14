@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quran>
+<sura index="1" name="الفاتحة" juz="1" page="1" hizbQuarter="1" revelationOrder="5" type="makki" rukuCount="1" startLine="1"/>
+<sura index="2" name="البقرة" juz="1-3" page="1-49" hizbQuarter="1-8" revelationOrder="87" type="madani" rukuCount="40" startLine="1"/>
+<sura index="114" name="الناس" juz="30" page="604" hizbQuarter="240" revelationOrder="20" type="makki" rukuCount="1" startLine="16"/>
+</quran>

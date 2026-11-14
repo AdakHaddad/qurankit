@@ -59,8 +59,7 @@ class ResearchResult(BaseModel):
     run_id: str = Field(..., description="Producing run ID")
     result_type: str = Field(..., description="Exact match, similarity candidate, statistic, etc.")
     claim_category: ClaimCategory = Field(
-        ...,
-        description="Source annotation, deterministic result, suggestion, hypothesis"
+        ..., description="Source annotation, deterministic result, suggestion, hypothesis"
     )
     result_payload_json: dict[str, Any] = Field(..., description="Structured result")
     evidence_json: dict[str, Any] | None = Field(None, description="Supporting references")
@@ -79,14 +78,16 @@ class ComparisonResult(BaseModel):
     comparison_id: str = Field(..., description="Comparison identifier")
     left_reference: str = Field(..., description="Left ayah or span reference")
     right_reference: str = Field(..., description="Right ayah or span reference")
-    comparison_method: str = Field(..., description="Exact, token edit distance, lemma overlap, etc.")
+    comparison_method: str = Field(
+        ..., description="Exact, token edit distance, lemma overlap, etc."
+    )
     method_version: str = Field(..., description="Algorithm version")
     normalization_profile_id: str | None = Field(None, description="Used profile")
     score: float | None = Field(None, ge=0.0, le=1.0, description="Method-specific score")
     alignment_json: dict[str, Any] = Field(..., description="Matched and differing spans/tokens")
     claim_category: ClaimCategory = Field(
         default=ClaimCategory.DETERMINISTIC_RESULT,
-        description="Usually deterministic result or suggestion"
+        description="Usually deterministic result or suggestion",
     )
     review_status: str = Field(default="unreviewed", description="Unreviewed, reviewed, disputed")
     run_id: str | None = Field(None, description="Reproducibility link")

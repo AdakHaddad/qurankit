@@ -45,8 +45,7 @@ class Dataset(BaseModel):
     license_id: str | None = Field(None, description="SPDX identifier or documented custom license")
     license_url: str | None = Field(None, description="License text URL")
     redistribution_status: RedistributionStatus = Field(
-        default=RedistributionStatus.UNKNOWN,
-        description="Redistribution permission status"
+        default=RedistributionStatus.UNKNOWN, description="Redistribution permission status"
     )
     retrieved_at: datetime | None = Field(None, description="Retrieval timestamp")
     checksum_algorithm: str | None = Field(None, description="Checksum algorithm (e.g., sha256)")
@@ -69,7 +68,9 @@ class DatasetManifest(BaseModel):
     source: Source
     files: list[dict[str, Any]] = Field(default_factory=list, description="Source file metadata")
     validation_report: dict[str, Any] | None = Field(None, description="Validation results")
-    created_at: datetime = Field(default_factory=datetime.utcnow, description="Manifest creation time")
+    created_at: datetime = Field(
+        default_factory=datetime.utcnow, description="Manifest creation time"
+    )
 
 
 class DatasetRecord(BaseModel):
@@ -86,5 +87,7 @@ class DatasetRecord(BaseModel):
     source_record_id: str | None = Field(None, description="Original record key")
     record_type: str = Field(..., description="Text, lexical entry, annotation, etc.")
     record_checksum: str | None = Field(None, description="Hash of original record")
-    raw_payload: dict[str, Any] | None = Field(None, description="Original payload if storage permits")
+    raw_payload: dict[str, Any] | None = Field(
+        None, description="Original payload if storage permits"
+    )
     imported_at: datetime = Field(default_factory=datetime.utcnow, description="Import timestamp")

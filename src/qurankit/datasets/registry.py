@@ -113,12 +113,13 @@ class DatasetRegistry(BaseModel):
 
             if algorithm == "sha256":
                 import hashlib
+
                 hasher = hashlib.sha256()
                 with open(file_path, "rb") as f:
                     for chunk in iter(lambda: f.read(8192), b""):
                         hasher.update(chunk)
                 actual = hasher.hexdigest()
-                results[file_info.get("path", "unknown")] = (actual == expected)
+                results[file_info.get("path", "unknown")] = actual == expected
             else:
                 results[file_info.get("path", "unknown")] = False
 

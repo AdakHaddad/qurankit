@@ -7,9 +7,10 @@ for Qur'anic text, word tokens, annotations, and search indexes.
 from __future__ import annotations
 
 import sqlite3
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Generator
+from typing import Any
 
 from qurankit.core.config import get_config
 from qurankit.core.exceptions import StorageError
@@ -129,6 +130,7 @@ __all__ = [
     "get_database",
     "set_database",
     "SCHEMA_STATEMENTS",
+    "StorageError",
 ]
 
 

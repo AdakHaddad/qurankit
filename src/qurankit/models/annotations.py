@@ -23,27 +23,18 @@ class TokenAnalysis(BaseModel):
     lemma_id: str | None = Field(None, description="Lemma candidate ID")
     part_of_speech: str | None = Field(None, description="Source tag or mapped tag")
     morph_features_json: dict[str, Any] = Field(
-        default_factory=dict,
-        description="Inflectional and derivational features"
+        default_factory=dict, description="Inflectional and derivational features"
     )
     segmentation_json: dict[str, Any] | None = Field(
-        None,
-        description="Morpheme/clitic structure if available"
+        None, description="Morpheme/clitic structure if available"
     )
     method_type: AnnotationMethodType = Field(
-        ...,
-        description="source_annotation, human_review, or algorithmic"
+        ..., description="source_annotation, human_review, or algorithmic"
     )
     confidence: float | None = Field(
-        None,
-        ge=0.0,
-        le=1.0,
-        description="Only if meaningful and documented"
+        None, ge=0.0, le=1.0, description="Only if meaningful and documented"
     )
-    is_preferred: bool = Field(
-        False,
-        description="Project curation choice, not absolute truth"
-    )
+    is_preferred: bool = Field(False, description="Project curation choice, not absolute truth")
     notes: str | None = Field(None, description="Ambiguity and rationale")
 
 
@@ -64,10 +55,7 @@ class GrammarAnalysis(BaseModel):
     role_label: str | None = Field(None, description="Source's grammatical role")
     parent_token_id: str | None = Field(None, description="Dependency relation if applicable")
     explanation_original: str | None = Field(None, description="Source explanation")
-    method_type: AnnotationMethodType = Field(
-        ...,
-        description="Source, reviewed, or algorithmic"
-    )
+    method_type: AnnotationMethodType = Field(..., description="Source, reviewed, or algorithmic")
     metadata_json: dict[str, Any] | None = Field(None, description="Source-specific details")
 
 
@@ -88,16 +76,10 @@ class SemanticRelation(BaseModel):
     object_id: str = Field(..., description="Target identifier")
     dataset_id: str | None = Field(None, description="Source dataset")
     method_type: AnnotationMethodType = Field(
-        ...,
-        description="Source annotation, human review, or algorithmic"
+        ..., description="Source annotation, human review, or algorithmic"
     )
     evidence_note: str | None = Field(None, description="Supporting evidence")
-    confidence: float | None = Field(
-        None,
-        ge=0.0,
-        le=1.0,
-        description="Documented if used"
-    )
+    confidence: float | None = Field(None, ge=0.0, le=1.0, description="Documented if used")
 
 
 class AyahMetadata(BaseModel):
@@ -133,13 +115,13 @@ class Annotation(BaseModel):
     target_id: str = Field(..., description="Target identifier")
     annotation_type: str = Field(..., description="Topic, rhetoric, note, variant, etc.")
     content_original: str | None = Field(None, description="Source wording")
-    content_structured_json: dict[str, Any] | None = Field(None, description="Structured annotation")
+    content_structured_json: dict[str, Any] | None = Field(
+        None, description="Structured annotation"
+    )
     dataset_id: str | None = Field(None, description="Source dataset")
     method_type: AnnotationMethodType = Field(
-        ...,
-        description="Source, human review, or algorithmic"
+        ..., description="Source, human review, or algorithmic"
     )
     review_status: str = Field(
-        default="unreviewed",
-        description="Unreviewed, reviewed, disputed, etc."
+        default="unreviewed", description="Unreviewed, reviewed, disputed, etc."
     )

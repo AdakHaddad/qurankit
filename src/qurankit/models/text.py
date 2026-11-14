@@ -117,7 +117,9 @@ class WordToken(BaseModel):
     tokenization_id: str = Field(..., description="Segmentation scheme/version")
     token_index: int = Field(..., ge=0, description="Position within ayah under this scheme")
     surface_original: str = Field(..., description="Exact token as segmented from source")
-    char_start: int | None = Field(None, ge=0, description="Offset into source ayah text (code points)")
+    char_start: int | None = Field(
+        None, ge=0, description="Offset into source ayah text (code points)"
+    )
     char_end: int | None = Field(None, ge=0, description="Exclusive end offset (code points)")
     source_record_id: str | None = Field(None, description="Source token ID")
     segmentation_notes: str | None = Field(None, description="Notes about segmentation")

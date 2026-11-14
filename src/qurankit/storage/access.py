@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from qurankit.models import (
     AyahMetadata,
@@ -35,7 +35,21 @@ from qurankit.models.enums import (
     SourceType,
 )
 from qurankit.search.normalization import normalize
-from qurankit.storage import Database, get_database
+
+if TYPE_CHECKING:
+    from qurankit.storage import Database
+    from qurankit.storage import get_database as get_database_func
+else:
+    # Import at runtime to avoid circular imports
+    from qurankit.storage import Database as DatabaseClass
+    from qurankit.storage import get_database as get_database_func
+
+    Database = DatabaseClass
+
+
+def _get_database() -> Any:
+    """Lazy import to avoid circular imports."""
+    return get_database_func()
 
 
 class DataAccess:
@@ -48,7 +62,7 @@ class DataAccess:
         Args:
             db: Database instance. If None, uses global instance.
         """
-        self.db = db or get_database()
+        self.db = db or _get_database()
 
     # ============================================================
     # Source and Dataset operations
@@ -67,7 +81,9 @@ class DataAccess:
                 source.source_id,
                 source.title,
                 source.creator,
-                source.source_type.value if isinstance(source.source_type, SourceType) else source.source_type,
+                source.source_type.value
+                if isinstance(source.source_type, SourceType)
+                else source.source_type,
                 source.url,
                 source.persistent_id,
                 source.publisher,
@@ -94,7 +110,9 @@ class DataAccess:
                 dataset.description,
                 dataset.license_id,
                 dataset.license_url,
-                dataset.redistribution_status.value if isinstance(dataset.redistribution_status, RedistributionStatus) else dataset.redistribution_status,
+                dataset.redistribution_status.value
+                if isinstance(dataset.redistribution_status, RedistributionStatus)
+                else dataset.redistribution_status,
                 dataset.retrieved_at.isoformat() if dataset.retrieved_at else None,
                 dataset.checksum_algorithm,
                 dataset.checksum,
@@ -115,6 +133,7 @@ class DataAccess:
         """Insert a dataset record."""
         # Import here to avoid circular imports
         from qurankit.models.provenance import DatasetRecord
+
         if not isinstance(record, DatasetRecord):
             return
         self.db.execute(
@@ -159,9 +178,7 @@ class DataAccess:
 
     def get_surah(self, surah_number: int) -> Surah | None:
         """Get a surah by number."""
-        row = self.db.fetchone(
-            "SELECT * FROM surah WHERE surah_number = ?", (surah_number,)
-        )
+        row = self.db.fetchone("SELECT * FROM surah WHERE surah_number = ?", (surah_number,))
         if row is None:
             return None
         return Surah(
@@ -205,7 +222,9 @@ class DataAccess:
                 edition.edition_id,
                 edition.dataset_id,
                 edition.name,
-                edition.script_type.value if hasattr(edition.script_type, "value") else edition.script_type,
+                edition.script_type.value
+                if hasattr(edition.script_type, "value")
+                else edition.script_type,
                 edition.reading_id,
                 edition.orthography,
                 edition.tokenization_id,
@@ -216,9 +235,7 @@ class DataAccess:
 
     def get_text_edition(self, edition_id: str) -> TextEdition | None:
         """Get a text edition by ID."""
-        row = self.db.fetchone(
-            "SELECT * FROM text_edition WHERE edition_id = ?", (edition_id,)
-        )
+        row = self.db.fetchone("SELECT * FROM text_edition WHERE edition_id = ?", (edition_id,))
         if row is None:
             return None
         return TextEdition(
@@ -305,7 +322,7 @@ class DataAccess:
             (edition_id, surah_number, ayah_number, text_normalized)
             VALUES (?, ?, ?, ?)
             """,
-            (edition_id, surah_number, ayah_number, normalized_diacritic.normalized_text),
+            (edition_id, surah_number, ayah_number, normalized_diacritic.normalized),
         )
 
         # Broad search index
@@ -316,7 +333,7 @@ class DataAccess:
             (edition_id, surah_number, ayah_number, text_normalized)
             VALUES (?, ?, ?, ?)
             """,
-            (edition_id, surah_number, ayah_number, normalized_broad.normalized_text),
+            (edition_id, surah_number, ayah_number, normalized_broad.normalized),
         )
 
     def get_ayah_text(
@@ -343,9 +360,7 @@ class DataAccess:
             metadata_json=json.loads(row["metadata_json"]) if row["metadata_json"] else None,
         )
 
-    def get_ayah_texts_for_surah(
-        self, edition_id: str, surah_number: int
-    ) -> list[AyahText]:
+    def get_ayah_texts_for_surah(self, edition_id: str, surah_number: int) -> list[AyahText]:
         """Get all ayah texts for a surah in an edition."""
         rows = self.db.fetchall(
             """
@@ -432,7 +447,7 @@ class DataAccess:
                 token.edition_id,
                 token.surah_number,
                 token.ayah_number,
-                normalized_diacritic.normalized_text,
+                normalized_diacritic.normalized,
             ),
         )
 
@@ -449,7 +464,7 @@ class DataAccess:
                 token.edition_id,
                 token.surah_number,
                 token.ayah_number,
-                normalized_broad.normalized_text,
+                normalized_broad.normalized,
             ),
         )
 
@@ -507,7 +522,9 @@ class DataAccess:
                 profile.description,
                 json.dumps(profile.rules_json),
                 profile.implementation_version,
-                profile.created_at.isoformat() if profile.created_at else datetime.utcnow().isoformat(),
+                profile.created_at.isoformat()
+                if profile.created_at
+                else datetime.utcnow().isoformat(),
             ),
         )
 
@@ -561,7 +578,9 @@ class DataAccess:
                 metadata.ayah_metadata_id,
                 metadata.surah_number,
                 metadata.ayah_number,
-                metadata.metadata_type.value if isinstance(metadata.metadata_type, MetadataType) else metadata.metadata_type,
+                metadata.metadata_type.value
+                if isinstance(metadata.metadata_type, MetadataType)
+                else metadata.metadata_type,
                 metadata.value_text,
                 metadata.dataset_id,
                 metadata.source_reference,
@@ -718,7 +737,9 @@ class DataAccess:
                 analysis.part_of_speech,
                 json.dumps(analysis.morph_features_json) if analysis.morph_features_json else None,
                 json.dumps(analysis.segmentation_json) if analysis.segmentation_json else None,
-                analysis.method_type.value if isinstance(analysis.method_type, AnnotationMethodType) else analysis.method_type,
+                analysis.method_type.value
+                if isinstance(analysis.method_type, AnnotationMethodType)
+                else analysis.method_type,
                 analysis.confidence,
                 1 if analysis.is_preferred else 0,
                 analysis.notes,
@@ -728,6 +749,7 @@ class DataAccess:
     def insert_grammar_analysis(self, analysis: Any) -> None:
         """Insert a grammar analysis."""
         from qurankit.models.annotations import GrammarAnalysis
+
         if not isinstance(analysis, GrammarAnalysis):
             return
         self.db.execute(
@@ -770,7 +792,9 @@ class DataAccess:
                 relation.object_type,
                 relation.object_id,
                 relation.dataset_id,
-                relation.method_type.value if isinstance(relation.method_type, AnnotationMethodType) else relation.method_type,
+                relation.method_type.value
+                if isinstance(relation.method_type, AnnotationMethodType)
+                else relation.method_type,
                 relation.evidence_note,
                 relation.confidence,
             ),
@@ -779,6 +803,7 @@ class DataAccess:
     def insert_annotation(self, annotation: Any) -> None:
         """Insert a general annotation."""
         from qurankit.models.annotations import Annotation
+
         if not isinstance(annotation, Annotation):
             return
         self.db.execute(
@@ -795,9 +820,13 @@ class DataAccess:
                 annotation.target_id,
                 annotation.annotation_type,
                 annotation.content_original,
-                json.dumps(annotation.content_structured_json) if annotation.content_structured_json else None,
+                json.dumps(annotation.content_structured_json)
+                if annotation.content_structured_json
+                else None,
                 annotation.dataset_id,
-                annotation.method_type.value if isinstance(annotation.method_type, AnnotationMethodType) else annotation.method_type,
+                annotation.method_type.value
+                if isinstance(annotation.method_type, AnnotationMethodType)
+                else annotation.method_type,
                 annotation.review_status,
             ),
         )
@@ -809,6 +838,7 @@ class DataAccess:
     def insert_research_run(self, run: Any) -> None:
         """Insert a research run."""
         from qurankit.models.research import ResearchRun
+
         if not isinstance(run, ResearchRun):
             return
         self.db.execute(
@@ -837,6 +867,7 @@ class DataAccess:
     def insert_research_input(self, input_obj: Any) -> None:
         """Insert a research input."""
         from qurankit.models.research import ResearchInput
+
         if not isinstance(input_obj, ResearchInput):
             return
         self.db.execute(
@@ -857,6 +888,7 @@ class DataAccess:
     def insert_research_result(self, result: Any) -> None:
         """Insert a research result."""
         from qurankit.models.research import ResearchResult
+
         if not isinstance(result, ResearchResult):
             return
         self.db.execute(
@@ -870,7 +902,9 @@ class DataAccess:
                 result.result_id,
                 result.run_id,
                 result.result_type,
-                result.claim_category.value if isinstance(result.claim_category, ClaimCategory) else result.claim_category,
+                result.claim_category.value
+                if isinstance(result.claim_category, ClaimCategory)
+                else result.claim_category,
                 json.dumps(result.result_payload_json),
                 json.dumps(result.evidence_json) if result.evidence_json else None,
                 result.limitations,
@@ -880,6 +914,7 @@ class DataAccess:
     def insert_comparison_result(self, comparison: Any) -> None:
         """Insert a comparison result."""
         from qurankit.models.research import ComparisonResult
+
         if not isinstance(comparison, ComparisonResult):
             return
         self.db.execute(
@@ -899,7 +934,9 @@ class DataAccess:
                 comparison.normalization_profile_id,
                 comparison.score,
                 json.dumps(comparison.alignment_json) if comparison.alignment_json else None,
-                comparison.claim_category.value if isinstance(comparison.claim_category, ClaimCategory) else comparison.claim_category,
+                comparison.claim_category.value
+                if isinstance(comparison.claim_category, ClaimCategory)
+                else comparison.claim_category,
                 comparison.review_status,
                 comparison.run_id,
             ),

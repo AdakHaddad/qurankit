@@ -211,9 +211,17 @@ class TestSearchEngine:
         assert results == []
 
     def test_search_mode_mapping(self, engine):
-        assert engine._get_match_type(SearchMode.EXACT_SOURCE) == SearchResultType.EXACT_SOURCE_MATCH
-        assert engine._get_match_type(SearchMode.DIACRITICS_INSENSITIVE) == SearchResultType.DIACRITIC_INSENSITIVE_MATCH
-        assert engine._get_match_type(SearchMode.BROAD_ORTHOGRAPHIC) == SearchResultType.BROAD_ORTHOGRAPHIC_MATCH
+        assert (
+            engine._get_match_type(SearchMode.EXACT_SOURCE) == SearchResultType.EXACT_SOURCE_MATCH
+        )
+        assert (
+            engine._get_match_type(SearchMode.DIACRITICS_INSENSITIVE)
+            == SearchResultType.DIACRITIC_INSENSITIVE_MATCH
+        )
+        assert (
+            engine._get_match_type(SearchMode.BROAD_ORTHOGRAPHIC)
+            == SearchResultType.BROAD_ORTHOGRAPHIC_MATCH
+        )
 
 
 class TestSearchResult:
@@ -283,7 +291,7 @@ class TestArabicNormalizationEdgeCases:
 
     def test_all_diacritics_removed(self, engine):
         # String with all diacritic types
-        diacritics = "\u064B\u064C\u064D\u064E\u064F\u0650\u0651\u0652"
+        diacritics = "\u064b\u064c\u064d\u064e\u064f\u0650\u0651\u0652"
         text = "ب" + diacritics
         result = engine.normalize(text, "diacritics-insensitive-v1")
         assert result.normalized == "ب"

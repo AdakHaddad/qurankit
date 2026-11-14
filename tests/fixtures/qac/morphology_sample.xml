@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<corpus>
+  <sura index="1" name="الفاتحة">
+    <aya index="1">
+      <word form="بِسْمِ" lemma="بِسْم" root="ب س م" pos="prep" morph="gen|proper" />
+      <word form="اللَّهِ" lemma="اَللَّه" root="ا ل ه" pos="noun" morph="gen|def|proper" />
+      <word form="الرَّحْمَٰنِ" lemma="اَلرَّحْمَٰن" root="ر ح م" pos="adj" morph="gen|def" />
+      <word form="الرَّحِيمِ" lemma="اَلرَّحِيم" root="ر ح م" pos="adj" morph="gen|def" />
+    </aya>
+    <aya index="2">
+      <word form="الْحَمْدُ" lemma="اَلْحَمْد" root="ح م د" pos="noun" morph="nom|def" />
+      <word form="لِلَّهِ" lemma="لِلَّهِ" root="ا ل ه" pos="prep" morph="gen|def|proper" />
+      <word form="رَبِّ" lemma="رَبّ" root="ر ب ب" pos="noun" morph="gen|def" />
+      <word form="الْعَالَمِينَ" lemma="اَلْعَالَمِين" root="ع ل م" pos="noun" morph="gen|def|pl" />
+    </aya>
+  </sura>
+  <sura index="2" name="البقرة">
+    <aya index="1">
+      <word form="الم" lemma="أَلِفْ لَامْ مِيمْ" root="أ ل ف" pos="l" morph="l" />
+    </aya>
+    <aya index="2">
+      <word form="ذَٰلِكَ" lemma="ذَٰلِكَ" root="ذ ل ك" pos="pron" morph="sg|masc|nom" />
+      <word form="الْكِتَابُ" lemma="اَلْكِتَاب" root="ك ت ب" pos="noun" morph="nom|def" />
+      <word form="لَا" lemma="لَا" root="ل ا" pos="neg" morph="neg" />
+      <word form="رَيْبَ" lemma="رَيْب" root="ر ي ب" pos="noun" morph="acc|indef" />
+      <word form="فِيهِ" lemma="فِيهِ" root="ف ي ه" pos="prep" morph="gen|3ms" />
+      <word form="هُدًى" lemma="هُدًى" root="ه د ي" pos="noun" morph="acc|indef" />
+      <word form="لِّلْمُتَّقِينَ" lemma="لِّلْمُتَّقِين" root="و ق ي" pos="adj" morph="gen|def|pl" />
+    </aya>
+  </sura>
+  <sura index="114" name="الناس">
+    <aya index="1">
+      <word form="قُلْ" lemma="قَال" root="ق و ل" pos="verb" morph="pv|prc|3ms|juss" />
+      <word form="أَعُوذُ" lemma="عَاذَ" root="ع و ذ" pos="verb" morph="pv|prc|1s|ind" />
+      <word form="بِرَبِّ" lemma="بِرَبّ" root="ر ب ب" pos="prep" morph="gen" />
+      <word form="النَّاسِ" lemma="النَّاس" root="ن و س" pos="noun" morph="gen|def" />
+    </aya>
+    <aya index="2">
+      <word form="مَلِكِ" lemma="مَلِك" root="م ل ك" pos="noun" morph="gen|indef" />
+      <word form="النَّاسِ" lemma="النَّاس" root="ن و س" pos="noun" morph="gen|def" />
+    </aya>
+    <aya index="3">
+      <word form="إِلَٰهِ" lemma="إِلَٰه" root="ا ل ه" pos="noun" morph="gen|indef" />
+      <word form="النَّاسِ" lemma="النَّاس" root="ن و س" pos="noun" morph="gen|def" />
+    </aya>
+    <aya index="4">
+      <word form="مِنْ" lemma="مِنْ" root="م ن" pos="prep" morph="gen" />
+      <word form="شَرِّ" lemma="شَرّ" root="ش ر ر" pos="noun" morph="gen|indef" />
+      <word form="الْوَسْوَاسِ" lemma="الْوَسْوَاس" root="و س و س" pos="noun" morph="gen|def" />
+      <word form="الْخَنَّاسِ" lemma="الْخَنَّاس" root="خ ن س" pos="noun" morph="gen|def" />
+    </aya>
+    <aya index="5">
+      <word form="الَّذِي" lemma="الَّذِي" root="ذ ل ك" pos="pron" morph="sg|masc|nom" />
+      <word form="يُوَسْوِسُ" lemma="وَسْوَسَ" root="و س و س" pos="verb" morph="iv|3ms|ind" />
+      <word form="فِي" lemma="فِي" root="ف ي" pos="prep" morph="gen" />
+      <word form="صُدُورِ" lemma="صَدْر" root="ص د ر" pos="noun" morph="gen|pl" />
+      <word form="النَّاسِ" lemma="النَّاس" root="ن و س" pos="noun" morph="gen|def" />
+    </aya>
+    <aya index="6">
+      <word form="مِنَ" lemma="مِنْ" root="م ن" pos="prep" morph="gen" />
+      <word form="الْجِنَّةِ" lemma="الْجِنَّة" root="ج ن ن" pos="noun" morph="gen|def" />
+      <word form="وَالنَّاسِ" lemma="النَّاس" root="ن و س" pos="noun" morph="gen|def" />
+    </aya>
+  </sura>
+</corpus>

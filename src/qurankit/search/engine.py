@@ -18,6 +18,7 @@ from qurankit.storage.access import DataAccess
 
 class SearchResultType(StrEnum):
     """Type of search result."""
+
     EXACT_SOURCE_MATCH = "exact_source_match"
     UNICODE_NORMALIZED_MATCH = "unicode_normalized_match"
     DIACRITIC_INSENSITIVE_MATCH = "diacritic_insensitive_match"
@@ -32,6 +33,7 @@ class SearchResultType(StrEnum):
 @dataclass(frozen=True)
 class SearchResult:
     """A single search result."""
+
     reference: str  # e.g., "2:255" or "edition:2:255"
     surah_number: int
     ayah_number: int
@@ -61,7 +63,10 @@ class SearchEngine:
         "exact-source-v1": ("ayah_text_fts_exact", "text_original"),
         "diacritics-insensitive-v1": ("ayah_text_fts_diacritic_insensitive", "text_normalized"),
         "search-broad-v1": ("ayah_text_fts_broad", "text_normalized"),
-        "canonical-unicode-v1": ("ayah_text_fts_diacritic_insensitive", "text_normalized"),  # Uses diacritic-insensitive as fallback
+        "canonical-unicode-v1": (
+            "ayah_text_fts_diacritic_insensitive",
+            "text_normalized",
+        ),  # Uses diacritic-insensitive as fallback
     }
 
     TOKEN_FTS_TABLES = {
@@ -164,8 +169,8 @@ class SearchEngine:
                 SELECT f.edition_id, f.surah_number, f.ayah_number, a.text_original,
                        f.rank
                 FROM {fts_table} f
-                JOIN ayah_text a ON a.edition_id = f.edition_id 
-                    AND a.surah_number = f.surah_number 
+                JOIN ayah_text a ON a.edition_id = f.edition_id
+                    AND a.surah_number = f.surah_number
                     AND a.ayah_number = f.ayah_number
                 WHERE {fts_table} MATCH ?
                   AND f.edition_id = ?
@@ -194,18 +199,20 @@ class SearchEngine:
         match_type = self.MODE_TO_RESULT_TYPE.get(mode, SearchResultType.EXACT_SOURCE_MATCH)
 
         for row in rows:
-            results.append(SearchResult(
-                reference=f"{row['edition_id']}:{row['surah_number']}:{row['ayah_number']}",
-                surah_number=row["surah_number"],
-                ayah_number=row["ayah_number"],
-                edition_id=row["edition_id"],
-                matched_text=row["text_original"],
-                match_type=match_type,
-                normalization_profile=normalization_profile,
-                query=query,
-                normalized_query=normalized_query,
-                score=1.0 / (1.0 + row["rank"]) if row["rank"] else 1.0,
-            ))
+            results.append(
+                SearchResult(
+                    reference=f"{row['edition_id']}:{row['surah_number']}:{row['ayah_number']}",
+                    surah_number=row["surah_number"],
+                    ayah_number=row["ayah_number"],
+                    edition_id=row["edition_id"],
+                    matched_text=row["text_original"],
+                    match_type=match_type,
+                    normalization_profile=normalization_profile,
+                    query=query,
+                    normalized_query=normalized_query,
+                    score=1.0 / (1.0 + row["rank"]) if row["rank"] else 1.0,
+                )
+            )
 
         return results
 
@@ -297,19 +304,21 @@ class SearchEngine:
             )
             matched_text = ayah_text.text_original if ayah_text else row["surface_original"]
 
-            results.append(SearchResult(
-                reference=f"{row['edition_id']}:{row['surah_number']}:{row['ayah_number']}:{row['token_id']}",
-                surah_number=row["surah_number"],
-                ayah_number=row["ayah_number"],
-                edition_id=row["edition_id"],
-                matched_text=matched_text,
-                match_type=match_type,
-                normalization_profile=normalization_profile,
-                query=query,
-                normalized_query=normalized_query,
-                score=1.0 / (1.0 + row["rank"]) if row["rank"] else 1.0,
-                token_indices=[0],  # Placeholder
-            ))
+            results.append(
+                SearchResult(
+                    reference=f"{row['edition_id']}:{row['surah_number']}:{row['ayah_number']}:{row['token_id']}",
+                    surah_number=row["surah_number"],
+                    ayah_number=row["ayah_number"],
+                    edition_id=row["edition_id"],
+                    matched_text=matched_text,
+                    match_type=match_type,
+                    normalization_profile=normalization_profile,
+                    query=query,
+                    normalized_query=normalized_query,
+                    score=1.0 / (1.0 + row["rank"]) if row["rank"] else 1.0,
+                    token_indices=[0],  # Placeholder
+                )
+            )
 
         return results
 
@@ -329,7 +338,9 @@ class SearchEngine:
         limit: int = 100,
     ) -> list[SearchResult]:
         """Diacritic-insensitive search."""
-        return self.search(query, SearchMode.DIACRITICS_INSENSITIVE, edition_id, "diacritics-insensitive-v1", limit)
+        return self.search(
+            query, SearchMode.DIACRITICS_INSENSITIVE, edition_id, "diacritics-insensitive-v1", limit
+        )
 
     def search_broad(
         self,
@@ -338,7 +349,9 @@ class SearchEngine:
         limit: int = 100,
     ) -> list[SearchResult]:
         """Broad orthographic search."""
-        return self.search(query, SearchMode.BROAD_ORTHOGRAPHIC, edition_id, "search-broad-v1", limit)
+        return self.search(
+            query, SearchMode.BROAD_ORTHOGRAPHIC, edition_id, "search-broad-v1", limit
+        )
 
     def _get_match_type(self, mode: SearchMode) -> SearchResultType:
         """Map search mode to result type."""

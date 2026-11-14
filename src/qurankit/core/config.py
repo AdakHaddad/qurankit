@@ -17,15 +17,11 @@ class QuranKitConfig(BaseSettings):
 
     # Data directory
     data_dir: Path = Field(
-        default=Path.home() / ".qurankit" / "data",
-        description="Base directory for dataset storage"
+        default=Path.home() / ".qurankit" / "data", description="Base directory for dataset storage"
     )
 
     # Default text edition
-    default_edition: str = Field(
-        default="tanzil-uthmani-v1",
-        description="Default text edition ID"
-    )
+    default_edition: str = Field(default="tanzil-uthmani-v1", description="Default text edition ID")
 
     # Cache settings
     cache_enabled: bool = Field(default=True, description="Enable caching")
@@ -33,8 +29,7 @@ class QuranKitConfig(BaseSettings):
 
     # Search settings
     default_normalization_profile: str = Field(
-        default="diacritics-insensitive-v1",
-        description="Default search normalization profile"
+        default="diacritics-insensitive-v1", description="Default search normalization profile"
     )
 
     # Logging

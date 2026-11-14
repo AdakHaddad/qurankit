@@ -122,7 +122,7 @@ class Quran(BaseModel):
                 description="Match regardless of specified vocalization marks",
                 rules_json={
                     "type": "diacritics_insensitive",
-                    "remove": ["fatha", "damma", "kasra", "tanwin", "shadda", "sukun"]
+                    "remove": ["fatha", "damma", "kasra", "tanwin", "shadda", "sukun"],
                 },
                 implementation_version="0.1.0",
             ),
@@ -296,10 +296,9 @@ class Quran(BaseModel):
 
         # Check if dataset exists
         from qurankit.storage import get_database
+
         db = get_database()
-        dataset_row = db.fetchone(
-            "SELECT * FROM dataset WHERE dataset_id = ?", (dataset_id,)
-        )
+        dataset_row = db.fetchone("SELECT * FROM dataset WHERE dataset_id = ?", (dataset_id,))
 
         if dataset_row is None:
             # Create source
@@ -479,9 +478,7 @@ class Quran(BaseModel):
             raise UnsupportedEditionError("No edition specified")
 
         tok_id = tokenization_id or "default"
-        tokens = self._data_access.get_word_tokens(
-            edition, surah_number, ayah_number, tok_id
-        )
+        tokens = self._data_access.get_word_tokens(edition, surah_number, ayah_number, tok_id)
 
         # If no tokens in database, return mock tokens for testing
         if not tokens:

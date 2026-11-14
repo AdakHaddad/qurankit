@@ -103,6 +103,7 @@ TA_MARBUTAH_HA: set[int] = {
 @dataclass(frozen=True)
 class NormalizationResult:
     """Result of a normalization operation."""
+
     original: str
     normalized: str
     profile_id: str
@@ -113,7 +114,7 @@ class NormalizationResult:
 class NormalizationEngine:
     """
     Engine for applying normalization profiles to Arabic text.
-    
+
     Each profile is a documented, versioned transformation that can be
     applied to queries or indexed text for search.
     """
@@ -126,57 +127,65 @@ class NormalizationEngine:
         """Register the built-in normalization profiles."""
 
         # exact-source-v1
-        self.register(NormalizationProfile(
-            profile_id="exact-source-v1",
-            name="Exact Source",
-            version="1.0.0",
-            description="Exact comparison with the selected source representation",
-            rules_json={"type": "exact"},
-            implementation_version="0.1.0",
-        ))
+        self.register(
+            NormalizationProfile(
+                profile_id="exact-source-v1",
+                name="Exact Source",
+                version="1.0.0",
+                description="Exact comparison with the selected source representation",
+                rules_json={"type": "exact"},
+                implementation_version="0.1.0",
+            )
+        )
 
         # canonical-unicode-v1
-        self.register(NormalizationProfile(
-            profile_id="canonical-unicode-v1",
-            name="Canonical Unicode (NFC)",
-            version="1.0.0",
-            description="Unicode NFC normalization only",
-            rules_json={"type": "nfc"},
-            implementation_version="0.1.0",
-        ))
+        self.register(
+            NormalizationProfile(
+                profile_id="canonical-unicode-v1",
+                name="Canonical Unicode (NFC)",
+                version="1.0.0",
+                description="Unicode NFC normalization only",
+                rules_json={"type": "nfc"},
+                implementation_version="0.1.0",
+            )
+        )
 
         # diacritics-insensitive-v1
-        self.register(NormalizationProfile(
-            profile_id="diacritics-insensitive-v1",
-            name="Diacritic Insensitive",
-            version="1.0.0",
-            description="Match regardless of specified vocalization marks",
-            rules_json={
-                "type": "diacritics_insensitive",
-                "remove_diacritics": True,
-                "remove_quranic_marks": False,
-                "remove_tatweel": True,
-            },
-            implementation_version="0.1.0",
-        ))
+        self.register(
+            NormalizationProfile(
+                profile_id="diacritics-insensitive-v1",
+                name="Diacritic Insensitive",
+                version="1.0.0",
+                description="Match regardless of specified vocalization marks",
+                rules_json={
+                    "type": "diacritics_insensitive",
+                    "remove_diacritics": True,
+                    "remove_quranic_marks": False,
+                    "remove_tatweel": True,
+                },
+                implementation_version="0.1.0",
+            )
+        )
 
         # search-broad-v1
-        self.register(NormalizationProfile(
-            profile_id="search-broad-v1",
-            name="Broad Search",
-            version="1.0.0",
-            description="Broad discovery with configurable equivalences",
-            rules_json={
-                "type": "broad",
-                "remove_diacritics": True,
-                "remove_quranic_marks": True,
-                "remove_tatweel": True,
-                "alif_hamza_equivalence": True,
-                "ya_maqsurah_equivalence": True,
-                "ta_marbutah_equivalence": False,
-            },
-            implementation_version="0.1.0",
-        ))
+        self.register(
+            NormalizationProfile(
+                profile_id="search-broad-v1",
+                name="Broad Search",
+                version="1.0.0",
+                description="Broad discovery with configurable equivalences",
+                rules_json={
+                    "type": "broad",
+                    "remove_diacritics": True,
+                    "remove_quranic_marks": True,
+                    "remove_tatweel": True,
+                    "alif_hamza_equivalence": True,
+                    "ya_maqsurah_equivalence": True,
+                    "ta_marbutah_equivalence": False,
+                },
+                implementation_version="0.1.0",
+            )
+        )
 
     def register(self, profile: NormalizationProfile) -> None:
         """Register a normalization profile."""
@@ -200,12 +209,12 @@ class NormalizationEngine:
     ) -> NormalizationResult:
         """
         Normalize text using a named profile.
-        
+
         Args:
             text: Input text to normalize
             profile_id: Profile identifier
             return_mappings: Whether to return character mappings
-            
+
         Returns:
             NormalizationResult with original and normalized text
         """
@@ -232,7 +241,9 @@ class NormalizationEngine:
             )
 
         elif rules.get("type") == "diacritics_insensitive":
-            return self._apply_diacritics_insensitive(text, profile_id, profile.version, rules, return_mappings)
+            return self._apply_diacritics_insensitive(
+                text, profile_id, profile.version, rules, return_mappings
+            )
 
         elif rules.get("type") == "broad":
             return self._apply_broad(text, profile_id, profile.version, rules, return_mappings)

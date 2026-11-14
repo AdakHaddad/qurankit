@@ -40,10 +40,7 @@ class ManifestManager(BaseModel):
         files = []
         for file_path in source_files:
             if not file_path.exists():
-                raise ProvenanceError(
-                    dataset.dataset_id,
-                    f"Source file not found: {file_path}"
-                )
+                raise ProvenanceError(dataset.dataset_id, f"Source file not found: {file_path}")
 
             # Compute SHA-256
             hasher = hashlib.sha256()

@@ -3,6 +3,7 @@
 
 class QuranKitError(Exception):
     """Base exception for QuranKit errors."""
+
     pass
 
 
@@ -62,9 +63,7 @@ class ChecksumMismatchError(QuranKitError):
         self.file_path = file_path
         self.expected = expected
         self.actual = actual
-        super().__init__(
-            f"Checksum mismatch for {file_path}: expected {expected}, got {actual}"
-        )
+        super().__init__(f"Checksum mismatch for {file_path}: expected {expected}, got {actual}")
 
 
 class StorageError(QuranKitError):
