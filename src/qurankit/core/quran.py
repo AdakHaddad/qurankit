@@ -6,7 +6,7 @@ Provides the primary interface for accessing Qur'anic text and metadata.
 
 from __future__ import annotations
 
-from datetime import datetime, UTC, UTC, UTC
+from datetime import UTC, datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr
@@ -55,6 +55,7 @@ class Quran(BaseModel):
     # Private attributes (not Pydantic fields)
     _data_access: DataAccess = PrivateAttr(default_factory=DataAccess)
     _search_engine: SearchEngine = PrivateAttr(default_factory=SearchEngine)
+    _vocabulary: Any = PrivateAttr(default=None)
     _loaded: bool = PrivateAttr(default=False)
 
     @classmethod
@@ -496,6 +497,221 @@ class Quran(BaseModel):
                 tokens.append(token)
         return tokens
 
+    # --- Vocabulary / Lexicon integration ---
+
+    @property
+    def vocabulary(self):
+        """
+        Get the QuranicVocabulary analyzer for the current edition.
+
+        Provides access to root/lemma occurrence lookup, concordance,
+        frequency lists, and vocabulary statistics.
+
+        Returns:
+            QuranicVocabulary instance
+        """
+        if self._vocabulary is None:
+            from qurankit.lexicon import QuranicVocabulary
+            self._vocabulary = QuranicVocabulary(
+                data_access=self._data_access,
+                edition_id=self.edition_id or "tanzil-uthmani-v1",
+            )
+        return self._vocabulary
+
+    def lookup_root(
+        self,
+        root_form: str,
+        limit: int = 1000,
+    ) -> list[dict[str, Any]]:
+        """
+        Look up Qur'anic occurrences by Arabic root.
+
+        Args:
+            root_form: Arabic root (e.g., "ر ح م" or "رحم")
+            limit: Maximum occurrences to return
+
+        Returns:
+            List of occurrence dictionaries with surah, ayah, surface form, etc.
+        """
+        occurrences = self.vocabulary.get_occurrences_by_root(root_form, limit)
+        return [
+            {
+                "surah_number": o.surah_number,
+                "ayah_number": o.ayah_number,
+                "token_index": o.token_index,
+                "surface_form": o.surface_form,
+                "root_form": o.root_form,
+                "lemma_form": o.lemma_form,
+                "part_of_speech": o.part_of_speech,
+                "ayah_text": o.ayah_text,
+            }
+            for o in occurrences
+        ]
+
+    def lookup_lemma(
+        self,
+        lemma_form: str,
+        limit: int = 1000,
+    ) -> list[dict[str, Any]]:
+        """
+        Look up Qur'anic occurrences by lemma (citation form).
+
+        Args:
+            lemma_form: Arabic lemma (e.g., "رحمة", "رحمن")
+            limit: Maximum occurrences to return
+
+        Returns:
+            List of occurrence dictionaries
+        """
+        occurrences = self.vocabulary.get_occurrences_by_lemma(lemma_form, limit)
+        return [
+            {
+                "surah_number": o.surah_number,
+                "ayah_number": o.ayah_number,
+                "token_index": o.token_index,
+                "surface_form": o.surface_form,
+                "root_form": o.root_form,
+                "lemma_form": o.lemma_form,
+                "part_of_speech": o.part_of_speech,
+                "ayah_text": o.ayah_text,
+            }
+            for o in occurrences
+        ]
+
+    def lookup_surface(
+        self,
+        surface_form: str,
+        limit: int = 1000,
+    ) -> list[dict[str, Any]]:
+        """
+        Look up Qur'anic occurrences by exact surface form.
+
+        Args:
+            surface_form: Exact Arabic word form
+            limit: Maximum occurrences to return
+
+        Returns:
+            List of occurrence dictionaries
+        """
+        occurrences = self.vocabulary.get_occurrences_by_surface(surface_form, limit)
+        return [
+            {
+                "surah_number": o.surah_number,
+                "ayah_number": o.ayah_number,
+                "token_index": o.token_index,
+                "surface_form": o.surface_form,
+                "root_form": o.root_form,
+                "lemma_form": o.lemma_form,
+                "part_of_speech": o.part_of_speech,
+                "ayah_text": o.ayah_text,
+            }
+            for o in occurrences
+        ]
+
+    def get_vocabulary_stats(
+        self,
+        root_form: str | None = None,
+        lemma_form: str | None = None,
+        surface_form: str | None = None,
+    ) -> dict[str, Any]:
+        """
+        Get comprehensive vocabulary statistics.
+
+        Args:
+            root_form: Arabic root
+            lemma_form: Arabic lemma
+            surface_form: Exact surface form
+
+        Returns:
+            Dictionary with frequency, distribution, and occurrence info
+        """
+        stats = self.vocabulary.get_vocabulary_stats(
+            root_form=root_form,
+            lemma_form=lemma_form,
+            surface_form=surface_form,
+        )
+        return {
+            "root_form": stats.root_form,
+            "lemma_form": stats.lemma_form,
+            "surface_form": stats.surface_form,
+            "total_occurrences": stats.total_occurrences,
+            "unique_surahs": stats.unique_surahs,
+            "unique_ayahs": stats.unique_ayahs,
+            "first_occurrence": (
+                {"surah": stats.first_occurrence.surah_number, "ayah": stats.first_occurrence.ayah_number}
+                if stats.first_occurrence else None
+            ),
+            "last_occurrence": (
+                {"surah": stats.last_occurrence.surah_number, "ayah": stats.last_occurrence.ayah_number}
+                if stats.last_occurrence else None
+            ),
+            "surah_distribution": stats.surah_distribution,
+            "juz_distribution": stats.juz_distribution,
+        }
+
+    def get_concordance(
+        self,
+        root_form: str | None = None,
+        lemma_form: str | None = None,
+        surface_form: str | None = None,
+        context_words: int = 3,
+        limit: int = 100,
+    ) -> list[dict[str, Any]]:
+        """
+        Get concordance lines for a root, lemma, or surface form.
+
+        Args:
+            root_form: Arabic root
+            lemma_form: Arabic lemma
+            surface_form: Exact surface form
+            context_words: Number of words before/after to include
+            limit: Maximum concordance lines
+
+        Returns:
+            List of concordance line dictionaries
+        """
+        return self.vocabulary.get_concordance(
+            root_form=root_form,
+            lemma_form=lemma_form,
+            surface_form=surface_form,
+            context_words=context_words,
+            limit=limit,
+        )
+
+    def get_root_frequency_list(
+        self,
+        min_occurrences: int = 1,
+        limit: int = 100,
+    ) -> list[dict[str, Any]]:
+        """
+        Get frequency list of all roots in the Qur'an.
+
+        Args:
+            min_occurrences: Minimum occurrences to include
+            limit: Maximum roots to return
+
+        Returns:
+            List of root frequency dictionaries sorted by frequency
+        """
+        return self.vocabulary.get_root_frequency_list(min_occurrences, limit)
+
+    def get_lemma_frequency_list(
+        self,
+        min_occurrences: int = 1,
+        limit: int = 100,
+    ) -> list[dict[str, Any]]:
+        """
+        Get frequency list of all lemmas in the Qur'an.
+
+        Args:
+            min_occurrences: Minimum occurrences to include
+            limit: Maximum lemmas to return
+
+        Returns:
+            List of lemma frequency dictionaries sorted by frequency
+        """
+        return self.vocabulary.get_lemma_frequency_list(min_occurrences, limit)
+
     # --- Edition management ---
 
     @property
@@ -509,6 +725,8 @@ class Quran(BaseModel):
         if edition is None:
             raise UnsupportedEditionError(edition_id)
         self.edition_id = edition_id
+        # Reset vocabulary cache when edition changes
+        self._vocabulary = None
 
     # --- Normalization profiles ---
 

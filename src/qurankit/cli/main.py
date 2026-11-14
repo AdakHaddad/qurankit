@@ -19,7 +19,7 @@ from qurankit.datasets.manifest import ManifestManager
 from qurankit.datasets.registry import DatasetRegistry
 from qurankit.providers.tanzil import TanzilProvider
 from qurankit.search.engine import SearchResult
-from qurankit.storage import Database, DataAccess
+from qurankit.storage import DataAccess, Database
 
 console = Console()
 
@@ -89,16 +89,16 @@ def data_install(dataset_id: str, version: str | None, force: bool) -> None:
     if dataset_id == "tanzil":
         # Use fixture data for testing - in production would download from tanzil.net
         provider = TanzilProvider()
-        
+
         # Initialize database
         db = Database()
         data_access = DataAccess(db)
-        
+
         # Use test fixture
         fixture_path = Path(__file__).parent.parent.parent.parent / "tests" / "fixtures" / "tanzil"
         quran_xml = fixture_path / "quran.xml"
         metadata_xml = fixture_path / "metadata.xml"
-        
+
         if quran_xml.exists():
             manifest = provider.import_into_database(
                 quran_xml,
@@ -135,7 +135,7 @@ def data_validate(dataset_id: str) -> None:
     for path, valid in results.items():
         status = "✓" if valid else "✗"
         console.print(f"  {status} {path}")
-    
+
     if all(results.values()):
         console.print("[green]All checksums valid[/green]")
     else:
@@ -407,6 +407,7 @@ def profiles() -> None:
 if __name__ == "__main__":
     main()
 
+
 @main.command()
 @click.argument("reference")
 @click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
@@ -416,7 +417,7 @@ if __name__ == "__main__":
 @click.option("--min-length", default=2, help="Minimum phrase length")
 def report(reference: str, edition: str, method: str, threshold: float, profile: str, min_length: int) -> None:
     """Generate mutashabihat comparison report for an ayah."""
-    from qurankit.analysis import MutashabihatEngine, ReportGenerator, MatchMethod
+    from qurankit.analysis import MatchMethod, MutashabihatEngine, ReportGenerator
     from qurankit.storage.access import DataAccess
 
     engine = MutashabihatEngine(DataAccess())

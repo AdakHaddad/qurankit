@@ -6,7 +6,7 @@ Provides high-level methods for inserting and querying Qur'anic data.
 from __future__ import annotations
 
 import json
-from datetime import datetime, UTC, UTC, UTC
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 
 from qurankit.models import (

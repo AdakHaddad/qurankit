@@ -6,11 +6,11 @@ Provides mutashabihat engine and comparison reports.
 from __future__ import annotations
 
 from qurankit.analysis.mutashabihat import (
+    MatchCategory,
+    MatchMethod,
     MutashabihatEngine,
     MutashabihatResult,
     PhraseMatch,
-    MatchMethod,
-    MatchCategory,
 )
 from qurankit.analysis.reports import (
     ComparisonReport,

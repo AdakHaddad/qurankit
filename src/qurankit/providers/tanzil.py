@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import xml.etree.ElementTree as ET
-from datetime import datetime, UTC, UTC, UTC
+from datetime import UTC, datetime
 from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field

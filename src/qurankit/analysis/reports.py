@@ -5,7 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from qurankit.analysis.mutashabihat import MatchMethod, MatchCategory, PhraseMatch, MutashabihatResult
+from qurankit.analysis.mutashabihat import (
+    MatchMethod,
+    MutashabihatResult,
+)
 from qurankit.storage.access import DataAccess
 
 
@@ -213,39 +216,39 @@ class ReportGenerator:
     def format_report_text(self, report: ComparisonReport) -> str:
         """Format report as human-readable text."""
         lines = [
-            f"=== Mutashabihat Comparison Report ===",
+            "=== Mutashabihat Comparison Report ===",
             f"Query: {report.query_reference}",
             f"Edition: {report.edition_id}",
             f"Method: {report.method.value}",
             f"Normalization: {report.normalization_profile or 'N/A'}",
-            f"",
+            "",
             f"Total Matches: {report.total_matches}",
-            f"",
-            f"--- By Category ---",
+            "",
+            "--- By Category ---",
         ]
         for cat, count in sorted(report.matches_by_category.items()):
             lines.append(f"  {cat}: {count}")
 
-        lines.append(f"")
-        lines.append(f"--- By Method ---")
+        lines.append("")
+        lines.append("--- By Method ---")
         for meth, count in sorted(report.matches_by_method.items()):
             lines.append(f"  {meth}: {count}")
 
         if report.score_stats:
-            lines.append(f"")
-            lines.append(f"--- Score Statistics ---")
+            lines.append("")
+            lines.append("--- Score Statistics ---")
             lines.append(f"  Min: {report.score_stats.get('min', 0):.3f}")
             lines.append(f"  Max: {report.score_stats.get('max', 0):.3f}")
             lines.append(f"  Mean: {report.score_stats.get('mean', 0):.3f}")
 
-        lines.append(f"")
-        lines.append(f"--- Coverage ---")
+        lines.append("")
+        lines.append("--- Coverage ---")
         lines.append(f"  Unique Surahs: {len(report.unique_surahs_matched)}")
         lines.append(f"  Unique Ayahs: {len(report.unique_ayahs_matched)}")
 
         if report.parameters:
-            lines.append(f"")
-            lines.append(f"--- Parameters ---")
+            lines.append("")
+            lines.append("--- Parameters ---")
             for k, v in report.parameters.items():
                 lines.append(f"  {k}: {v}")
 
