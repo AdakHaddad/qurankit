@@ -1,9 +1,23 @@
-"""Analysis module for QuranKit."""
+"""
+Analysis module for QuranKit.
 
-# Placeholder for future analysis features:
-# - Frequency analysis
-# - Mutashabihat (repeated phrases)
-# - Co-occurrence analysis
-# - Statistical research tools
+Provides computational analysis tools for Qur'anic text exploration.
+"""
 
-__all__ = []
+from qurankit.analysis.mutashabihat import (
+    MatchCategory,
+    MatchMethod,
+    MutashabihatEngine,
+    MutashabihatResult,
+    PhraseMatch,
+    create_engine,
+)
+
+__all__ = [
+    "MutashabihatEngine",
+    "PhraseMatch",
+    "MutashabihatResult",
+    "MatchMethod",
+    "MatchCategory",
+    "create_engine",
+]
