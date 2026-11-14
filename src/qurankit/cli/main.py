@@ -406,3 +406,63 @@ def profiles() -> None:
 
 if __name__ == "__main__":
     main()
+
+@main.command()
+@click.argument("reference")
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+@click.option("--method", "-m", type=click.Choice(["exact", "normalized", "near-duplicate"]), default="exact", help="Analysis method")
+@click.option("--threshold", default=0.7, help="Similarity threshold for near-duplicate")
+@click.option("--profile", default="diacritics-insensitive-v1", help="Normalization profile")
+@click.option("--min-length", default=2, help="Minimum phrase length")
+def report(reference: str, edition: str, method: str, threshold: float, profile: str, min_length: int) -> None:
+    """Generate mutashabihat comparison report for an ayah."""
+    from qurankit.analysis import MutashabihatEngine, ReportGenerator, MatchMethod
+    from qurankit.storage.access import DataAccess
+
+    engine = MutashabihatEngine(DataAccess())
+    reporter = ReportGenerator(DataAccess())
+
+    method_map = {
+        "exact": MatchMethod.EXACT_PHRASE,
+        "normalized": MatchMethod.NORMALIZED_EXACT,
+        "near-duplicate": MatchMethod.NEAR_DUPLICATE,
+    }
+
+    match_method = method_map[method]
+
+    if match_method == MatchMethod.EXACT_PHRASE:
+        result = engine.find_exact_phrase(reference, edition_id=edition, min_length=min_length)
+    elif match_method == MatchMethod.NORMALIZED_EXACT:
+        result = engine.find_normalized_matches(reference, edition_id=edition, normalization_profile=profile, min_words=min_length)
+    elif match_method == MatchMethod.NEAR_DUPLICATE:
+        result = engine.find_near_duplicates(reference, edition_id=edition, threshold=threshold, normalization_profile=profile)
+    else:
+        console.print(f"[red]Unknown method: {method}[/red]")
+        return
+
+    report_obj = reporter.generate_report(result, edition, reference)
+    console.print(reporter.format_report_text(report_obj))
+
+
+@main.command()
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+def corpus_stats(edition: str) -> None:
+    """Generate corpus-level mutashabihat statistics."""
+    from qurankit.analysis import ReportGenerator
+    from qurankit.storage.access import DataAccess
+
+    reporter = ReportGenerator(DataAccess())
+    stats = reporter.generate_corpus_statistics(edition)
+
+    table = Table(title=f"Corpus Statistics for {edition}")
+    table.add_column("Metric", style="cyan")
+    table.add_column("Value", style="green")
+
+    table.add_row("Total Ayahs", str(stats.get("total_ayahs", 0)))
+    table.add_row("Total Surahs", str(stats.get("total_surahs", 0)))
+
+    for ngram_type, data in stats.get("ngram_statistics", {}).items():
+        table.add_row(f"{ngram_type} - Total Matches", str(data.get("total_matches", 0)))
+        table.add_row(f"{ngram_type} - Unique N-grams", str(data.get("unique_ngrams", 0)))
+
+    console.print(table)

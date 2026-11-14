@@ -1,23 +1,28 @@
-"""
-Analysis module for QuranKit.
+"""Analysis module for QuranKit.
 
-Provides computational analysis tools for Qur'anic text exploration.
+Provides mutashabihat engine and comparison reports.
 """
+
+from __future__ import annotations
 
 from qurankit.analysis.mutashabihat import (
-    MatchCategory,
-    MatchMethod,
     MutashabihatEngine,
     MutashabihatResult,
     PhraseMatch,
-    create_engine,
+    MatchMethod,
+    MatchCategory,
+)
+from qurankit.analysis.reports import (
+    ComparisonReport,
+    ReportGenerator,
 )
 
 __all__ = [
     "MutashabihatEngine",
-    "PhraseMatch",
     "MutashabihatResult",
+    "PhraseMatch",
     "MatchMethod",
     "MatchCategory",
-    "create_engine",
+    "ComparisonReport",
+    "ReportGenerator",
 ]
