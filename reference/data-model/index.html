@@ -1,0 +1,3334 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A modular, Python-first computational Qur'anic research library">
+      
+      
+      
+        <link rel="canonical" href="https://adakhaddad.github.io/qurankit/reference/data-model/">
+      
+      
+        <link rel="prev" href="../plan/">
+      
+      
+        <link rel="next" href="../arabic-text-standard/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Data Model - QuranKit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qurankit-data-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QuranKit" class="md-header__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QuranKit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/text-access/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../plan/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/contributing/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/basic_usage/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QuranKit" class="md-nav__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QuranKit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/text-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qur'anic Text Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/arabic-text-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search & Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vocabulary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vocabulary & Lexicon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/mutashabihat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computational Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-design-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Design goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-modeling-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core modeling principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Core modeling principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-separate-canonical-structure-from-text-editions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Separate canonical structure from text editions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-preserve-original-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Preserve original data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-distinguish-a-word-token-from-a-linguistic-word-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Distinguish a word token from a linguistic word analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-distinguish-lexical-meaning-from-contextual-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Distinguish lexical meaning from contextual interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-make-provenance-first-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Make provenance first-class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entity-relationship-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Entity relationship overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-core-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Core identifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logical-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Logical entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Logical entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-datasetrecord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 DatasetRecord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-surah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Surah
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-ayah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Ayah
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-textedition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 TextEdition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-ayahtext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 AyahText
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-wordtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 WordToken
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#59-normalizationprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.9 NormalizationProfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#510-lexicalresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.10 LexicalResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#511-lexicalentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.11 LexicalEntry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-lexicalsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.12 LexicalSense
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-root-and-lemma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.13 Root and Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-tokenanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.14 TokenAnalysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#515-grammaranalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.15 GrammarAnalysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#516-semanticrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.16 SemanticRelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#517-ayahmetadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.17 AyahMetadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#518-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.18 Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-research-execution-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Research execution and reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Research execution and reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-researchrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 ResearchRun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-researchinput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 ResearchInput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-researchresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 ResearchResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-search-data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Search data model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mutashabihat-and-comparison-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mutashabihat and comparison model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-suggested-sqlite-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Suggested SQLite implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-data-validation-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Data validation rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-example-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Example records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Example records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ayah-text-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ayah text record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word-token-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Word token record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-analysis-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token analysis record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-migration-and-versioning-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Migration and versioning policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-decisions-to-resolve-before-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Decisions to resolve before implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arabic-text-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/dataset_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/search_examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mutashabihat_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/reports_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mcp_client_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-design-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Design goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-modeling-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core modeling principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Core modeling principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-separate-canonical-structure-from-text-editions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Separate canonical structure from text editions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-preserve-original-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Preserve original data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-distinguish-a-word-token-from-a-linguistic-word-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Distinguish a word token from a linguistic word analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-distinguish-lexical-meaning-from-contextual-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Distinguish lexical meaning from contextual interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-make-provenance-first-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Make provenance first-class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entity-relationship-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Entity relationship overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-core-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Core identifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logical-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Logical entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Logical entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-datasetrecord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 DatasetRecord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-surah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Surah
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-ayah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Ayah
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-textedition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 TextEdition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-ayahtext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 AyahText
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-wordtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 WordToken
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#59-normalizationprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.9 NormalizationProfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#510-lexicalresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.10 LexicalResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#511-lexicalentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.11 LexicalEntry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-lexicalsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.12 LexicalSense
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-root-and-lemma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.13 Root and Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-tokenanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.14 TokenAnalysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#515-grammaranalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.15 GrammarAnalysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#516-semanticrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.16 SemanticRelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#517-ayahmetadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.17 AyahMetadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#518-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.18 Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-research-execution-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Research execution and reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Research execution and reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-researchrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 ResearchRun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-researchinput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 ResearchInput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-researchresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 ResearchResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-search-data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Search data model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mutashabihat-and-comparison-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mutashabihat and comparison model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-suggested-sqlite-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Suggested SQLite implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-data-validation-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Data validation rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-example-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Example records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Example records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ayah-text-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ayah text record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word-token-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Word token record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-analysis-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token analysis record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-migration-and-versioning-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Migration and versioning policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-decisions-to-resolve-before-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Decisions to resolve before implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="qurankit-data-model">QuranKit --- Data Model<a class="headerlink" href="#qurankit-data-model" title="Permanent link">&para;</a></h1>
+<p><strong>Document status:</strong> Initial design proposal\
+<strong>Version:</strong> 0.1.0\
+<strong>Applies to:</strong> QuranKit core text-first research framework</p>
+<p>This document defines the initial logical data model for Qur'anic text,
+word-level records, linguistic annotations, lexical resources, dataset
+provenance, and computational research results.</p>
+<p>It is a design specification, not a claim that these tables or APIs have
+already been implemented. The schema should evolve through reviewed
+migrations as real datasets are evaluated.</p>
+<h2 id="1-design-goals">1. Design goals<a class="headerlink" href="#1-design-goals" title="Permanent link">&para;</a></h2>
+<p>The data model must:</p>
+<ol>
+<li>Preserve every imported source representation without destructive
+    modification.</li>
+<li>Give surahs, ayat, and word tokens stable, unambiguous references.</li>
+<li>Support multiple text editions, orthographies, tokenizations, and
+    readings without conflating them.</li>
+<li>Represent lexical and linguistic analyses as sourced annotations,
+    not unquestionable facts.</li>
+<li>Preserve multiple competing analyses where the data supports them.</li>
+<li>Make dataset provenance and licensing traceable down to individual
+    records or annotation batches.</li>
+<li>Support deterministic search and computational analysis.</li>
+<li>Remain usable in a local SQLite installation, with a path to
+    PostgreSQL later.</li>
+<li>Avoid requiring an LLM, vector database, graph database, or hosted
+    service.</li>
+</ol>
+<h2 id="2-core-modeling-principles">2. Core modeling principles<a class="headerlink" href="#2-core-modeling-principles" title="Permanent link">&para;</a></h2>
+<h3 id="21-separate-canonical-structure-from-text-editions">2.1 Separate canonical structure from text editions<a class="headerlink" href="#21-separate-canonical-structure-from-text-editions" title="Permanent link">&para;</a></h3>
+<p>The Qur'anic reference <code>2:255</code> identifies surah 2, ayah 255. It does
+not, by itself, identify a particular digital text representation.</p>
+<p>A text edition identifies the source and representation of the text.
+Different editions may differ in orthography, symbols, metadata, or
+tokenization. Store them separately.</p>
+<h3 id="22-preserve-original-data">2.2 Preserve original data<a class="headerlink" href="#22-preserve-original-data" title="Permanent link">&para;</a></h3>
+<p>For each imported text or annotation, retain:</p>
+<ul>
+<li>The original value as received.</li>
+<li>The source and dataset version.</li>
+<li>The source record identifier, if available.</li>
+<li>The transformation applied during import.</li>
+<li>The transformed value used internally, if any.</li>
+</ul>
+<p>Never replace original Arabic text with normalized text.</p>
+<h3 id="23-distinguish-a-word-token-from-a-linguistic-word-analysis">2.3 Distinguish a word token from a linguistic word analysis<a class="headerlink" href="#23-distinguish-a-word-token-from-a-linguistic-word-analysis" title="Permanent link">&para;</a></h3>
+<p>A token is a specific occurrence in a specific text edition and
+tokenization. Its root, lemma, part of speech, and grammatical role are
+analyses attached to that occurrence.</p>
+<p>One token may have multiple analyses. A root may be unknown, disputed,
+or absent from a source. Do not force every token to have one.</p>
+<h3 id="24-distinguish-lexical-meaning-from-contextual-interpretation">2.4 Distinguish lexical meaning from contextual interpretation<a class="headerlink" href="#24-distinguish-lexical-meaning-from-contextual-interpretation" title="Permanent link">&para;</a></h3>
+<p>A dictionary entry is not the same thing as the meaning of a word in a
+particular ayah. Model dictionary definitions, occurrence-level notes,
+semantic relations, and scholarly interpretations separately.</p>
+<h3 id="25-make-provenance-first-class">2.5 Make provenance first-class<a class="headerlink" href="#25-make-provenance-first-class" title="Permanent link">&para;</a></h3>
+<p>A result should be traceable to the dataset, edition, source, method,
+and software version that produced it.</p>
+<h2 id="3-entity-relationship-overview">3. Entity relationship overview<a class="headerlink" href="#3-entity-relationship-overview" title="Permanent link">&para;</a></h2>
+<p>The central relationships are:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Source ──&lt; Dataset ──&lt; DatasetRecord
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                    │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                    ├── TextEdition ──&lt; AyahText ──&lt; WordToken
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                    │                                  │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                    │                                  └──&lt; TokenAnalysis
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                    │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                    ├── LexicalResource ──&lt; LexicalEntry
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                    │                            │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                    │                            └──&lt; LexicalSense
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                    │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    └── AnnotationSet ──&lt; Annotation
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Surah ──&lt; Ayah
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Ayah ──&lt; AyahMetadata
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>WordToken ──&lt; TokenLexicalLink &gt;── LexicalEntry
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>ResearchRun ──&lt; ResearchResult
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>ResearchRun ──&lt; ResearchInput
+</span></code></pre></div>
+<p>The diagram is conceptual. A first SQLite implementation may use fewer
+physical tables, provided it preserves these distinctions and can
+migrate cleanly.</p>
+<h2 id="4-core-identifiers">4. Core identifiers<a class="headerlink" href="#4-core-identifiers" title="Permanent link">&para;</a></h2>
+<p>Use explicit, documented identifiers.</p>
+<hr />
+<p>Object                  Suggested identifier                        Example</p>
+<hr />
+<p>Surah                   <code>surah_number</code>                              <code>2</code></p>
+<p>Ayah                    <code>(surah_number, ayah_number)</code>               <code>2:255</code></p>
+<p>Text edition            <code>edition_id</code>                                <code>uthmani-example-v1</code></p>
+<p>Ayah text               <code>(edition_id, surah_number, ayah_number)</code>   Edition-specific
+                                                                      <code>2:255</code></p>
+<p>Word token              <code>token_id</code>                                  <code>uuid</code> or stable
+                                                                      composite key</p>
+<p>Dataset                 <code>dataset_id</code> + <code>version</code>                    <code>corpus-name@1.0.0</code></p>
+<p>Lexical entry           <code>lexical_entry_id</code>                          Source-preserving
+                                                                      identifier</p>
+<p>Annotation              <code>annotation_id</code>                             <code>uuid</code></p>
+<p>Research run            <code>run_id</code>                                    <code>uuid</code></p>
+<hr />
+<p>A word token should be tied to a text edition and a tokenization
+version. A simple display reference such as <code>2:255:3</code> may be offered to
+users, but it must not be treated as globally stable across all editions
+and tokenization schemes.</p>
+<p>Recommended human-readable reference:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;edition_id&gt;:&lt;surah&gt;:&lt;ayah&gt;:&lt;tokenization_id&gt;:&lt;token_index&gt;
+</span></code></pre></div>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uthmani-example-v1:2:255:tok-v1:3
+</span></code></pre></div>
+<p>The example is illustrative only.</p>
+<h2 id="5-logical-entities">5. Logical entities<a class="headerlink" href="#5-logical-entities" title="Permanent link">&para;</a></h2>
+<h3 id="51-source">5.1 Source<a class="headerlink" href="#51-source" title="Permanent link">&para;</a></h3>
+<p>Represents the bibliographic or digital origin of a dataset.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>source_id</code>             string, primary key     Internal stable ID</p>
+<p><code>title</code>                 string                  Source title</p>
+<p><code>creator</code>               string, nullable        Author, organization,
+                                                  or maintainer</p>
+<p><code>source_type</code>           enum/string             Corpus, book, API,
+                                                  manuscript, database,
+                                                  etc.</p>
+<p><code>url</code>                   string, nullable        Source location</p>
+<p><code>persistent_id</code>         string, nullable        DOI or other persistent
+                                                  identifier</p>
+<p><code>publisher</code>             string, nullable        Publisher or issuing
+                                                  body</p>
+<p><code>publication_year</code>      integer, nullable       Do not infer if unknown</p>
+<p><code>notes</code>                 text, nullable          Bibliographic or
+                                                  evaluation notes</p>
+<hr />
+<p>One source may provide multiple datasets or editions.</p>
+<h3 id="52-dataset">5.2 Dataset<a class="headerlink" href="#52-dataset" title="Permanent link">&para;</a></h3>
+<p>Represents an importable, versioned data release.</p>
+<hr />
+<p>Field                     Type                    Notes</p>
+<hr />
+<p><code>dataset_id</code>              string, primary key     Stable dataset name</p>
+<p><code>version</code>                 string                  Source release/version</p>
+<p><code>source_id</code>               foreign key             Originating source</p>
+<p><code>name</code>                    string                  Display name</p>
+<p><code>description</code>             text                    Contents and intended
+                                                    use</p>
+<p><code>license_id</code>              string, nullable        SPDX identifier or
+                                                    documented custom
+                                                    license</p>
+<p><code>license_url</code>             string, nullable        License text</p>
+<p><code>redistribution_status</code>   enum                    <code>allowed</code>,
+                                                    <code>restricted</code>,
+                                                    <code>unknown</code>,
+                                                    <code>not_redistributable</code></p>
+<p><code>retrieved_at</code>            datetime, nullable      Retrieval timestamp</p>
+<p><code>checksum_algorithm</code>      string, nullable        For example <code>sha256</code></p>
+<p><code>checksum</code>                string, nullable        Checksum of source
+                                                    artifact</p>
+<p><code>schema_version</code>          string                  Import schema version</p>
+<p><code>language</code>                string, nullable        BCP 47 or documented
+                                                    language code</p>
+<p><code>metadata_json</code>           JSON, nullable          Additional source
+                                                    metadata</p>
+<hr />
+<p>Do not treat <code>unknown</code> redistribution status as permission to
+redistribute.</p>
+<h3 id="53-datasetrecord">5.3 DatasetRecord<a class="headerlink" href="#53-datasetrecord" title="Permanent link">&para;</a></h3>
+<p>Optional but recommended when individual imported records need their own
+provenance.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>dataset_record_id</code>     string, primary key     Internal record ID</p>
+<p><code>dataset_id</code>            foreign key             Dataset release</p>
+<p><code>source_record_id</code>      string, nullable        Original record key</p>
+<p><code>record_type</code>           string                  Text, lexical entry,
+                                                  annotation, etc.</p>
+<p><code>record_checksum</code>       string, nullable        Hash of original record</p>
+<p><code>raw_payload</code>           text/JSON, nullable     Original payload if
+                                                  storage policy permits</p>
+<p><code>imported_at</code>           datetime                Import timestamp</p>
+<hr />
+<p>For large datasets, store raw source artifacts separately and retain a
+stable path or object key plus checksum.</p>
+<h3 id="54-surah">5.4 Surah<a class="headerlink" href="#54-surah" title="Permanent link">&para;</a></h3>
+<p>Represents the canonical surah index.</p>
+<p>Field                    Type                    Notes</p>
+<hr />
+<p><code>surah_number</code>           integer, primary key    1--114
+  <code>name_arabic</code>            text                    Name from a selected reference source
+  <code>name_transliteration</code>   text, nullable          Display metadata
+  <code>name_translation</code>       text, nullable          Display metadata
+  <code>ayah_count</code>             integer                 Validate against selected structure
+  <code>metadata_source_id</code>     foreign key, nullable   Source of metadata</p>
+<p>Names and descriptive metadata should be source-attributed. Do not
+assume that one transliteration or translation is canonical.</p>
+<h3 id="55-ayah">5.5 Ayah<a class="headerlink" href="#55-ayah" title="Permanent link">&para;</a></h3>
+<p>Represents the canonical location of an ayah, independent of a specific
+digital text edition.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>surah_number</code>          integer, primary key    Foreign key to Surah
+                          part                    </p>
+<p><code>ayah_number</code>           integer, primary key    Local ayah number
+                          part                    </p>
+<p><code>global_ayah_number</code>    integer, nullable       Common sequence number
+                                                  if adopted</p>
+<p><code>metadata_json</code>         JSON, nullable          Additional sourced
+                                                  structural metadata</p>
+<hr />
+<p>Primary key: <code>(surah_number, ayah_number)</code>.</p>
+<h3 id="56-textedition">5.6 TextEdition<a class="headerlink" href="#56-textedition" title="Permanent link">&para;</a></h3>
+<p>Represents a text source, orthographic representation, or reading
+edition.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>edition_id</code>            string, primary key     Internal stable
+                                                  identifier</p>
+<p><code>dataset_id</code>            foreign key             Dataset providing the
+                                                  text</p>
+<p><code>name</code>                  string                  Edition name</p>
+<p><code>script_type</code>           string                  For example Uthmani or
+                                                  Imlai</p>
+<p><code>reading_id</code>            string, nullable        Qira'ah/riwayah
+                                                  identifier when
+                                                  applicable</p>
+<p><code>orthography</code>           string, nullable        Source description</p>
+<p><code>tokenization_id</code>       string, nullable        Tokenization
+                                                  scheme/version</p>
+<p><code>is_default</code>            boolean                 Default display
+                                                  edition, not a claim of
+                                                  universal authority</p>
+<p><code>notes</code>                 text, nullable          Differences and known
+                                                  limitations</p>
+<hr />
+<p>Do not merge qira'at into a single text field. Represent readings and
+their source-specific variants explicitly when that scope is
+implemented.</p>
+<h3 id="57-ayahtext">5.7 AyahText<a class="headerlink" href="#57-ayahtext" title="Permanent link">&para;</a></h3>
+<p>Stores the exact ayah string for a particular edition.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>edition_id</code>            foreign key, primary    Text edition
+                          key part                </p>
+<p><code>surah_number</code>          integer, primary key    Canonical location
+                          part                    </p>
+<p><code>ayah_number</code>           integer, primary key    Canonical location
+                          part                    </p>
+<p><code>text_original</code>         text                    Exact source string</p>
+<p><code>text_display</code>          text, nullable          Display-only
+                                                  transformation, if
+                                                  needed</p>
+<p><code>source_record_id</code>      string, nullable        Original record
+                                                  identifier</p>
+<p><code>checksum</code>              string, nullable        Integrity check</p>
+<p><code>metadata_json</code>         JSON, nullable          Source-specific
+                                                  metadata</p>
+<hr />
+<p><code>text_original</code> must not be rewritten by search normalization,
+typography, or display formatting.</p>
+<h3 id="58-wordtoken">5.8 WordToken<a class="headerlink" href="#58-wordtoken" title="Permanent link">&para;</a></h3>
+<p>Represents a token occurrence in a particular ayah text and
+tokenization.</p>
+<p>Field                  Type                  Notes</p>
+<hr />
+<p><code>token_id</code>             string, primary key   Stable internal ID
+  <code>edition_id</code>           foreign key           Text edition
+  <code>surah_number</code>         integer               Ayah location
+  <code>ayah_number</code>          integer               Ayah location
+  <code>tokenization_id</code>      string                Segmentation scheme/version
+  <code>token_index</code>          integer               Position within ayah under this scheme
+  <code>surface_original</code>     text                  Exact token as segmented from source
+  <code>char_start</code>           integer, nullable     Offset into source ayah text
+  <code>char_end</code>             integer, nullable     Exclusive end offset
+  <code>source_record_id</code>     string, nullable      Source token ID
+  <code>segmentation_notes</code>   text, nullable        Notes about segmentation</p>
+<p>Constraints:</p>
+<ul>
+<li>Unique
+    <code>(edition_id, surah_number, ayah_number, tokenization_id, token_index)</code>.</li>
+<li>Foreign key to the matching <code>AyahText</code>.</li>
+<li>Offsets must use a documented convention, such as Unicode code-point
+    offsets into <code>text_original</code>.</li>
+<li>Do not assume a token is always equivalent to a morphological word.
+    Clitics and segmentation conventions may differ.</li>
+</ul>
+<h3 id="59-normalizationprofile">5.9 NormalizationProfile<a class="headerlink" href="#59-normalizationprofile" title="Permanent link">&para;</a></h3>
+<p>Defines a named and versioned text transformation.</p>
+<p>Field                      Type                  Notes</p>
+<hr />
+<p><code>profile_id</code>               string, primary key   For example <code>search-v1</code>
+  <code>name</code>                     string                Human-readable name
+  <code>version</code>                  string                Profile version
+  <code>description</code>              text                  Intended use
+  <code>rules_json</code>               JSON                  Explicit transformations and options
+  <code>implementation_version</code>   string                Code version
+  <code>created_at</code>               datetime              Creation timestamp</p>
+<p>A normalized token or ayah string may be cached for performance, but it
+must reference the profile and source text it was derived from.</p>
+<h3 id="510-lexicalresource">5.10 LexicalResource<a class="headerlink" href="#510-lexicalresource" title="Permanent link">&para;</a></h3>
+<p>Represents a dictionary, lexicon, or vocabulary source.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>lexical_resource_id</code>   string, primary key     Internal ID</p>
+<p><code>dataset_id</code>            foreign key             Dataset release</p>
+<p><code>title</code>                 string                  Work or resource title</p>
+<p><code>author</code>                string, nullable        Author/compiler</p>
+<p><code>edition</code>               string, nullable        Edition information</p>
+<p><code>language</code>              string                  Entry language</p>
+<p><code>scope</code>                 string, nullable        General Arabic,
+                                                  Qur'anic vocabulary,
+                                                  etc.</p>
+<p><code>notes</code>                 text, nullable          Editorial notes</p>
+<hr />
+<h3 id="511-lexicalentry">5.11 LexicalEntry<a class="headerlink" href="#511-lexicalentry" title="Permanent link">&para;</a></h3>
+<p>Represents a dictionary headword or lexical record.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>lexical_entry_id</code>      string, primary key     Internal ID</p>
+<p><code>lexical_resource_id</code>   foreign key             Source lexicon</p>
+<p><code>source_entry_id</code>       string, nullable        Original entry key</p>
+<p><code>headword_original</code>     text                    Exact source headword</p>
+<p><code>headword_normalized</code>   text, nullable          Search helper only</p>
+<p><code>root_form</code>             text, nullable          Only when source
+                                                  explicitly supplies or
+                                                  supports it</p>
+<p><code>entry_text_original</code>   text, nullable          Original entry text</p>
+<p><code>entry_location</code>        text, nullable          Volume/page/entry
+                                                  reference</p>
+<p><code>metadata_json</code>         JSON, nullable          Additional source data</p>
+<hr />
+<h3 id="512-lexicalsense">5.12 LexicalSense<a class="headerlink" href="#512-lexicalsense" title="Permanent link">&para;</a></h3>
+<p>Separates multiple meanings or senses within an entry.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>sense_id</code>              string, primary key     Internal ID</p>
+<p><code>lexical_entry_id</code>      foreign key             Parent entry</p>
+<p><code>sense_number</code>          integer, nullable       Source ordering</p>
+<p><code>definition_original</code>   text                    Source wording</p>
+<p><code>definition_language</code>   string                  Language tag</p>
+<p><code>gloss</code>                 text, nullable          Short gloss; identify
+                                                  if editorial</p>
+<p><code>usage_note</code>            text, nullable          Source-provided note</p>
+<p><code>source_location</code>       text, nullable          Page or section</p>
+<p><code>editorial_status</code>      string                  Source text, edited
+                                                  transcription, etc.</p>
+<hr />
+<p>Do not silently rewrite classical dictionary definitions. If a modern
+summary is added, store it separately and identify it as an editorial or
+generated gloss.</p>
+<h3 id="513-root-and-lemma">5.13 Root and Lemma<a class="headerlink" href="#513-root-and-lemma" title="Permanent link">&para;</a></h3>
+<p>Root and lemma are distinct linguistic concepts and should not be
+represented by one overloaded field.</p>
+<p><strong>Root</strong></p>
+<p>Field               Type                  Notes</p>
+<hr />
+<p><code>root_id</code>           string, primary key   Internal identifier
+  <code>root_form</code>         text                  Arabic root representation
+  <code>root_normalized</code>   text, nullable        Search helper
+  <code>notes</code>             text, nullable        Editorial notes</p>
+<p><strong>Lemma</strong></p>
+<p>Field                Type                  Notes</p>
+<hr />
+<p><code>lemma_id</code>           string, primary key   Internal identifier
+  <code>lemma_form</code>         text                  Lemma representation
+  <code>lemma_normalized</code>   text, nullable        Search helper
+  <code>language</code>           string                Language tag
+  <code>notes</code>              text, nullable        Editorial notes</p>
+<p>A token's connection to a root or lemma belongs in its analysis record,
+because analyses may differ.</p>
+<h3 id="514-tokenanalysis">5.14 TokenAnalysis<a class="headerlink" href="#514-tokenanalysis" title="Permanent link">&para;</a></h3>
+<p>Represents one analysis of a token from a named source or method.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>analysis_id</code>           string, primary key     Internal ID</p>
+<p><code>token_id</code>              foreign key             Analyzed token</p>
+<p><code>dataset_id</code>            foreign key, nullable   Source dataset, if
+                                                  imported</p>
+<p><code>root_id</code>               foreign key, nullable   Root candidate</p>
+<p><code>lemma_id</code>              foreign key, nullable   Lemma candidate</p>
+<p><code>part_of_speech</code>        string, nullable        Source tag or mapped
+                                                  tag</p>
+<p><code>morph_features_json</code>   JSON                    Inflectional and
+                                                  derivational features</p>
+<p><code>segmentation_json</code>     JSON, nullable          Morpheme/clitic
+                                                  structure if available</p>
+<p><code>method_type</code>           enum/string             <code>source_annotation</code>,
+                                                  <code>human_review</code>,
+                                                  <code>algorithmic</code></p>
+<p><code>confidence</code>            number, nullable        Only if meaningful and
+                                                  documented</p>
+<p><code>is_preferred</code>          boolean                 Project curation
+                                                  choice, not absolute
+                                                  truth</p>
+<p><code>notes</code>                 text, nullable          Ambiguity and rationale</p>
+<hr />
+<p>If confidence is stored, document what it means. Do not compare
+confidence values from unrelated models or annotation sources as though
+they were calibrated identically.</p>
+<h3 id="515-grammaranalysis">5.15 GrammarAnalysis<a class="headerlink" href="#515-grammaranalysis" title="Permanent link">&para;</a></h3>
+<p>Represents syntax, i'rab, or other grammar annotations.</p>
+<hr />
+<p>Field                    Type                    Notes</p>
+<hr />
+<p><code>grammar_analysis_id</code>    string, primary key     Internal ID</p>
+<p><code>token_id</code>               foreign key, nullable   Token-level annotation</p>
+<p><code>ayah_text_key</code>          foreign key, nullable   Ayah-level annotation</p>
+<p><code>dataset_id</code>             foreign key, nullable   Source</p>
+<p><code>analysis_type</code>          string                  Nahwu, i'rab,
+                                                   dependency, etc.</p>
+<p><code>role_label</code>             string, nullable        Source's grammatical
+                                                   role</p>
+<p><code>parent_token_id</code>        foreign key, nullable   Dependency relation if
+                                                   applicable</p>
+<p><code>explanation_original</code>   text, nullable          Source explanation</p>
+<p><code>method_type</code>            string                  Source, reviewed,
+                                                   algorithmic</p>
+<p><code>metadata_json</code>          JSON, nullable          Source-specific details</p>
+<hr />
+<p>A grammar annotation may apply to a phrase or ayah rather than one
+token. A later implementation may introduce a general annotation-target
+table to handle spans and groups.</p>
+<h3 id="516-semanticrelation">5.16 SemanticRelation<a class="headerlink" href="#516-semanticrelation" title="Permanent link">&para;</a></h3>
+<p>Represents a sourced or explicitly computed relationship between lexical
+or conceptual objects.</p>
+<hr />
+<p>Field                    Type                    Notes</p>
+<hr />
+<p><code>semantic_relation_id</code>   string, primary key     Internal ID</p>
+<p><code>subject_type</code>           string                  Lexical entry, lemma,
+                                                   concept, etc.</p>
+<p><code>subject_id</code>             string                  Subject identifier</p>
+<p><code>relation_type</code>          string                  Synonym, antonym,
+                                                   related concept, etc.</p>
+<p><code>object_type</code>            string                  Target entity type</p>
+<p><code>object_id</code>              string                  Target identifier</p>
+<p><code>dataset_id</code>             foreign key, nullable   Source</p>
+<p><code>method_type</code>            string                  Source annotation,
+                                                   human review,
+                                                   algorithmic</p>
+<p><code>evidence_note</code>          text, nullable          Supporting evidence</p>
+<p><code>confidence</code>             number, nullable        Documented if used</p>
+<hr />
+<p>Do not encode a relationship as a scholarly fact when it is only a model
+suggestion or vector-neighbor result.</p>
+<h3 id="517-ayahmetadata">5.17 AyahMetadata<a class="headerlink" href="#517-ayahmetadata" title="Permanent link">&para;</a></h3>
+<p>Stores sourced structural or descriptive metadata separately from the
+canonical ayah location.</p>
+<p>Examples include juz, hizb, rubu', page, ruku', Makki/Madani
+classification, revelation order, and other study metadata.</p>
+<p>Field                Type                  Notes</p>
+<hr />
+<p><code>ayah_metadata_id</code>   string, primary key   Internal ID
+  <code>surah_number</code>       integer               Ayah location
+  <code>ayah_number</code>        integer               Ayah location
+  <code>metadata_type</code>      string                <code>juz</code>, <code>page</code>, <code>revelation_order</code>, etc.
+  <code>value_text</code>         text                  Flexible value representation
+  <code>dataset_id</code>         foreign key           Source
+  <code>source_reference</code>   text, nullable        Page, section, or record
+  <code>notes</code>              text, nullable        Disagreement or caveat</p>
+<p>Some metadata applies to ranges of ayat rather than individual ayat. A
+future <code>AyahRange</code> entity may be preferable for range-based structure.
+Do not duplicate range metadata onto every ayah without recording the
+original range semantics.</p>
+<h3 id="518-annotation">5.18 Annotation<a class="headerlink" href="#518-annotation" title="Permanent link">&para;</a></h3>
+<p>A general-purpose annotation entity for data that does not fit a
+specialized table.</p>
+<p>Field                       Type                    Notes</p>
+<hr />
+<p><code>annotation_id</code>             string, primary key     Internal ID
+  <code>target_type</code>               string                  Ayah, token, span, lexical entry, etc.
+  <code>target_id</code>                 string                  Target identifier
+  <code>annotation_type</code>           string                  Topic, rhetoric, note, variant, etc.
+  <code>content_original</code>          text, nullable          Source wording
+  <code>content_structured_json</code>   JSON, nullable          Structured annotation
+  <code>dataset_id</code>                foreign key, nullable   Source dataset
+  <code>method_type</code>               string                  Source, human review, algorithmic
+  <code>review_status</code>             string                  Unreviewed, reviewed, disputed, etc.</p>
+<p>A general annotation should not replace specialized, queryable entities
+such as <code>TokenAnalysis</code> or <code>LexicalSense</code>.</p>
+<h2 id="6-research-execution-and-reproducibility">6. Research execution and reproducibility<a class="headerlink" href="#6-research-execution-and-reproducibility" title="Permanent link">&para;</a></h2>
+<h3 id="61-researchrun">6.1 ResearchRun<a class="headerlink" href="#61-researchrun" title="Permanent link">&para;</a></h3>
+<p>Records an executed research operation.</p>
+<hr />
+<p>Field                        Type                    Notes</p>
+<hr />
+<p><code>run_id</code>                     string, primary key     Unique run</p>
+<p><code>operation</code>                  string                  Search, comparison,
+                                                       frequency, similarity,
+                                                       etc.</p>
+<p><code>algorithm_name</code>             string                  Method identifier</p>
+<p><code>algorithm_version</code>          string                  Version</p>
+<p><code>parameters_json</code>            JSON                    Exact parameters</p>
+<p><code>normalization_profile_id</code>   string, nullable        Profile used</p>
+<p><code>software_version</code>           string                  QuranKit version</p>
+<p><code>started_at</code>                 datetime                Run timestamp</p>
+<p><code>completed_at</code>               datetime, nullable      Completion timestamp</p>
+<p><code>status</code>                     string                  Completed, failed,
+                                                       partial</p>
+<p><code>environment_json</code>           JSON, nullable          Relevant runtime
+                                                       details</p>
+<hr />
+<h3 id="62-researchinput">6.2 ResearchInput<a class="headerlink" href="#62-researchinput" title="Permanent link">&para;</a></h3>
+<p>Links a research run to its inputs.</p>
+<p>Field                 Type                    Notes</p>
+<hr />
+<p><code>research_input_id</code>   string, primary key     Internal ID
+  <code>run_id</code>              foreign key             Research run
+  <code>input_type</code>          string                  Ayah, token, dataset, query, etc.
+  <code>input_reference</code>     text                    Stable reference
+  <code>dataset_id</code>          foreign key, nullable   Dataset version used</p>
+<h3 id="63-researchresult">6.3 ResearchResult<a class="headerlink" href="#63-researchresult" title="Permanent link">&para;</a></h3>
+<p>Stores or indexes the output of a research run.</p>
+<hr />
+<p>Field                   Type                    Notes</p>
+<hr />
+<p><code>result_id</code>             string, primary key     Internal ID</p>
+<p><code>run_id</code>                foreign key             Producing run</p>
+<p><code>result_type</code>           string                  Exact match, similarity
+                                                  candidate, statistic,
+                                                  etc.</p>
+<p><code>claim_category</code>        string                  Source annotation,
+                                                  deterministic result,
+                                                  suggestion, hypothesis</p>
+<p><code>result_payload_json</code>   JSON                    Structured result</p>
+<p><code>evidence_json</code>         JSON, nullable          Supporting references</p>
+<p><code>limitations</code>           text, nullable          Known caveats</p>
+<hr />
+<p>For large outputs, store result files separately and keep a URI/path,
+checksum, and schema version in the record.</p>
+<h2 id="7-search-data-model">7. Search data model<a class="headerlink" href="#7-search-data-model" title="Permanent link">&para;</a></h2>
+<p>Search should operate on indexed derived fields while retaining a path
+to source text.</p>
+<p>Possible derived indexes:</p>
+<ul>
+<li>Exact source text index.</li>
+<li>Diacritic-insensitive text index.</li>
+<li>Named normalization-profile index.</li>
+<li>Token surface index.</li>
+<li>Lemma index.</li>
+<li>Root index.</li>
+<li>Lexical headword index.</li>
+<li>Phrase and n-gram index.</li>
+</ul>
+<p>Every search request should declare:</p>
+<ul>
+<li>Target scope: ayah, token, lexical entry, or all supported.</li>
+<li>Text edition(s).</li>
+<li>Search mode.</li>
+<li>Normalization profile.</li>
+<li>Whether diacritics matter.</li>
+<li>Whether matching is exact, prefix, fuzzy, morphological, or
+    semantic.</li>
+</ul>
+<p>Search results should include the original source text and stable
+references, not only normalized strings.</p>
+<p>Semantic search is optional and must be labeled as candidate discovery.
+Store embedding model, model version, text input, and vector-index
+version if embeddings are added.</p>
+<h2 id="8-mutashabihat-and-comparison-model">8. Mutashabihat and comparison model<a class="headerlink" href="#8-mutashabihat-and-comparison-model" title="Permanent link">&para;</a></h2>
+<p>Do not store all similarity as one generic score. Record the comparison
+method and evidence.</p>
+<p>A comparison result should be able to represent:</p>
+<ul>
+<li>Exact phrase overlap.</li>
+<li>Shared token sequence.</li>
+<li>Near-duplicate sequence.</li>
+<li>Shared lemma or root.</li>
+<li>Word-order difference.</li>
+<li>Insertion, deletion, or substitution.</li>
+<li>Similar opening or ending.</li>
+<li>Semantic candidate relationship.</li>
+</ul>
+<p>Suggested logical record:</p>
+<hr />
+<p>Field                        Type                    Notes</p>
+<hr />
+<p><code>comparison_id</code>              string, primary key     Comparison identifier</p>
+<p><code>left_reference</code>             text                    Ayah or span reference</p>
+<p><code>right_reference</code>            text                    Ayah or span reference</p>
+<p><code>comparison_method</code>          string                  Exact, token edit
+                                                       distance, lemma
+                                                       overlap, etc.</p>
+<p><code>method_version</code>             string                  Algorithm version</p>
+<p><code>normalization_profile_id</code>   string, nullable        Used profile</p>
+<p><code>score</code>                      number, nullable        Method-specific score</p>
+<p><code>alignment_json</code>             JSON                    Matched and differing
+                                                       spans/tokens</p>
+<p><code>claim_category</code>             string                  Usually deterministic
+                                                       result or suggestion</p>
+<p><code>review_status</code>              string                  Unreviewed, reviewed,
+                                                       disputed</p>
+<p><code>run_id</code>                     foreign key             Reproducibility link</p>
+<hr />
+<p>A similarity score must never be presented as proof that two ayat have
+the same meaning or interpretation.</p>
+<h2 id="9-suggested-sqlite-implementation">9. Suggested SQLite implementation<a class="headerlink" href="#9-suggested-sqlite-implementation" title="Permanent link">&para;</a></h2>
+<p>Start with relational tables and foreign keys. Use SQLite features
+conservatively so migration to PostgreSQL remains feasible.</p>
+<p>Recommended initial choices:</p>
+<ul>
+<li><code>INTEGER</code> for numeric canonical indices.</li>
+<li><code>TEXT</code> for Arabic text and identifiers.</li>
+<li>ISO 8601 UTC timestamps for stored timestamps.</li>
+<li>JSON stored as <code>TEXT</code> with validation in application code, or SQLite
+    JSON functions where available.</li>
+<li>Foreign-key enforcement enabled on every connection.</li>
+<li>Explicit unique constraints and indexes.</li>
+<li>FTS5 for full-text search, with separate indexes for separate
+    normalization profiles.</li>
+</ul>
+<p>Potential indexes:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_ayah_text_location</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">ON</span><span class="w"> </span><span class="n">ayah_text</span><span class="w"> </span><span class="p">(</span><span class="n">surah_number</span><span class="p">,</span><span class="w"> </span><span class="n">ayah_number</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_word_token_location</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">ON</span><span class="w"> </span><span class="n">word_token</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">edition_id</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">surah_number</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">ayah_number</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">tokenization_id</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">token_index</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">);</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_token_analysis_root</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">ON</span><span class="w"> </span><span class="n">token_analysis</span><span class="w"> </span><span class="p">(</span><span class="n">root_id</span><span class="p">);</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_token_analysis_lemma</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">ON</span><span class="w"> </span><span class="n">token_analysis</span><span class="w"> </span><span class="p">(</span><span class="n">lemma_id</span><span class="p">);</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_lexical_entry_headword</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">ON</span><span class="w"> </span><span class="n">lexical_entry</span><span class="w"> </span><span class="p">(</span><span class="n">headword_normalized</span><span class="p">);</span>
+</span></code></pre></div>
+<p>These are illustrative. Final SQL must match the implemented schema and
+migration system.</p>
+<h2 id="10-data-validation-rules">10. Data validation rules<a class="headerlink" href="#10-data-validation-rules" title="Permanent link">&para;</a></h2>
+<p>Every dataset importer should validate:</p>
+<ol>
+<li>Required metadata and license status are present or explicitly
+    unknown.</li>
+<li>Source and dataset identifiers are stable.</li>
+<li>Surah and ayah references are valid for the selected structure.</li>
+<li>Duplicate records are detected.</li>
+<li>Text is valid Unicode and original values are preserved.</li>
+<li>Word token indices are ordered and unique within their tokenization.</li>
+<li>Character offsets follow the documented convention and remain within
+    the source string.</li>
+<li>Foreign keys resolve.</li>
+<li>Normalized fields identify the profile and implementation version.</li>
+<li>Imported annotations retain source record identifiers where
+    available.</li>
+</ol>
+<p>Validation reports should distinguish errors, warnings, and
+informational messages. An importer must not silently discard invalid
+records.</p>
+<h2 id="11-example-records">11. Example records<a class="headerlink" href="#11-example-records" title="Permanent link">&para;</a></h2>
+<p>The following examples are structural illustrations. They do not provide
+Qur'anic quotations or assert a particular linguistic analysis.</p>
+<h3 id="ayah-text-record">Ayah text record<a class="headerlink" href="#ayah-text-record" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"edition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-edition-v1"</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"surah_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">"ayah_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">"text_original"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;exact source text stored here&gt;"</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">"source_record_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source-specific-record-id"</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">"checksum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha256:..."</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="word-token-record">Word token record<a class="headerlink" href="#word-token-record" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"token_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-token-id"</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">"edition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-edition-v1"</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">"surah_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">"ayah_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">"tokenization_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-tokenization-v1"</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">"token_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">"surface_original"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;exact token from source&gt;"</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">"char_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">"char_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="token-analysis-record">Token analysis record<a class="headerlink" href="#token-analysis-record" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">"analysis_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-analysis-id"</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">"token_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-token-id"</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">"dataset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-corpus"</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">"root_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">"lemma_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">"part_of_speech"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">"morph_features_json"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">"method_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source_annotation"</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nt">"confidence"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="nt">"is_preferred"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Null values are intentional when the source does not provide an
+analysis.</p>
+<h2 id="12-migration-and-versioning-policy">12. Migration and versioning policy<a class="headerlink" href="#12-migration-and-versioning-policy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Version the database schema independently from the package version.</li>
+<li>Use explicit, ordered migrations.</li>
+<li>Never mutate imported source artifacts as a migration side effect.</li>
+<li>Make migrations testable on both empty and populated databases.</li>
+<li>Preserve identifiers or provide explicit mapping tables when
+    identifiers change.</li>
+<li>Record the dataset and schema versions used to build a local
+    database.</li>
+<li>Provide a validation command after dataset import or migration.</li>
+<li>Keep a rollback or recovery strategy for destructive schema changes.</li>
+</ul>
+<h2 id="13-decisions-to-resolve-before-implementation">13. Decisions to resolve before implementation<a class="headerlink" href="#13-decisions-to-resolve-before-implementation" title="Permanent link">&para;</a></h2>
+<p>The following choices require a documented decision:</p>
+<ol>
+<li>Which digital Qur'anic text edition is the first supported source?</li>
+<li>Which source provides canonical surah and ayah metadata?</li>
+<li>Which tokenization convention is adopted first?</li>
+<li>Are token IDs UUIDs, deterministic hashes, or composite identifiers?</li>
+<li>Which Unicode offset convention is used?</li>
+<li>Which morphology corpus is supported first, and what is its license?</li>
+<li>Which lexical resources may be redistributed?</li>
+<li>Which metadata belongs in core tables versus source-specific JSON?</li>
+<li>Which schema migration tool will be used?</li>
+<li>Which fields are required for a first alpha release?</li>
+</ol>
+<p>Do not finalize the schema around hypothetical datasets. Evaluate actual
+source formats and licenses, then adapt the import model while
+preserving the principles in this document.</p>
+<h2 id="14-recommended-implementation-order">14. Recommended implementation order<a class="headerlink" href="#14-recommended-implementation-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Implement <code>Source</code>, <code>Dataset</code>, and dataset manifest validation.</li>
+<li>Implement <code>Surah</code>, <code>Ayah</code>, <code>TextEdition</code>, and <code>AyahText</code>.</li>
+<li>Add a verified text importer and integrity checks.</li>
+<li>Implement <code>WordToken</code> with a documented tokenization scheme.</li>
+<li>Add normalization profiles and derived search indexes.</li>
+<li>Add lexical-resource and lexical-entry adapters.</li>
+<li>Add token morphology and grammar annotations.</li>
+<li>Add research-run and result provenance.</li>
+<li>Add mutashabihat comparison records after benchmark examples exist.</li>
+</ol>
+<p>This order establishes trustworthy source text and provenance before
+adding increasingly interpretive layers.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 QuranKit Contributors — MIT License
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AdakHaddad/qurankit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/qurankit-core/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3059 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A modular, Python-first computational Qur'anic research library">
+      
+      
+      
+        <link rel="canonical" href="https://adakhaddad.github.io/qurankit/reference/arabic-text-standard/">
+      
+      
+        <link rel="prev" href="../data-model/">
+      
+      
+        <link rel="next" href="../datasets/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Arabic Text Standard - QuranKit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qurankit-arabic-text-standard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QuranKit" class="md-header__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QuranKit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arabic Text Standard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/text-access/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../plan/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/contributing/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/basic_usage/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QuranKit" class="md-nav__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QuranKit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/text-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qur'anic Text Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/arabic-text-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search & Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vocabulary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vocabulary & Lexicon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/mutashabihat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computational Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Standard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-non-negotiable-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Non-negotiable rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-text-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Text layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-unicode-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Unicode handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Unicode handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-unicode-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Unicode normalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-offsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Offsets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-arabic-character-and-mark-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Arabic character and mark categories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Arabic character and mark categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-base-letters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Base letters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-hamza-and-alif-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Hamza and alif forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-alif-maqsurah-and-ya" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Alif maqsurah and ya
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-ta-marbutah-and-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Ta marbutah and ha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-diacritics-and-recitation-marks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Diacritics and recitation marks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-quranic-annotation-and-pause-signs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Quranic annotation and pause signs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-normalization-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Normalization profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Normalization profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-exact-source-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 exact-source-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-canonical-unicode-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 canonical-unicode-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-diacritics-insensitive-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 diacritics-insensitive-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-search-broad-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 search-broad-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-custom-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Custom profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-suggested-normalization-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Suggested normalization pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-uthmani-and-imlai-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Uthmani and Imlai representations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tokenization-and-word-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Tokenization and word segmentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Tokenization and word segmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-do-not-equate-whitespace-tokens-with-linguistic-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Do not equate whitespace tokens with linguistic words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-tokenization-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Tokenization metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-stable-token-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Stable token identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-segmentation-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Segmentation alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-search-modes-and-result-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Search modes and result labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-display-and-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Display and rendering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-transliteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Transliteration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-import-and-validation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Import and validation requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-test-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Test strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Test strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unicode-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unicode tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orthographic-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthographic tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenization-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokenization tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regression-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-proposed-api-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Proposed API shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-open-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Open decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/dataset_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/search_examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mutashabihat_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/reports_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mcp_client_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-non-negotiable-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Non-negotiable rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-text-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Text layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-unicode-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Unicode handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Unicode handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-unicode-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Unicode normalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-offsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Offsets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-arabic-character-and-mark-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Arabic character and mark categories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Arabic character and mark categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-base-letters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Base letters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-hamza-and-alif-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Hamza and alif forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-alif-maqsurah-and-ya" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Alif maqsurah and ya
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-ta-marbutah-and-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Ta marbutah and ha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-diacritics-and-recitation-marks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Diacritics and recitation marks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-quranic-annotation-and-pause-signs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Quranic annotation and pause signs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-normalization-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Normalization profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Normalization profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-exact-source-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 exact-source-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-canonical-unicode-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 canonical-unicode-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-diacritics-insensitive-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 diacritics-insensitive-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-search-broad-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 search-broad-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-custom-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Custom profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-suggested-normalization-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Suggested normalization pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-uthmani-and-imlai-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Uthmani and Imlai representations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tokenization-and-word-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Tokenization and word segmentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Tokenization and word segmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-do-not-equate-whitespace-tokens-with-linguistic-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Do not equate whitespace tokens with linguistic words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-tokenization-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Tokenization metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-stable-token-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Stable token identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-segmentation-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Segmentation alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-search-modes-and-result-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Search modes and result labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-display-and-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Display and rendering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-transliteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Transliteration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-import-and-validation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Import and validation requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-test-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Test strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Test strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unicode-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unicode tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orthographic-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthographic tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenization-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokenization tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regression-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-proposed-api-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Proposed API shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-open-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Open decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="qurankit-arabic-text-standard">QuranKit --- Arabic Text Standard<a class="headerlink" href="#qurankit-arabic-text-standard" title="Permanent link">&para;</a></h1>
+<p><strong>Document status:</strong> Initial technical standard\
+<strong>Version:</strong> 0.1.0\
+<strong>Scope:</strong> Arabic text ingestion, preservation, normalization,
+tokenization, matching, and display</p>
+<p>This document defines how QuranKit handles Arabic text, especially
+Qur'anic text. It is intended to prevent accidental loss of orthographic
+information and to ensure that search, comparison, and linguistic
+analysis remain reproducible.</p>
+<p>This is a technical data-handling standard. It does not determine which
+Qur'anic orthography, reading, or scholarly position is religiously
+authoritative. Those choices must be tied to identified sources and
+documented editions.</p>
+<h2 id="1-goals">1. Goals<a class="headerlink" href="#1-goals" title="Permanent link">&para;</a></h2>
+<p>QuranKit must:</p>
+<ol>
+<li>Preserve source text exactly as imported.</li>
+<li>Support more than one orthographic representation, including Uthmani
+    and Imlai where reliable data is available.</li>
+<li>Make every normalization operation explicit and versioned.</li>
+<li>Keep exact-text comparison separate from search-oriented matching.</li>
+<li>Avoid confusing orthographic similarity with lexical, morphological,
+    or semantic identity.</li>
+<li>Preserve the ability to trace a match back to its original source
+    characters.</li>
+<li>Handle Arabic Unicode and combining marks correctly.</li>
+<li>Support word-level research without assuming that whitespace always
+    defines a linguistic word.</li>
+<li>Make transformations reproducible across machines and software
+    versions.</li>
+</ol>
+<h2 id="2-non-negotiable-rules">2. Non-negotiable rules<a class="headerlink" href="#2-non-negotiable-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Never overwrite source Arabic text with normalized text.</li>
+<li>Never silently remove diacritics, Quranic marks, hamza distinctions,
+    or pause signs from the stored original.</li>
+<li>Never describe a normalized match as an exact source-text match.</li>
+<li>Never convert Uthmani text to Imlai text without identifying the
+    conversion rules and version.</li>
+<li>Never infer a root, lemma, reading, or grammatical analysis from
+    normalization alone.</li>
+<li>Never merge different qira'at or text editions into one
+    undifferentiated text field.</li>
+<li>Never assume that visually similar Unicode strings are
+    byte-identical or code-point-identical.</li>
+<li>Every derived text representation must identify its source record
+    and transformation profile.</li>
+</ul>
+<h2 id="3-text-layers">3. Text layers<a class="headerlink" href="#3-text-layers" title="Permanent link">&para;</a></h2>
+<p>Keep the following layers conceptually and physically separate.</p>
+<hr />
+<p>Layer                   Purpose                 Example use</p>
+<hr />
+<p>Source text             Exact imported          Archival fidelity and
+                          representation          citation</p>
+<p>Display text            Optional presentation   User interface
+                          adjustments             rendering</p>
+<p>Search-normalized text  Search-oriented         Diacritic-insensitive
+                          equivalence             lookup</p>
+<p>Linguistic              Token, lemma,           Grammar and lexical
+  representation          morphology, or          research
+                          segmentation data       </p>
+<p>Transliteration         Romanized               Optional display or
+                          representation          accessibility</p>
+<p>Translation             Translation in a named  Meaning exploration
+                          language and edition    </p>
+<hr />
+<p>A display transformation must not become the archival source. A
+search-normalized string must not be used as a substitute for a
+linguistic analysis. A translation must never replace the Arabic source
+text.</p>
+<h2 id="4-unicode-handling">4. Unicode handling<a class="headerlink" href="#4-unicode-handling" title="Permanent link">&para;</a></h2>
+<h3 id="41-encoding">4.1 Encoding<a class="headerlink" href="#41-encoding" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Store text as Unicode.</li>
+<li>Use UTF-8 for text files and interchange formats unless a documented
+    format requires otherwise.</li>
+<li>Validate decoding during ingestion.</li>
+<li>Reject or quarantine malformed input rather than silently replacing
+    invalid bytes.</li>
+<li>Record the source encoding and any decoding conversion where known.</li>
+</ul>
+<h3 id="42-unicode-normalization">4.2 Unicode normalization<a class="headerlink" href="#42-unicode-normalization" title="Permanent link">&para;</a></h3>
+<p>Unicode normalization forms can change code-point sequences while
+preserving canonical or compatibility equivalence. QuranKit should not
+apply compatibility normalization indiscriminately to source text.</p>
+<p>Recommended policy:</p>
+<ul>
+<li>Preserve the exact decoded source string in <code>text_original</code>.</li>
+<li>A derived processing representation may use NFC when justified and
+    documented.</li>
+<li>Do not apply NFKC or NFKD to Qur'anic source text by default.</li>
+<li>Record the normalization form in the transformation profile.</li>
+<li>Test behavior with combining marks and Arabic presentation forms.</li>
+</ul>
+<p>Unicode normalization is not the same as Arabic orthographic
+normalization. NFC does not decide whether two Arabic spellings should
+be treated as equivalent for a particular research task.</p>
+<h3 id="43-offsets">4.3 Offsets<a class="headerlink" href="#43-offsets" title="Permanent link">&para;</a></h3>
+<p>Character offsets must have a documented convention.</p>
+<p>Recommended default:</p>
+<ul>
+<li>Store offsets as zero-based Unicode code-point offsets into the
+    exact <code>text_original</code> string.</li>
+<li>Use an exclusive end offset: <code>[start, end)</code>.</li>
+<li>Do not mix byte offsets, UTF-16 code-unit offsets, grapheme-cluster
+    offsets, and code-point offsets.</li>
+<li>If an external corpus uses a different offset convention, preserve
+    its original offsets separately and provide a verified mapping.</li>
+</ul>
+<p>Because Arabic letters may contain combining marks, a visible grapheme
+can contain multiple code points. User-interface cursor positions may
+therefore require grapheme-aware handling even when database offsets use
+code points.</p>
+<h2 id="5-arabic-character-and-mark-categories">5. Arabic character and mark categories<a class="headerlink" href="#5-arabic-character-and-mark-categories" title="Permanent link">&para;</a></h2>
+<p>Do not implement normalization as an undocumented list of global string
+replacements. Define and test categories.</p>
+<h3 id="51-base-letters">5.1 Base letters<a class="headerlink" href="#51-base-letters" title="Permanent link">&para;</a></h3>
+<p>Preserve base Arabic letters in source text. Search profiles may
+optionally equate selected forms, but each equivalence must be named and
+documented.</p>
+<h3 id="52-hamza-and-alif-forms">5.2 Hamza and alif forms<a class="headerlink" href="#52-hamza-and-alif-forms" title="Permanent link">&para;</a></h3>
+<p>Potentially relevant forms include:</p>
+<ul>
+<li>ا</li>
+<li>أ</li>
+<li>إ</li>
+<li>آ</li>
+<li>ٱ</li>
+<li>ء</li>
+<li>ؤ</li>
+<li>ئ</li>
+</ul>
+<p>These forms are not universally interchangeable. A search profile may
+offer a broad hamza-insensitive mode for discovery, but exact and
+linguistically careful modes must retain distinctions.</p>
+<p>Do not remove hamza distinctions from the original. Do not assume that
+hamza normalization is appropriate for morphology, qira'at, or
+orthographic research.</p>
+<h3 id="53-alif-maqsurah-and-ya">5.3 Alif maqsurah and ya<a class="headerlink" href="#53-alif-maqsurah-and-ya" title="Permanent link">&para;</a></h3>
+<p>The forms ى and ي may be treated as equivalent by a configurable
+broad-search profile in selected use cases. They must remain distinct in
+source text and in exact orthographic comparison.</p>
+<h3 id="54-ta-marbutah-and-ha">5.4 Ta marbutah and ha<a class="headerlink" href="#54-ta-marbutah-and-ha" title="Permanent link">&para;</a></h3>
+<p>The forms ة and ه must not be globally equated. A broad user-facing
+search may optionally support a candidate expansion, but results must
+disclose that the match used a relaxed equivalence.</p>
+<h3 id="55-diacritics-and-recitation-marks">5.5 Diacritics and recitation marks<a class="headerlink" href="#55-diacritics-and-recitation-marks" title="Permanent link">&para;</a></h3>
+<p>Arabic text can include marks for:</p>
+<ul>
+<li>Short vowels.</li>
+<li>Tanwin.</li>
+<li>Shaddah.</li>
+<li>Sukun.</li>
+<li>Madd and other recitation-related signs.</li>
+<li>Superscript or small letters.</li>
+<li>Quranic annotation and pause signs.</li>
+</ul>
+<p>Do not assume every combining mark is optional decoration. Some marks
+encode pronunciation, reading, or textual conventions.</p>
+<p>A profile that removes selected vowel marks must identify exactly which
+Unicode characters it removes. It must not remove all combining marks
+indiscriminately.</p>
+<h3 id="56-quranic-annotation-and-pause-signs">5.6 Quranic annotation and pause signs<a class="headerlink" href="#56-quranic-annotation-and-pause-signs" title="Permanent link">&para;</a></h3>
+<p>Pause signs, sajdah markers, rub' markers, and other Quranic annotations
+may be encoded as characters, combining marks, or separate metadata
+depending on the source.</p>
+<p>Recommended policy:</p>
+<ul>
+<li>Preserve them in the source layer.</li>
+<li>Identify their role where the source specification permits.</li>
+<li>Expose separate search options for including or excluding annotation
+    marks.</li>
+<li>Do not remove them from the source string during import.</li>
+<li>Where marks are stored as structured metadata instead of inline
+    characters, retain the original source representation or a
+    documented reversible mapping.</li>
+</ul>
+<h2 id="6-normalization-profiles">6. Normalization profiles<a class="headerlink" href="#6-normalization-profiles" title="Permanent link">&para;</a></h2>
+<p>Normalization must be selected by name and version. A profile is a
+documented transformation contract, not an informal label.</p>
+<p>The following profiles are proposed starting points. Their exact
+character mappings must be specified and tested before implementation.</p>
+<h3 id="61-exact-source-v1">6.1 <code>exact-source-v1</code><a class="headerlink" href="#61-exact-source-v1" title="Permanent link">&para;</a></h3>
+<p>Purpose: exact comparison with the selected source representation.</p>
+<p>Rules:</p>
+<ul>
+<li>No Arabic letter substitutions.</li>
+<li>No diacritic removal.</li>
+<li>No Quranic mark removal.</li>
+<li>No whitespace collapsing unless the comparison mode explicitly
+    excludes surrounding transport whitespace.</li>
+<li>Preserve the exact source string.</li>
+</ul>
+<p>Use for source fidelity and exact edition-specific comparison.</p>
+<h3 id="62-canonical-unicode-v1">6.2 <code>canonical-unicode-v1</code><a class="headerlink" href="#62-canonical-unicode-v1" title="Permanent link">&para;</a></h3>
+<p>Purpose: a limited Unicode canonical normalization for processing.</p>
+<p>Rules:</p>
+<ul>
+<li>Apply NFC to a derived copy only.</li>
+<li>Do not apply Arabic letter equivalences.</li>
+<li>Do not remove diacritics or Quranic marks.</li>
+<li>Preserve the original source string independently.</li>
+</ul>
+<p>Use only when canonical Unicode equivalence is needed.</p>
+<h3 id="63-diacritics-insensitive-v1">6.3 <code>diacritics-insensitive-v1</code><a class="headerlink" href="#63-diacritics-insensitive-v1" title="Permanent link">&para;</a></h3>
+<p>Purpose: discover text matches regardless of a defined set of
+vocalization marks.</p>
+<p>Rules:</p>
+<ul>
+<li>Start from a derived copy.</li>
+<li>Remove only an explicit allowlist of marks designated by the
+    profile.</li>
+<li>Retain base letters and hamza distinctions.</li>
+<li>Retain Quranic annotation marks unless the profile explicitly
+    defines their handling.</li>
+<li>Return the original source text and indicate that
+    diacritic-insensitive matching was used.</li>
+</ul>
+<p>Do not call this profile "unvocalized exact text"; it is a relaxed
+match.</p>
+<h3 id="64-search-broad-v1">6.4 <code>search-broad-v1</code><a class="headerlink" href="#64-search-broad-v1" title="Permanent link">&para;</a></h3>
+<p>Purpose: broad discovery for user-entered Arabic queries.</p>
+<p>May include configurable options for:</p>
+<ul>
+<li>Selected alif/hamza equivalences.</li>
+<li>Selected alif maqsurah/ya equivalence.</li>
+<li>Removal of a specified set of vowel marks.</li>
+<li>Optional handling of tatweel.</li>
+<li>Optional whitespace and punctuation normalization.</li>
+</ul>
+<p>Rules:</p>
+<ul>
+<li>Every enabled transformation must be visible in the profile
+    configuration.</li>
+<li>Return match type and applied transformations.</li>
+<li>Do not use this profile for claims about exact spelling, qira'at, or
+    morphology.</li>
+<li>Do not make ta marbutah/ha equivalence a default.</li>
+</ul>
+<h3 id="65-custom-profiles">6.5 Custom profiles<a class="headerlink" href="#65-custom-profiles" title="Permanent link">&para;</a></h3>
+<p>Allow users to define custom profiles, but require:</p>
+<ul>
+<li>A unique profile identifier.</li>
+<li>A version.</li>
+<li>Explicit rules.</li>
+<li>A deterministic implementation.</li>
+<li>Tests and documentation.</li>
+<li>A clear statement of intended use.</li>
+</ul>
+<p>A profile change that alters results must receive a new version.</p>
+<h2 id="7-suggested-normalization-pipeline">7. Suggested normalization pipeline<a class="headerlink" href="#7-suggested-normalization-pipeline" title="Permanent link">&para;</a></h2>
+<p>A search pipeline should be ordered and inspectable.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Input query
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   v
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Validate Unicode
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   v
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Select explicit profile
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   v
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Apply configured Unicode normalization
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   v
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Apply configured Arabic mark handling
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>   |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>   v
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Apply configured letter equivalences
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>   |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>   v
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Apply whitespace/punctuation policy
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>   |
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>   v
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>Search matching index
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>   |
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>   v
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>Return original source text + match metadata
+</span></code></pre></div>
+<p>The pipeline should not apply a linguistic root or lemma transformation
+unless the user explicitly selects a morphological search operation and
+a suitable annotation dataset is available.</p>
+<h2 id="8-uthmani-and-imlai-representations">8. Uthmani and Imlai representations<a class="headerlink" href="#8-uthmani-and-imlai-representations" title="Permanent link">&para;</a></h2>
+<p>Uthmani and Imlai representations should be modeled as distinct text
+representations or editions, not as a single field with an implicit
+conversion.</p>
+<p>For every supported representation, record:</p>
+<ul>
+<li>Dataset and version.</li>
+<li>Source and edition details.</li>
+<li>Script/orthography description.</li>
+<li>Reading information where relevant.</li>
+<li>Text coverage and known limitations.</li>
+<li>Tokenization convention.</li>
+<li>License and redistribution status.</li>
+</ul>
+<p>A conversion between representations must record:</p>
+<ul>
+<li>Input edition.</li>
+<li>Output representation.</li>
+<li>Conversion rules and version.</li>
+<li>Characters or signs omitted, substituted, or expanded.</li>
+<li>Whether the mapping is reversible.</li>
+<li>Known ambiguities.</li>
+</ul>
+<p>Do not claim that a conversion is fully reversible unless tested and
+demonstrated. Prefer loading a separately sourced representation when
+one is available and appropriately licensed.</p>
+<h2 id="9-tokenization-and-word-segmentation">9. Tokenization and word segmentation<a class="headerlink" href="#9-tokenization-and-word-segmentation" title="Permanent link">&para;</a></h2>
+<h3 id="91-do-not-equate-whitespace-tokens-with-linguistic-words">9.1 Do not equate whitespace tokens with linguistic words<a class="headerlink" href="#91-do-not-equate-whitespace-tokens-with-linguistic-words" title="Permanent link">&para;</a></h3>
+<p>Whitespace splitting may be useful as an initial text segmentation
+method, but Arabic orthography and morphology can involve attached
+clitics, particles, and other segmentation choices.</p>
+<p>QuranKit should distinguish:</p>
+<ul>
+<li>Text span: a sequence of source characters.</li>
+<li>Orthographic token: a unit under a specified tokenization
+    convention.</li>
+<li>Morphological segment: a clitic or morpheme-level component.</li>
+<li>Linguistic word: a unit defined by a linguistic annotation scheme.</li>
+</ul>
+<h3 id="92-tokenization-metadata">9.2 Tokenization metadata<a class="headerlink" href="#92-tokenization-metadata" title="Permanent link">&para;</a></h3>
+<p>Every tokenization scheme must document:</p>
+<ul>
+<li>Source corpus or algorithm.</li>
+<li>Version.</li>
+<li>Treatment of attached conjunctions, prepositions, articles, and
+    pronouns.</li>
+<li>Treatment of punctuation and Quranic marks.</li>
+<li>Whether token boundaries are source-provided or computed.</li>
+<li>Offset convention.</li>
+<li>Known limitations.</li>
+</ul>
+<h3 id="93-stable-token-identity">9.3 Stable token identity<a class="headerlink" href="#93-stable-token-identity" title="Permanent link">&para;</a></h3>
+<p>A token identifier must include or reference:</p>
+<ul>
+<li>Text edition.</li>
+<li>Surah and ayah.</li>
+<li>Tokenization scheme and version.</li>
+<li>Token position or source identifier.</li>
+</ul>
+<p>Do not reuse token IDs across different tokenization schemes merely
+because the visible surface strings happen to match.</p>
+<h3 id="94-segmentation-alignment">9.4 Segmentation alignment<a class="headerlink" href="#94-segmentation-alignment" title="Permanent link">&para;</a></h3>
+<p>When a source provides morphological segments, store the alignment from
+segments to the parent orthographic token and source character span.
+Preserve the source's segmentation labels and provide a mapping layer if
+QuranKit uses a normalized tagset.</p>
+<h2 id="10-search-modes-and-result-labeling">10. Search modes and result labeling<a class="headerlink" href="#10-search-modes-and-result-labeling" title="Permanent link">&para;</a></h2>
+<p>Every search operation should expose its matching mode.</p>
+<hr />
+<p>Mode                    What it matches         Result label</p>
+<hr />
+<p>Exact source            Same source             <code>exact_source_match</code>
+                          representation          </p>
+<p>Canonical Unicode       Canonically normalized  <code>unicode_normalized_match</code>
+                          representation          </p>
+<p>Diacritic-insensitive   Match after specified   <code>diacritic_insensitive_match</code>
+                          mark removal            </p>
+<p>Broad orthographic      Match under configured  <code>broad_orthographic_match</code>
+                          letter equivalences     </p>
+<p>Token sequence          Ordered token sequence  <code>token_sequence_match</code></p>
+<p>Lemma                   Sourced lemma           <code>lemma_match</code>
+                          annotation              </p>
+<p>Root                    Sourced root annotation <code>root_match</code></p>
+<p>Fuzzy                   Approximate string      <code>fuzzy_candidate</code>
+                          similarity              </p>
+<p>Semantic                Model or vector         <code>semantic_candidate</code>
+                          similarity              </p>
+<hr />
+<p>Do not combine these into one undifferentiated search score.</p>
+<p>A result should include:</p>
+<ul>
+<li>Original source reference.</li>
+<li>Original matched text.</li>
+<li>Query as supplied.</li>
+<li>Normalized query.</li>
+<li>Normalization profile and version.</li>
+<li>Match mode.</li>
+<li>Dataset and edition.</li>
+<li>Character/token alignment where available.</li>
+<li>Any ambiguity or limitation.</li>
+</ul>
+<h2 id="11-display-and-rendering">11. Display and rendering<a class="headerlink" href="#11-display-and-rendering" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Use a font with adequate Arabic and Quranic glyph coverage.</li>
+<li>Preserve logical Unicode text order in storage.</li>
+<li>Use a rendering environment that supports right-to-left layout and
+    bidirectional text.</li>
+<li>Do not manually reverse Arabic strings for display.</li>
+<li>Test mixed Arabic, Latin, numbers, punctuation, and verse
+    references.</li>
+<li>Ensure copy/export operations return the intended source
+    representation.</li>
+<li>Do not silently replace source text with a font-specific or
+    presentation-form encoding.</li>
+</ul>
+<p>Display should be tested in the actual target interfaces, because
+browser, terminal, PDF, and notebook rendering may differ.</p>
+<h2 id="12-transliteration">12. Transliteration<a class="headerlink" href="#12-transliteration" title="Permanent link">&para;</a></h2>
+<p>Transliteration is a derived representation.</p>
+<p>If supported:</p>
+<ul>
+<li>Identify the transliteration standard or scheme.</li>
+<li>Version the implementation.</li>
+<li>Preserve source-to-output alignment where practical.</li>
+<li>Do not present transliteration as a replacement for Arabic.</li>
+<li>Distinguish scholarly transliteration from simplified pronunciation
+    aids.</li>
+<li>Do not infer a single pronunciation where qira'at or reading
+    information is not specified.</li>
+</ul>
+<h2 id="13-import-and-validation-requirements">13. Import and validation requirements<a class="headerlink" href="#13-import-and-validation-requirements" title="Permanent link">&para;</a></h2>
+<p>Every text importer must:</p>
+<ol>
+<li>Record source, dataset version, edition, and license metadata.</li>
+<li>Preserve exact decoded source strings.</li>
+<li>Validate Unicode.</li>
+<li>Verify surah and ayah references.</li>
+<li>Detect duplicate and missing records.</li>
+<li>Preserve source identifiers.</li>
+<li>Record tokenization source and version.</li>
+<li>Validate character offsets against the source string.</li>
+<li>Avoid implicit normalization during import.</li>
+<li>Produce a report of errors, warnings, and coverage.</li>
+</ol>
+<p>Do not silently "repair" malformed Arabic. Any repair process must
+create a separate derived value and retain the original.</p>
+<h2 id="14-test-strategy">14. Test strategy<a class="headerlink" href="#14-test-strategy" title="Permanent link">&para;</a></h2>
+<p>Build tests around reviewed examples and source fixtures.</p>
+<h3 id="unicode-tests">Unicode tests<a class="headerlink" href="#unicode-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NFC and NFD behavior.</li>
+<li>Combining mark sequences.</li>
+<li>Arabic presentation forms.</li>
+<li>Invalid input handling.</li>
+<li>Code-point offsets and grapheme behavior.</li>
+</ul>
+<h3 id="orthographic-tests">Orthographic tests<a class="headerlink" href="#orthographic-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Hamza and alif forms.</li>
+<li>Alif maqsurah and ya.</li>
+<li>Ta marbutah and ha.</li>
+<li>Tatweel.</li>
+<li>Diacritics.</li>
+<li>Quranic annotation and pause marks.</li>
+</ul>
+<h3 id="search-tests">Search tests<a class="headerlink" href="#search-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Exact source matching.</li>
+<li>Diacritic-insensitive matching.</li>
+<li>Broad search equivalences.</li>
+<li>No accidental equivalence in exact mode.</li>
+<li>Result metadata and source offsets.</li>
+</ul>
+<h3 id="tokenization-tests">Tokenization tests<a class="headerlink" href="#tokenization-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token boundaries.</li>
+<li>Clitic segmentation.</li>
+<li>Multiple tokenization versions.</li>
+<li>Source alignment.</li>
+<li>Empty or malformed tokens.</li>
+</ul>
+<h3 id="regression-tests">Regression tests<a class="headerlink" href="#regression-tests" title="Permanent link">&para;</a></h3>
+<p>Every discovered normalization or segmentation bug should receive a
+minimal fixture and a regression test. Fixtures must be traceable to
+their source and must not be fabricated Qur'anic text.</p>
+<h2 id="15-proposed-api-shape">15. Proposed API shape<a class="headerlink" href="#15-proposed-api-shape" title="Permanent link">&para;</a></h2>
+<p>The following is illustrative and does not define final signatures:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">qurankit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuranKit</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">quran</span> <span class="o">=</span> <span class="n">QuranKit</span><span class="p">()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Exact source search</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">results</span> <span class="o">=</span> <span class="n">quran</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s2">"query"</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">mode</span><span class="o">=</span><span class="s2">"exact"</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">edition</span><span class="o">=</span><span class="s2">"selected-edition"</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Search with a named normalization profile</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">results</span> <span class="o">=</span> <span class="n">quran</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="s2">"query"</span><span class="p">,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">mode</span><span class="o">=</span><span class="s2">"orthographic"</span><span class="p">,</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">normalization</span><span class="o">=</span><span class="s2">"diacritics-insensitive-v1"</span><span class="p">,</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># Retrieve the unchanged source text</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">ayah</span> <span class="o">=</span> <span class="n">quran</span><span class="o">.</span><span class="n">ayah</span><span class="p">(</span><span class="s2">"2:255"</span><span class="p">,</span> <span class="n">edition</span><span class="o">=</span><span class="s2">"selected-edition"</span><span class="p">)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">original</span> <span class="o">=</span> <span class="n">ayah</span><span class="o">.</span><span class="n">text_original</span>
+</span></code></pre></div>
+<p>The API should make it difficult to accidentally use broad normalization
+when exact comparison is intended.</p>
+<h2 id="16-open-decisions">16. Open decisions<a class="headerlink" href="#16-open-decisions" title="Permanent link">&para;</a></h2>
+<p>Before implementation, resolve and document:</p>
+<ol>
+<li>Which source text edition is the initial reference edition?</li>
+<li>Which Uthmani and Imlai sources are available and redistributable?</li>
+<li>Which Unicode characters are classified as vocalization marks versus
+    Quranic annotation marks in each source?</li>
+<li>Which normalization profiles are required for the first alpha?</li>
+<li>Which tokenization corpus or convention is used initially?</li>
+<li>What offset convention does each imported corpus use?</li>
+<li>How are qira'at and orthographic variants represented in a later
+    extension?</li>
+<li>Which fonts and rendering environments are included in visual
+    regression testing?</li>
+</ol>
+<p>Do not invent mappings to close these gaps. Keep uncertain
+transformations opt-in until verified against source specifications and
+reviewed examples.</p>
+<h2 id="17-recommended-implementation-order">17. Recommended implementation order<a class="headerlink" href="#17-recommended-implementation-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Implement source-preserving text ingestion.</li>
+<li>Add Unicode validation and source checksums.</li>
+<li>Add <code>exact-source-v1</code> search.</li>
+<li>Add one explicitly specified diacritic-insensitive profile.</li>
+<li>Add a reviewed tokenization adapter.</li>
+<li>Add Uthmani/Imlai source adapters when source data and licensing are
+    verified.</li>
+<li>Add broad orthographic search as an opt-in profile.</li>
+<li>Add morphological search only after reliable annotations are
+    integrated.</li>
+<li>Add rendering tests for supported interfaces.</li>
+</ol>
+<p>This order prioritizes textual integrity before convenience features.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 QuranKit Contributors — MIT License
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AdakHaddad/qurankit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/qurankit-core/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
