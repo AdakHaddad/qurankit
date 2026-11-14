@@ -52,10 +52,10 @@ qurankit = "qurankit.cli:main"
 qurankit-mcp = "qurankit.mcp:run_server"
 
 [project.urls]
-Homepage = "https://github.com/muqtada/qurankit"
-Repository = "https://github.com/muqtada/qurankit"
-Issues = "https://github.com/muqtada/qurankit/issues"
-Documentation = "https://github.com/muqtada/qurankit/tree/main/docs"
+Homepage = "https://github.com/AdakHaddad/qurankit"
+Repository = "https://github.com/AdakHaddad/qurankit"
+Issues = "https://github.com/AdakHaddad/qurankit/issues"
+Documentation = "https://github.com/AdakHaddad/qurankit/tree/main/docs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/qurankit"]
