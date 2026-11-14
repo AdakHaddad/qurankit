@@ -1,0 +1,110 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qurankit"
+version = "0.1.0"
+description = "A modular, Python-first computational Qur'anic research library"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "QuranKit Contributors", email = "muqtada@example.com"}
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "pydantic>=2.10",
+    "pydantic-settings>=2.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.7",
+    "mypy>=1.13",
+    "types-requests>=2.32",
+]
+tanzil = [
+    "requests>=2.32",
+]
+cli = [
+    "typer>=0.12",
+    "rich>=3.10",
+]
+
+[project.urls]
+Homepage = "https://github.com/muqtada/qurankit"
+Repository = "https://github.com/muqtada/qurankit"
+Issues = "https://github.com/muqtada/qurankit/issues"
+Documentation = "https://github.com/muqtada/qurankit/tree/main/docs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qurankit"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+indent-width = 4
+preview = true
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "C4",
+    "DTZ",
+    "T10",
+    "Q",
+    "PL",
+]
+ignore = [
+    "PLR0913",
+    "PLR0915",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers --strict-config"
+markers = [
+    "unit = \"Unit tests\"",
+    "integration = \"Integration tests\"",
+    "slow = \"Slow tests\"",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+show_error_codes = true
+namespace_packages = true
+explicit_package_bases = true
