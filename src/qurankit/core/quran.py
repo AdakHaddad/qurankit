@@ -156,9 +156,9 @@ class Quran(BaseModel):
 
     def _ensure_surah_data(self) -> None:
         """Ensure surah reference data is in database."""
-        # Check if surahs already exist
+        # Check if surahs already exist with complete data
         existing = self._data_access.get_surah(1)
-        if existing is not None:
+        if existing is not None and existing.name_transliteration is not None:
             return
 
         # Surah reference data
@@ -477,7 +477,7 @@ class Quran(BaseModel):
         if not edition:
             raise UnsupportedEditionError("No edition specified")
 
-        tok_id = tokenization_id or "default"
+        tok_id = tokenization_id or "tanzil-words-v1"
         tokens = self._data_access.get_word_tokens(edition, surah_number, ayah_number, tok_id)
 
         # If no tokens in database, return mock tokens for testing
