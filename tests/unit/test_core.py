@@ -164,8 +164,8 @@ class TestQuranSurahData:
     def test_second_surah(self, quran):
         surah = quran.surah(2)
         assert surah.name_arabic == "البقرة"
-        # Fixture has 255 ayahs for Surah 2
-        assert surah.ayah_count == 255
+        # Surah Al-Baqarah has 286 ayahs
+        assert surah.ayah_count == 286
 
     def test_last_surah(self, quran):
         surah = quran.surah(114)
