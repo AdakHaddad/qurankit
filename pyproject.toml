@@ -40,9 +40,16 @@ tanzil = [
     "requests>=2.32",
 ]
 cli = [
-    "typer>=0.12",
+    "click>=8.1",
     "rich>=3.10",
 ]
+mcp = [
+    "mcp>=1.0",
+]
+
+[project.scripts]
+qurankit = "qurankit.cli:main"
+qurankit-mcp = "qurankit.mcp:run_server"
 
 [project.urls]
 Homepage = "https://github.com/muqtada/qurankit"
