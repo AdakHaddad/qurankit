@@ -2,7 +2,7 @@
 
 import hashlib
 import json
-from datetime import datetime
+from datetime import datetime, UTC, UTC, UTC
 from pathlib import Path
 from typing import Any
 
@@ -60,7 +60,7 @@ class ManifestManager(BaseModel):
             source=source,
             files=files,
             validation_report=validation_report,
-            created_at=datetime.utcnow(),
+            created_at=datetime.now(UTC),
         )
 
         return manifest
@@ -107,7 +107,7 @@ class ManifestManager(BaseModel):
             license_id="CC-BY-3.0",
             license_url="https://tanzil.net/docs/Text_License",
             redistribution_status=RedistributionStatus.ALLOWED,
-            retrieved_at=retrieved_at or datetime.utcnow(),
+            retrieved_at=retrieved_at or datetime.now(UTC),
             checksum_algorithm="sha256",
             checksum=None,  # Set by create_manifest
             schema_version="1.0",

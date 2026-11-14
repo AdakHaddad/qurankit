@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, UTC, UTC, UTC
 from pathlib import Path
 from typing import Any
 
@@ -184,7 +184,7 @@ class QACProvider(BaseModel):
             license_id="GPL-3.0",
             license_url="https://corpus.quran.com/license.jsp",
             redistribution_status=RedistributionStatus.RESTRICTED,
-            retrieved_at=datetime.utcnow(),
+            retrieved_at=datetime.now(UTC),
             checksum_algorithm="sha256",
             schema_version="1.0",
             language="ar",

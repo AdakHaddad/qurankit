@@ -6,7 +6,7 @@ Provides high-level methods for inserting and querying Qur'anic data.
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, UTC, UTC, UTC
 from typing import TYPE_CHECKING, Any
 
 from qurankit.models import (
@@ -298,38 +298,50 @@ class DataAccess:
         self._update_ayah_text_indexes(ayah_text)
 
     def _update_ayah_text_indexes(self, ayah_text: AyahText) -> None:
-        """Update FTS indexes for an ayah text."""
+        """Update FTS indexes for an ayah text (replaces existing entries)."""
         edition_id = ayah_text.edition_id
         surah_number = ayah_text.surah_number
         ayah_number = ayah_text.ayah_number
         text_original = ayah_text.text_original
 
-        # Exact source index
+        # Exact source index - FTS5 doesn't support REPLACE with implicit rowid; delete first
+        self.db.execute(
+            "DELETE FROM ayah_text_fts_exact WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            (edition_id, surah_number, ayah_number),
+        )
         self.db.execute(
             """
-            INSERT OR REPLACE INTO ayah_text_fts_exact
+            INSERT INTO ayah_text_fts_exact
             (edition_id, surah_number, ayah_number, text_original)
             VALUES (?, ?, ?, ?)
             """,
             (edition_id, surah_number, ayah_number, text_original),
         )
 
-        # Diacritic-insensitive index
+        # Diacritic-insensitive index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_diacritic = normalize(text_original, "diacritics-insensitive-v1")
         self.db.execute(
+            "DELETE FROM ayah_text_fts_diacritic_insensitive WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            (edition_id, surah_number, ayah_number),
+        )
+        self.db.execute(
             """
-            INSERT OR REPLACE INTO ayah_text_fts_diacritic_insensitive
+            INSERT INTO ayah_text_fts_diacritic_insensitive
             (edition_id, surah_number, ayah_number, text_normalized)
             VALUES (?, ?, ?, ?)
             """,
             (edition_id, surah_number, ayah_number, normalized_diacritic.normalized),
         )
 
-        # Broad search index
+        # Broad search index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_broad = normalize(text_original, "search-broad-v1")
         self.db.execute(
+            "DELETE FROM ayah_text_fts_broad WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            (edition_id, surah_number, ayah_number),
+        )
+        self.db.execute(
             """
-            INSERT OR REPLACE INTO ayah_text_fts_broad
+            INSERT INTO ayah_text_fts_broad
             (edition_id, surah_number, ayah_number, text_normalized)
             VALUES (?, ?, ?, ?)
             """,
@@ -417,11 +429,15 @@ class DataAccess:
         self._update_word_token_indexes(token)
 
     def _update_word_token_indexes(self, token: WordToken) -> None:
-        """Update FTS indexes for a word token."""
-        # Exact source index
+        """Update FTS indexes for a word token (replaces existing entries)."""
+        # Exact source index - FTS5 doesn't support REPLACE with implicit rowid; delete first
+        self.db.execute(
+            "DELETE FROM word_token_fts_exact WHERE token_id = ?",
+            (token.token_id,),
+        )
         self.db.execute(
             """
-            INSERT OR REPLACE INTO word_token_fts_exact
+            INSERT INTO word_token_fts_exact
             (token_id, edition_id, surah_number, ayah_number, surface_original)
             VALUES (?, ?, ?, ?, ?)
             """,
@@ -434,11 +450,15 @@ class DataAccess:
             ),
         )
 
-        # Diacritic-insensitive index
+        # Diacritic-insensitive index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_diacritic = normalize(token.surface_original, "diacritics-insensitive-v1")
         self.db.execute(
+            "DELETE FROM word_token_fts_diacritic_insensitive WHERE token_id = ?",
+            (token.token_id,),
+        )
+        self.db.execute(
             """
-            INSERT OR REPLACE INTO word_token_fts_diacritic_insensitive
+            INSERT INTO word_token_fts_diacritic_insensitive
             (token_id, edition_id, surah_number, ayah_number, surface_normalized)
             VALUES (?, ?, ?, ?, ?)
             """,
@@ -451,11 +471,15 @@ class DataAccess:
             ),
         )
 
-        # Broad search index
+        # Broad search index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_broad = normalize(token.surface_original, "search-broad-v1")
         self.db.execute(
+            "DELETE FROM word_token_fts_broad WHERE token_id = ?",
+            (token.token_id,),
+        )
+        self.db.execute(
             """
-            INSERT OR REPLACE INTO word_token_fts_broad
+            INSERT INTO word_token_fts_broad
             (token_id, edition_id, surah_number, ayah_number, surface_normalized)
             VALUES (?, ?, ?, ?, ?)
             """,
@@ -524,7 +548,7 @@ class DataAccess:
                 profile.implementation_version,
                 profile.created_at.isoformat()
                 if profile.created_at
-                else datetime.utcnow().isoformat(),
+                else datetime.now(UTC).isoformat(),
             ),
         )
 

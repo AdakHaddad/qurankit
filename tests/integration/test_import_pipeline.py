@@ -54,7 +54,7 @@ def data_access_with_source(data_access):
     data_access.insert_source(source)
 
     # Insert dataset
-    from datetime import datetime
+    from datetime import datetime, UTC
 
     dataset = Dataset(
         dataset_id="tanzil-quran-text",
@@ -65,7 +65,7 @@ def data_access_with_source(data_access):
         license_id="CC-BY-3.0",
         license_url="https://tanzil.net/docs/Text_License",
         redistribution_status=RedistributionStatus.ALLOWED,
-        retrieved_at=datetime.utcnow(),
+        retrieved_at=datetime.now(UTC),
         checksum_algorithm="sha256",
         schema_version="1.0",
         language="ar",
@@ -82,7 +82,7 @@ def data_access_with_source(data_access):
         license_id="CC-BY-3.0",
         license_url="https://tanzil.net/docs/Text_License",
         redistribution_status=RedistributionStatus.ALLOWED,
-        retrieved_at=datetime.utcnow(),
+        retrieved_at=datetime.now(UTC),
         checksum_algorithm="sha256",
         schema_version="1.0",
         language="ar",

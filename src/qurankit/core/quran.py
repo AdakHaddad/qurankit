@@ -6,7 +6,7 @@ Provides the primary interface for accessing Qur'anic text and metadata.
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, UTC, UTC, UTC
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr
@@ -323,7 +323,7 @@ class Quran(BaseModel):
                 license_id="CC-BY-3.0",
                 license_url="https://tanzil.net/docs/Text_License",
                 redistribution_status=RedistributionStatus.ALLOWED,
-                retrieved_at=datetime.utcnow(),
+                retrieved_at=datetime.now(UTC),
                 checksum_algorithm="sha256",
                 schema_version="1.0",
                 language="ar",

@@ -414,7 +414,7 @@ class TestResearchModels:
     """Test research models."""
 
     def test_research_run(self):
-        from datetime import datetime
+        from datetime import datetime, UTC
 
         run = ResearchRun(
             run_id="run-1",
@@ -423,7 +423,7 @@ class TestResearchModels:
             algorithm_version="1.0.0",
             parameters_json={"query": "test", "mode": "exact"},
             software_version="0.1.0",
-            started_at=datetime.utcnow(),
+            started_at=datetime.now(UTC),
         )
         assert run.operation == "search"
         assert run.algorithm_name == "exact_match"
