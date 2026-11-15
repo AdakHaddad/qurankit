@@ -18,7 +18,7 @@ jobs:
       - name: Install uv
         run: pip install uv
       - name: Install dependencies
-        run: uv pip install -e ".[dev]"
+        run: uv pip install --system -e ".[dev]"
       - name: Run tests
         run: uv run pytest tests/ -v --tb=short
       - name: Run linting
