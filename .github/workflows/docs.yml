@@ -14,12 +14,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install uv
-        run: pip install uv
+          cache: 'pip'
       - name: Install dependencies
-        run: uv pip install --system mkdocs-material mkdocstrings-python mkdocs-jupyter mkdocs-section-index mkdocs-autorefs pymdown-extensions
+        run: pip install mkdocs-material mkdocstrings-python mkdocs-jupyter mkdocs-section-index mkdocs-autorefs pymdown-extensions
       - name: Build documentation
-        run: uv run mkdocs build
+        run: mkdocs build
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
