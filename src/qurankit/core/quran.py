@@ -7,7 +7,7 @@ Provides the primary interface for accessing Qur'anic text and metadata.
 from __future__ import annotations
 
 from datetime import UTC, datetime
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr
 
@@ -31,9 +31,11 @@ from qurankit.models.enums import (
     ScriptType,
     SourceType,
 )
-from qurankit.search.engine import SearchEngine
 from qurankit.storage import get_database
 from qurankit.storage.access import DataAccess
+
+if TYPE_CHECKING:
+    from qurankit.search.engine import SearchEngine
 
 
 class Quran(BaseModel):
@@ -54,9 +56,16 @@ class Quran(BaseModel):
 
     # Private attributes (not Pydantic fields)
     _data_access: DataAccess = PrivateAttr(default_factory=DataAccess)
-    _search_engine: SearchEngine = PrivateAttr(default_factory=SearchEngine)
+    _search_engine: SearchEngine = PrivateAttr(default=None)
     _vocabulary: Any = PrivateAttr(default=None)
     _loaded: bool = PrivateAttr(default=False)
+
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        self._data_access = DataAccess(get_database(self.config.data_dir))
+        # Lazy import to avoid circular dependency
+        from qurankit.search.engine import SearchEngine
+        self._search_engine = SearchEngine(self._data_access)
 
     @classmethod
     def load(
@@ -296,8 +305,6 @@ class Quran(BaseModel):
         edition_id = self.edition_id
 
         # Check if dataset exists
-        from qurankit.storage import get_database
-
         db = get_database()
         dataset_row = db.fetchone("SELECT * FROM dataset WHERE dataset_id = ?", (dataset_id,))
 

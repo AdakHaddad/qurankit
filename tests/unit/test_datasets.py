@@ -1,7 +1,7 @@
 """Unit tests for QuranKit dataset infrastructure."""
 
 import tempfile
-from datetime import datetime, UTC
+from datetime import datetime
 from pathlib import Path
 
 import pytest

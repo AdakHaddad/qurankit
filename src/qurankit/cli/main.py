@@ -15,17 +15,29 @@ from rich.console import Console
 from rich.table import Table
 
 from qurankit import Quran
+from qurankit.analysis import (
+    CollocationAnalyzer,
+    CooccurrenceMeasure,
+    CrossReferenceAnalyzer,
+    MutashabihatEngine,
+    ReportGenerator,
+    SemanticRelationExtractor,
+    SemanticRelationType,
+    WujuhWaNazairAnalyzer,
+)
 from qurankit.datasets.manifest import ManifestManager
 from qurankit.datasets.registry import DatasetRegistry
 from qurankit.providers.tanzil import TanzilProvider
 from qurankit.search.engine import SearchResult
-from qurankit.storage import DataAccess, Database
+from qurankit.storage.access import DataAccess, Database
 
 console = Console()
 
+MAX_DISPLAY_LENGTH = 80
+
 
 @click.group()
-@click.version_option(version="0.1.0", prog_name="qurankit")
+@click.version_option(version="0.3.0", prog_name="qurankit")
 def main() -> None:
     """QuranKit - Computational Qur'anic research framework."""
     pass
@@ -175,7 +187,7 @@ def _format_search_result(r: Any) -> tuple[str, str, str, str, str]:
             str(r.surah_number),
             str(r.ayah_number),
             r.match_type.value,
-            r.matched_text[:80] + ("..." if len(r.matched_text) > 80 else ""),
+            r.matched_text[:MAX_DISPLAY_LENGTH] + ("..." if len(r.matched_text) > MAX_DISPLAY_LENGTH else ""),
         )
     else:
         # dict format
@@ -184,14 +196,20 @@ def _format_search_result(r: Any) -> tuple[str, str, str, str, str]:
             str(r.get("surah_number", "")),
             str(r.get("ayah_number", "")),
             r.get("match_type", ""),
-            r.get("matched_text", "")[:80] + ("..." if len(r.get("matched_text", "")) > 80 else ""),
+            r.get("matched_text", "")[:MAX_DISPLAY_LENGTH] + ("..." if len(r.get("matched_text", "")) > MAX_DISPLAY_LENGTH else ""),
         )
 
 
 @main.command()
 @click.argument("query")
 @click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition to search")
-@click.option("--mode", "-m", type=click.Choice(["exact", "diacritic-insensitive", "broad", "canonical"]), default="diacritic-insensitive", help="Search mode")
+@click.option(
+    "--mode",
+    "-m",
+    type=click.Choice(["exact", "diacritic-insensitive", "broad", "canonical"]),
+    default="diacritic-insensitive",
+    help="Search mode",
+)
 @click.option("--limit", "-l", default=20, help="Maximum results")
 def search(query: str, edition: str, mode: str, limit: int) -> None:
     """Search for text in the Qur'an."""
@@ -235,7 +253,6 @@ def search(query: str, edition: str, mode: str, limit: int) -> None:
 @click.option("--min-length", default=2, help="Minimum phrase length in words")
 def mutashabihat(reference: str, edition: str, min_length: int) -> None:
     """Find repeated phrases (mutashabihat) for an ayah."""
-    from qurankit.analysis import MutashabihatEngine
 
     engine = MutashabihatEngine(DataAccess())
 
@@ -271,7 +288,6 @@ def mutashabihat(reference: str, edition: str, min_length: int) -> None:
 @click.option("--min-occurrences", default=2, help="Minimum occurrences")
 def ngrams(edition: str, n: int, min_occurrences: int) -> None:
     """Find recurring n-grams across the corpus."""
-    from qurankit.analysis import MutashabihatEngine
 
     engine = MutashabihatEngine(DataAccess())
 
@@ -404,20 +420,279 @@ def profiles() -> None:
     console.print(table)
 
 
-if __name__ == "__main__":
-    main()
+@main.group()
+def research() -> None:
+    """Advanced research commands."""
+    pass
+
+
+@research.command("semantic-relations")
+@click.argument("root", required=False)
+@click.option("--lemma", "-l", default=None, help="Lemma to look up")
+@click.option("--type", "-t", "rel_type", type=click.Choice(["synonym", "antonym", "related", "all"]), default="all", help="Relation type")
+@click.option("--resource", "-r", default=None, help="Specific resource ID")
+def semantic_relations(root: str | None, lemma: str | None, rel_type: str, resource: str | None) -> None:
+    """Find semantic relations (synonyms, antonyms) from dictionary sources."""
+
+    extractor = SemanticRelationExtractor()
+    resource_ids = [resource] if resource else None
+
+    if rel_type == "synonym":
+        types = [SemanticRelationType.SYNONYM]
+    elif rel_type == "antonym":
+        types = [SemanticRelationType.ANTONYM]
+    elif rel_type == "related":
+        types = [SemanticRelationType.RELATED]
+    else:
+        types = None  # All
+
+    if root:
+        relations = extractor.find_relations_for_root(root, relation_types=types, resource_ids=resource_ids)
+    elif lemma:
+        relations = extractor.find_relations_for_lemma(lemma, relation_types=types, resource_ids=resource_ids)
+    else:
+        console.print("[red]Either --root or --lemma must be provided[/red]")
+        sys.exit(1)
+
+    if not relations:
+        console.print("[yellow]No semantic relations found[/yellow]")
+        return
+
+    table = Table(title=f"Semantic Relations for {root or lemma}")
+    table.add_column("Subject", style="cyan")
+    table.add_column("Root", style="green")
+    table.add_column("Relation", style="yellow")
+    table.add_column("Object", style="magenta")
+    table.add_column("Object Root", style="blue")
+    table.add_column("Source", style="white")
+
+    for rel in relations[:50]:
+        table.add_row(
+            rel.subject_headword,
+            rel.subject_root or "",
+            rel.relation_type.value,
+            rel.object_headword,
+            rel.object_root or "",
+            rel.source_resource or "",
+        )
+
+    console.print(table)
+    console.print(f"\nTotal relations: {len(relations)}")
+
+
+@research.command("collocations")
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+@click.option("--window", "-w", default=5, help="Window size")
+@click.option("--min-cooc", default=3, help="Minimum co-occurrence")
+@click.option("--measure", "-m", type=click.Choice(["pmi", "t_test", "dice", "log_likelihood", "frequency"]), default="pmi", help="Statistical measure")
+@click.option("--top", "-n", default=50, help="Top N results")
+@click.option("--no-stopwords", is_flag=True, help="Don't filter stopwords")
+def collocations(edition: str, window: int, min_cooc: int, measure: str, top: int, no_stopwords: bool) -> None:
+    """Compute statistically significant word collocations."""
+
+    analyzer = CollocationAnalyzer(edition_id=edition)
+
+    measure_map = {
+        "pmi": CooccurrenceMeasure.PMI,
+        "t_test": CooccurrenceMeasure.T_TEST,
+        "dice": CooccurrenceMeasure.DICE,
+        "log_likelihood": CooccurrenceMeasure.LOG_LIKELIHOOD,
+        "frequency": CooccurrenceMeasure.FREQUENCY,
+    }
+
+    results = analyzer.compute_collocations(
+        window_size=window,
+        min_cooccurrence=min_cooc,
+        measure=measure_map[measure],
+        top_n=top,
+        filter_stopwords=not no_stopwords,
+    )
+
+    if not results:
+        console.print("[yellow]No collocations found[/yellow]")
+        return
+
+    table = Table(title=f"Collocations ({measure.upper()})")
+    table.add_column("Word 1", style="cyan")
+    table.add_column("Root 1", style="green")
+    table.add_column("Word 2", style="cyan")
+    table.add_column("Root 2", style="green")
+    table.add_column("Co-occur", style="yellow")
+    table.add_column("Score", style="magenta")
+
+    for r in results:
+        table.add_row(
+            r.word1,
+            r.word1_root or "",
+            r.word2,
+            r.word2_root or "",
+            str(r.cooccurrence_count),
+            f"{r.score:.4f}",
+        )
+
+    console.print(table)
+
+
+@research.command("collocations-for")
+@click.argument("word")
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+@click.option("--window", "-w", default=5, help="Window size")
+@click.option("--measure", "-m", type=click.Choice(["pmi", "t_test", "dice", "log_likelihood", "frequency"]), default="pmi", help="Statistical measure")
+@click.option("--top", "-n", default=20, help="Top N results")
+def collocations_for(word: str, edition: str, window: int, measure: str, top: int) -> None:
+    """Get collocations for a specific word."""
+
+    analyzer = CollocationAnalyzer(edition_id=edition)
+
+    measure_map = {
+        "pmi": CooccurrenceMeasure.PMI,
+        "t_test": CooccurrenceMeasure.T_TEST,
+        "dice": CooccurrenceMeasure.DICE,
+        "log_likelihood": CooccurrenceMeasure.LOG_LIKELIHOOD,
+        "frequency": CooccurrenceMeasure.FREQUENCY,
+    }
+
+    results = analyzer.get_collocations_for_word(
+        word,
+        window_size=window,
+        measure=measure_map[measure],
+        top_n=top,
+    )
+
+    if not results:
+        console.print(f"[yellow]No collocations found for '{word}'[/yellow]")
+        return
+
+    table = Table(title=f"Collocations for '{word}' ({measure.upper()})")
+    table.add_column("Word 1", style="cyan")
+    table.add_column("Root 1", style="green")
+    table.add_column("Word 2", style="cyan")
+    table.add_column("Root 2", style="green")
+    table.add_column("Co-occur", style="yellow")
+    table.add_column("Score", style="magenta")
+
+    for r in results:
+        table.add_row(
+            r.word1,
+            r.word1_root or "",
+            r.word2,
+            r.word2_root or "",
+            str(r.cooccurrence_count),
+            f"{r.score:.4f}",
+        )
+
+    console.print(table)
+
+
+@research.command("cross-refs")
+@click.argument("reference")
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+@click.option("--explicit/--implicit", default=True, help="Explicit (dataset) or implicit (computed) links")
+@click.option("--min-roots", default=2, help="Minimum shared roots (implicit)")
+@click.option("--min-lemmas", default=1, help="Minimum shared lemmas (implicit)")
+@click.option("--limit", "-l", default=20, help="Maximum results")
+def cross_refs(reference: str, edition: str, explicit: bool, min_roots: int, min_lemmas: int, limit: int) -> None:
+    """Find cross-references for an ayah."""
+
+    analyzer = CrossReferenceAnalyzer(edition_id=edition)
+
+    if explicit:
+        results = analyzer.get_explicit_cross_references(reference)
+        title = f"Explicit Cross-References for {reference}"
+    else:
+        results = analyzer.find_implicit_links(reference, min_shared_roots=min_roots, min_shared_lemmas=min_lemmas, limit=limit)
+        title = f"Implicit Cross-References for {reference}"
+
+    if not results:
+        console.print("[yellow]No cross-references found[/yellow]")
+        return
+
+    table = Table(title=title)
+    table.add_column("Source", style="cyan")
+    table.add_column("Target", style="cyan")
+    table.add_column("Type", style="green")
+    table.add_column("Evidence", style="yellow")
+    table.add_column("Dataset", style="magenta")
+    table.add_column("Confidence", style="blue")
+
+    for r in results:
+        table.add_row(
+            r.source_reference,
+            r.target_reference,
+            r.relation_type,
+            r.evidence or "",
+            r.source_dataset or "",
+            f"{r.confidence:.2f}" if r.confidence else "N/A",
+        )
+
+    console.print(table)
+
+
+@research.command("wujuh-wa-nazair")
+@click.argument("reference", required=False)
+@click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
+@click.option("--min-shared", default=3, help="Minimum shared words")
+@click.option("--threshold", default=0.4, help="Similarity threshold")
+@click.option("--limit", "-l", default=50, help="Maximum results")
+def wujuh_wa_nazair(reference: str | None, edition: str, min_shared: int, threshold: float, limit: int) -> None:
+    """Find wujuh wa nazair candidates (similar wording, different meaning)."""
+
+    analyzer = WujuhWaNazairAnalyzer(edition_id=edition)
+
+    if reference:
+        results = analyzer.find_for_reference(reference, min_shared_words=min_shared, max_candidates=limit)
+        title = f"Wujuh wa Nazair Candidates for {reference}"
+    else:
+        results = analyzer.find_candidates(min_shared_words=min_shared, max_candidates=limit, similarity_threshold=threshold)
+        title = "Wujuh wa Nazair Candidates (Corpus-wide)"
+
+    if not results:
+        console.print("[yellow]No wujuh wa nazair candidates found[/yellow]")
+        return
+
+    table = Table(title=title)
+    table.add_column("Ayah 1", style="cyan")
+    table.add_column("Ayah 2", style="cyan")
+    table.add_column("Similarity", style="green")
+    table.add_column("Shared Words", style="yellow")
+
+    for r in results:
+        shared = ", ".join(r.shared_words[:8]) + ("..." if len(r.shared_words) > 8 else "")
+        table.add_row(
+            r.ayah1_reference,
+            r.ayah2_reference,
+            f"{r.similarity_score:.3f}",
+            shared,
+        )
+
+    console.print(table)
+    console.print(f"\nTotal candidates: {len(results)}")
+    console.print("[dim]Note: These are computational candidates requiring scholarly review.[/dim]")
 
 
 @main.command()
 @click.argument("reference")
 @click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
-@click.option("--method", "-m", type=click.Choice(["exact", "normalized", "near-duplicate"]), default="exact", help="Analysis method")
+@click.option(
+    "--method",
+    "-m",
+    type=click.Choice(["exact", "normalized", "near-duplicate"]),
+    default="exact",
+    help="Analysis method",
+)
 @click.option("--threshold", default=0.7, help="Similarity threshold for near-duplicate")
 @click.option("--profile", default="diacritics-insensitive-v1", help="Normalization profile")
 @click.option("--min-length", default=2, help="Minimum phrase length")
-def report(reference: str, edition: str, method: str, threshold: float, profile: str, min_length: int) -> None:
+def report(
+    reference: str,
+    edition: str,
+    method: str,
+    threshold: float,
+    profile: str,
+    min_length: int,
+) -> None:
     """Generate mutashabihat comparison report for an ayah."""
-    from qurankit.analysis import MatchMethod, MutashabihatEngine, ReportGenerator
+    from qurankit.analysis import MatchMethod
     from qurankit.storage.access import DataAccess
 
     engine = MutashabihatEngine(DataAccess())
@@ -434,9 +709,13 @@ def report(reference: str, edition: str, method: str, threshold: float, profile:
     if match_method == MatchMethod.EXACT_PHRASE:
         result = engine.find_exact_phrase(reference, edition_id=edition, min_length=min_length)
     elif match_method == MatchMethod.NORMALIZED_EXACT:
-        result = engine.find_normalized_matches(reference, edition_id=edition, normalization_profile=profile, min_words=min_length)
+        result = engine.find_normalized_matches(
+        reference, edition_id=edition, normalization_profile=profile, min_words=min_length
+    )
     elif match_method == MatchMethod.NEAR_DUPLICATE:
-        result = engine.find_near_duplicates(reference, edition_id=edition, threshold=threshold, normalization_profile=profile)
+        result = engine.find_near_duplicates(
+        reference, edition_id=edition, threshold=threshold, normalization_profile=profile
+    )
     else:
         console.print(f"[red]Unknown method: {method}[/red]")
         return
@@ -449,7 +728,6 @@ def report(reference: str, edition: str, method: str, threshold: float, profile:
 @click.option("--edition", "-e", default="tanzil-uthmani-v1", help="Text edition")
 def corpus_stats(edition: str) -> None:
     """Generate corpus-level mutashabihat statistics."""
-    from qurankit.analysis import ReportGenerator
     from qurankit.storage.access import DataAccess
 
     reporter = ReportGenerator(DataAccess())
@@ -467,3 +745,7 @@ def corpus_stats(edition: str) -> None:
         table.add_row(f"{ngram_type} - Unique N-grams", str(data.get("unique_ngrams", 0)))
 
     console.print(table)
+
+
+if __name__ == "__main__":
+    main()

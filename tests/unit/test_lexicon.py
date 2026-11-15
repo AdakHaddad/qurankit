@@ -3,7 +3,6 @@ Tests for QuranKit lexicon module.
 """
 
 import json
-import tempfile
 from pathlib import Path
 
 import pytest
@@ -11,13 +10,11 @@ import pytest
 from qurankit.lexicon import (
     AdapterCapabilities,
     DictionaryAdapterRegistry,
-    FileBasedDictionaryAdapter,
-    QuranicVocabulary,
     create_adapter_from_jsonl,
     get_lexicon_registry,
 )
-from qurankit.models.provenance import Source
 from qurankit.models.enums import SourceType
+from qurankit.models.provenance import Source
 
 
 class TestDictionaryAdapterRegistry:

@@ -17,6 +17,7 @@ from qurankit.models.enums import (
     ClaimCategory,
     MetadataType,
     RedistributionStatus,
+    RevelationType,
     ScriptType,
     SearchMode,
     SourceType,
@@ -58,6 +59,7 @@ __all__ = [
     "ClaimCategory",
     "SearchMode",
     "MetadataType",
+    "RevelationType",
     # Provenance
     "Source",
     "Dataset",

@@ -15,6 +15,9 @@ from typing import Any
 from qurankit.core.config import get_config
 from qurankit.core.exceptions import StorageError
 
+# DataAccess imported lazily to avoid circular import
+DataAccess = None
+
 
 class Database:
     """
@@ -115,6 +118,15 @@ def get_database(db_path: Path | None = None) -> Database:
     return _db
 
 
+def _get_data_access() -> DataAccess:
+    """Lazy import of DataAccess to avoid circular import."""
+    global DataAccess
+    if DataAccess is None:
+        from qurankit.storage.access import DataAccess as DataAccessClass
+        DataAccess = DataAccessClass
+    return DataAccess
+
+
 def set_database(db: Database) -> None:
     """Set the global database instance."""
     global _db
@@ -122,11 +134,9 @@ def set_database(db: Database) -> None:
 
 
 # Import DataAccess after Database is defined
-from qurankit.storage.access import DataAccess
 
 __all__ = [
     "Database",
-    "DataAccess",
     "get_database",
     "set_database",
     "SCHEMA_STATEMENTS",

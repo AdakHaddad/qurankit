@@ -414,7 +414,7 @@ class TestResearchModels:
     """Test research models."""
 
     def test_research_run(self):
-        from datetime import datetime, UTC
+        from datetime import UTC, datetime
 
         run = ResearchRun(
             run_id="run-1",

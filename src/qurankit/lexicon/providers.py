@@ -78,7 +78,7 @@ class FileBasedDictionaryAdapter(DictionaryAdapter):
         if not self._data_path.exists():
             raise FileNotFoundError(f"Dictionary data not found: {self._data_path}")
 
-        if self._data_path.suffix in (".db", ".sqlite", ".sqlite3"):
+        if self._data_path.suffix in {".db", ".sqlite", ".sqlite3"}:
             self._db = sqlite3.connect(self._data_path)
             self._db.row_factory = sqlite3.Row
             self._init_sqlite_schema()

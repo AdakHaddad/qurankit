@@ -16,9 +16,9 @@ class TestVocabularyIntegration:
         # vocabulary property should exist and return a QuranicVocabulary instance
         vocab = quran.vocabulary
         assert vocab is not None
-        assert hasattr(vocab, 'get_occurrences_by_root')
-        assert hasattr(vocab, 'get_occurrences_by_lemma')
-        assert hasattr(vocab, 'get_vocabulary_stats')
+        assert hasattr(vocab, "get_occurrences_by_root")
+        assert hasattr(vocab, "get_occurrences_by_lemma")
+        assert hasattr(vocab, "get_vocabulary_stats")
 
     def test_lookup_root_returns_list(self):
         """Test lookup_root returns a list."""
@@ -79,10 +79,8 @@ class TestVocabularyIntegration:
     def test_set_edition_resets_vocabulary(self):
         """Test that changing edition resets vocabulary cache."""
         quran = Quran.load()
-        vocab1 = quran.vocabulary
         # Try to set same edition - should not reset
         quran.set_edition("tanzil-uthmani-v1")
-        vocab2 = quran.vocabulary
         # Could be same or different depending on implementation
 
 

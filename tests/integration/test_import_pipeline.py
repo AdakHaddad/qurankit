@@ -54,7 +54,7 @@ def data_access_with_source(data_access):
     data_access.insert_source(source)
 
     # Insert dataset
-    from datetime import datetime, UTC
+    from datetime import UTC, datetime
 
     dataset = Dataset(
         dataset_id="tanzil-quran-text",

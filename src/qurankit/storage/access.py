@@ -306,7 +306,8 @@ class DataAccess:
 
         # Exact source index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         self.db.execute(
-            "DELETE FROM ayah_text_fts_exact WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            "DELETE FROM ayah_text_fts_exact "
+            "WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
             (edition_id, surah_number, ayah_number),
         )
         self.db.execute(
@@ -321,7 +322,8 @@ class DataAccess:
         # Diacritic-insensitive index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_diacritic = normalize(text_original, "diacritics-insensitive-v1")
         self.db.execute(
-            "DELETE FROM ayah_text_fts_diacritic_insensitive WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            "DELETE FROM ayah_text_fts_diacritic_insensitive "
+            "WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
             (edition_id, surah_number, ayah_number),
         )
         self.db.execute(
@@ -336,7 +338,8 @@ class DataAccess:
         # Broad search index - FTS5 doesn't support REPLACE with implicit rowid; delete first
         normalized_broad = normalize(text_original, "search-broad-v1")
         self.db.execute(
-            "DELETE FROM ayah_text_fts_broad WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
+            "DELETE FROM ayah_text_fts_broad "
+            "WHERE edition_id = ? AND surah_number = ? AND ayah_number = ?",
             (edition_id, surah_number, ayah_number),
         )
         self.db.execute(

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "qurankit-core"
-version = "0.1.0"
+version = "0.3.0"
 description = "A modular, Python-first computational Qur'anic research library"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -46,6 +46,14 @@ cli = [
 mcp = [
     "mcp>=1.0",
 ]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings-python>=2.0",
+    "mkdocs-jupyter>=0.27",
+    "mkdocs-section-index>=0.3",
+    "mkdocs-autorefs>=1.4",
+    "pymdown-extensions>=11.0",
+]
 
 [project.scripts]
 qurankit = "qurankit.cli:main"
@@ -55,7 +63,7 @@ qurankit-mcp = "qurankit.mcp:run_server"
 Homepage = "https://github.com/AdakHaddad/qurankit"
 Repository = "https://github.com/AdakHaddad/qurankit"
 Issues = "https://github.com/AdakHaddad/qurankit/issues"
-Documentation = "https://github.com/AdakHaddad/qurankit/tree/main/docs"
+Documentation = "https://adakhaddad.github.io/qurankit/"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/qurankit"]

@@ -1,0 +1,133 @@
+site_name: QuranKit
+site_description: A modular, Python-first computational Qur'anic research library
+site_url: https://adakhaddad.github.io/qurankit/
+repo_url: https://github.com/AdakHaddad/qurankit
+repo_name: AdakHaddad/qurankit
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Configuration: getting-started/configuration.md
+  - User Guide:
+    - Qur'anic Text Access: user-guide/text-access.md
+    - Arabic Text Processing: user-guide/arabic-text-processing.md
+    - Search & Normalization: user-guide/search.md
+    - Vocabulary & Lexicon: user-guide/vocabulary.md
+    - Mutashabihat Analysis: user-guide/mutashabihat.md
+    - Computational Research: user-guide/research.md
+    - Dataset Management: user-guide/datasets.md
+  - Reference:
+    - Project Plan: reference/plan.md
+    - Data Model: reference/data-model.md
+    - Arabic Text Standard: reference/arabic-text-standard.md
+    - Dataset Evaluation: reference/datasets.md
+    - API Reference: reference/api.md
+    - CLI Reference: reference/cli.md
+  - Development:
+    - Contributing: development/contributing.md
+    - Extension Development: development/extensions.md
+    - Development Instructions: development/agents.md
+  - Examples:
+    - Basic Usage: examples/basic_usage.md
+    - Dataset Management: examples/dataset_management.md
+    - Search Examples: examples/search_examples.md
+    - Mutashabihat Analysis: examples/mutashabihat_analysis.md
+    - Reports: examples/reports_example.md
+    - MCP Client: examples/mcp_client_example.md
+    - Research Workflows (Notebook): notebooks/research_workflows.ipynb
+    - Extension Adapters (Notebook): notebooks/extension_adapters.ipynb
+    - Search Examples (Notebook): notebooks/search_examples.ipynb
+    - Mutashabihat Analysis (Notebook): notebooks/mutashabihat_analysis.ipynb
+
+plugins:
+  - search
+  - autorefs
+  - section-index
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
+            members_order: source
+            separate_signature: true
+            show_if_no_docstring: true
+            merge_init_into_class: true
+            docstring_style: google
+            filters:
+              - "!^_"
+              - "!^__"
+  - mkdocs-jupyter:
+      include_source: true
+      execute: false
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AdakHaddad/qurankit
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/qurankit-core/
+  version:
+    provider: mike
+
+copyright: |
+  &copy; 2024 QuranKit Contributors — MIT License

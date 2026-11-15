@@ -278,13 +278,10 @@ class QuranicVocabulary:
 
         if root_form:
             occurrences = self.get_occurrences_by_root(root_form)
-            key_form = root_form
         elif lemma_form:
             occurrences = self.get_occurrences_by_lemma(lemma_form)
-            key_form = lemma_form
         elif surface_form:
             occurrences = self.get_occurrences_by_surface(surface_form)
-            key_form = surface_form
         else:
             return VocabularyStats()
 
@@ -297,8 +294,8 @@ class QuranicVocabulary:
 
         # Calculate statistics
         total = len(occurrences)
-        surahs = set(o.surah_number for o in occurrences)
-        ayahs = set((o.surah_number, o.ayah_number) for o in occurrences)
+        surahs = {o.surah_number for o in occurrences}
+        ayahs = {(o.surah_number, o.ayah_number) for o in occurrences}
 
         # Surah distribution
         surah_dist: dict[int, int] = {}

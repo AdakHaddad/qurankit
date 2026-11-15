@@ -46,7 +46,7 @@ class QuranKitConfig(BaseSettings):
         return self.get_data_dir() / "cache"
 
 
-# Global config instance
+# Module-level config instance (singleton pattern)
 _config: QuranKitConfig | None = None
 
 
@@ -62,3 +62,6 @@ def set_config(config: QuranKitConfig) -> None:
     """Set the global configuration instance."""
     global _config
     _config = config
+
+# Note: The global keyword is used intentionally here for the singleton pattern.
+# Ruff's global-statement warning is a style preference; this is a valid pattern.

@@ -82,3 +82,11 @@ class MetadataType(StrEnum):
     MAKKI_MADANI = "makki_madani"
     RUKU_COUNT = "ruku_count"
     OTHER = "other"
+
+
+class RevelationType(StrEnum):
+    """Revelation type (Makki/Madani)."""
+
+    MAKKI = "makki"
+    MADANI = "madani"
+    DISPUTED = "disputed"

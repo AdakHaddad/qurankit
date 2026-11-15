@@ -1,0 +1,3224 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A modular, Python-first computational Qur'anic research library">
+      
+      
+      
+        <link rel="canonical" href="https://adakhaddad.github.io/qurankit/reference/datasets/">
+      
+      
+        <link rel="prev" href="../arabic-text-standard/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Dataset Evaluation - QuranKit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qurankit-dataset-evaluation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QuranKit" class="md-header__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QuranKit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dataset Evaluation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/text-access/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../plan/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/contributing/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/basic_usage/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QuranKit" class="md-nav__button md-logo" aria-label="QuranKit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QuranKit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AdakHaddad/qurankit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AdakHaddad/qurankit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/text-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qur'anic Text Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/arabic-text-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search & Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vocabulary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vocabulary & Lexicon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/mutashabihat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computational Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arabic-text-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arabic Text Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Evaluation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-executive-recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Executive recommendation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Executive recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-initial-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended initial path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-evaluation-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Evaluation criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-candidate-source-assessments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Candidate source assessments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Candidate source assessments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tanzil-quran-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tanzil Quran Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-tanzil-quran-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Tanzil Quran Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-quranic-arabic-corpus-qac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Quranic Arabic Corpus (QAC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-quran-foundation-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Quran Foundation APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-openiti-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 OpenITI Corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-classical-arabic-dictionaries-and-lexical-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Classical Arabic dictionaries and lexical resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-translations-and-tafsir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Translations and tafsir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-hadith-collections-and-scholarly-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Hadith collections and scholarly works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-source-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Source comparison matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-qurankit-data-governance-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. QuranKit data governance requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. QuranKit data governance requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-provenance-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required provenance fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dataset-ingestion-and-release-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Dataset ingestion and release workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validation-and-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validation and quality checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validation and quality checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linguistic-annotation-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linguistic annotation integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#licensing-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Licensing integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-proposed-package-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Proposed package layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-prioritized-implementation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Prioritized implementation plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Prioritized implementation plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-source-governance-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — source governance (first)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-text-and-metadata-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — text and metadata baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-linguistic-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — linguistic adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-d-research-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase D — research extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-open-questions-before-the-first-public-data-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Open questions before the first public data release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-source-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Source references
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-final-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Final position
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/dataset_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/search_examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mutashabihat_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/reports_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mcp_client_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/research_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QuranKit Research Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/extension_adapters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Adapters Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/search_examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/mutashabihat_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mutashabihat Analysis Notebook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-executive-recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Executive recommendation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Executive recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-initial-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended initial path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-evaluation-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Evaluation criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-candidate-source-assessments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Candidate source assessments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Candidate source assessments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tanzil-quran-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tanzil Quran Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-tanzil-quran-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Tanzil Quran Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-quranic-arabic-corpus-qac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Quranic Arabic Corpus (QAC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-quran-foundation-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Quran Foundation APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-openiti-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 OpenITI Corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-classical-arabic-dictionaries-and-lexical-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Classical Arabic dictionaries and lexical resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-translations-and-tafsir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Translations and tafsir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-hadith-collections-and-scholarly-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Hadith collections and scholarly works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-source-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Source comparison matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-qurankit-data-governance-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. QuranKit data governance requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. QuranKit data governance requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-provenance-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required provenance fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dataset-ingestion-and-release-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Dataset ingestion and release workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validation-and-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validation and quality checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validation and quality checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linguistic-annotation-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linguistic annotation integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#licensing-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Licensing integrity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-proposed-package-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Proposed package layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-prioritized-implementation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Prioritized implementation plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Prioritized implementation plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-source-governance-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — source governance (first)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-text-and-metadata-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — text and metadata baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-linguistic-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — linguistic adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-d-research-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase D — research extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-open-questions-before-the-first-public-data-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Open questions before the first public data release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-source-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Source references
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-final-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Final position
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="qurankit-dataset-evaluation">QuranKit Dataset Evaluation<a class="headerlink" href="#qurankit-dataset-evaluation" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Status: Initial research and integration assessment<br />
+Last reviewed: 2026-11-14<br />
+Scope: Candidate datasets and services for the QuranKit research framework  </p>
+<p>This document is a technical due-diligence record, not legal advice. Re-check each source's current terms before every release or redistribution.</p>
+</blockquote>
+<h2 id="1-purpose">1. Purpose<a class="headerlink" href="#1-purpose" title="Permanent link">&para;</a></h2>
+<p>QuranKit is intended to be a Python-first framework for reproducible Qur'anic research. Its datasets must be treated as independently governed research assets, not as interchangeable files bundled with the software.</p>
+<p>This document evaluates candidate sources for:</p>
+<ul>
+<li>Qur'anic Arabic text and structural metadata</li>
+<li>Morphological and syntactic annotation</li>
+<li>Lexical resources and classical dictionaries</li>
+<li>Historical Arabic and Islamicate texts</li>
+<li>Tafsir, translations, hadith, and other scholarly material</li>
+<li>API-based content providers</li>
+</ul>
+<p>The central rule is <strong>source-first data governance</strong>: every imported record must retain its source, edition or release, license/terms, retrieval date, attribution, and transformation history.</p>
+<h2 id="2-executive-recommendation">2. Executive recommendation<a class="headerlink" href="#2-executive-recommendation" title="Permanent link">&para;</a></h2>
+<h3 id="recommended-initial-path">Recommended initial path<a class="headerlink" href="#recommended-initial-path" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Use <strong>Tanzil</strong> as the leading candidate for a baseline Qur'anic text edition and structural metadata, subject to strict preservation of the supplied text and attribution.</li>
+<li>Build QuranKit's own deterministic indexing, tokenization interfaces, search, concordance, comparison, and research-run infrastructure independently of third-party annotation.</li>
+<li>Treat <strong>Quranic Arabic Corpus (QAC)</strong> as an optional, separately licensed annotation provider. Do not modify or redistribute its annotation until its terms and the relationship between its download notice, GPL wording, and FAQ restrictions have been reviewed.</li>
+<li>Treat <strong>Quran Foundation</strong> as an optional API integration for end-user applications, not as a source for a redistributable QuranKit dataset unless a separate written license permits it.</li>
+<li>Use <strong>OpenITI</strong> in a later historical-text research extension. Do not assume that every text in the corpus has uniform provenance, fidelity, or reuse rights.</li>
+<li>Do not bundle classical dictionary content, translations, tafsir, audio, or hadith collections until rights are verified at the individual resource/edition level.</li>
+</ol>
+<h3 id="dataset-strategy">Dataset strategy<a class="headerlink" href="#dataset-strategy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Initial strategy</th>
+<th style="text-align: right;">Bundled by default?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quranic text</td>
+<td>Tanzil candidate; preserve source file exactly</td>
+<td style="text-align: right;">Only after release-specific validation</td>
+</tr>
+<tr>
+<td>Structural metadata</td>
+<td>Tanzil metadata candidate</td>
+<td style="text-align: right;">Only after terms and attribution are recorded</td>
+</tr>
+<tr>
+<td>Tokenization/indexes</td>
+<td>Generate from permitted source text using QuranKit code</td>
+<td style="text-align: right;">Yes, if output does not unlawfully reproduce restricted source material</td>
+</tr>
+<tr>
+<td>Morphology/syntax</td>
+<td>Native schema plus optional QAC adapter</td>
+<td style="text-align: right;">No QAC data by default</td>
+</tr>
+<tr>
+<td>Lexicons</td>
+<td>Provider adapters and user-supplied licensed packs</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Tafsir/translations</td>
+<td>Edition-specific provider packs</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Historical corpus</td>
+<td>OpenITI adapter / external corpus reference</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>API content</td>
+<td>Live provider integration</td>
+<td style="text-align: right;">No raw API data redistribution</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-evaluation-criteria">3. Evaluation criteria<a class="headerlink" href="#3-evaluation-criteria" title="Permanent link">&para;</a></h2>
+<p>Each candidate should be assessed against the following criteria before adoption:</p>
+<ol>
+<li><strong>Coverage</strong> — full Qur'an, selected surahs, selected books, or partial annotation.</li>
+<li><strong>Edition identity</strong> — exact text edition, script, orthography, publisher, release number, and date.</li>
+<li><strong>Accuracy and review</strong> — editorial process, scholarly review, known limitations, correction process.</li>
+<li><strong>Annotation scope</strong> — morphology, syntax, roots, lemmas, senses, semantic relations, or metadata.</li>
+<li><strong>License and terms</strong> — copying, modification, redistribution, commercial use, API use, caching, and derived data.</li>
+<li><strong>Attribution</strong> — exact credit text, source links, citation format, and notice retention.</li>
+<li><strong>Provenance</strong> — source chain for each record, not just the website from which it was downloaded.</li>
+<li><strong>Technical suitability</strong> — machine-readable formats, stable identifiers, encoding, schema, and update mechanism.</li>
+<li><strong>Offline suitability</strong> — whether local copies are permitted and how they must be refreshed.</li>
+<li><strong>Research reproducibility</strong> — whether a result can cite an exact source release and transformation.</li>
+</ol>
+<p>A source being publicly viewable or downloadable does <strong>not</strong> automatically mean that it is open-licensed or may be redistributed.</p>
+<h2 id="4-candidate-source-assessments">4. Candidate source assessments<a class="headerlink" href="#4-candidate-source-assessments" title="Permanent link">&para;</a></h2>
+<h3 id="41-tanzil-quran-text">4.1 Tanzil Quran Text<a class="headerlink" href="#41-tanzil-quran-text" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Candidate baseline Arabic text source.</p>
+<p>Official pages:</p>
+<ul>
+<li>Text license: https://tanzil.net/docs/Text_License</li>
+<li>Download: https://tanzil.net/download/</li>
+<li>Metadata: https://tanzil.net/docs/Quran_Metadata</li>
+<li>Metadata updates: https://tanzil.net/docs/metadata_updates</li>
+</ul>
+<p><strong>What it provides</strong></p>
+<p>Tanzil distributes machine-readable Qur'anic text in multiple forms and formats. Its download page identifies version 1.1, published in February 2021. The metadata resource describes surah information and structural divisions including juz, hizb, hizb quarters, manzil, ruku, Medina Mushaf page numbers, and sajdah locations/types. It also includes revelation order and other surah-level fields.</p>
+<p><strong>License and use conditions observed</strong></p>
+<p>The Tanzil text license page states CC BY 3.0 and separately sets out specific terms:</p>
+<ul>
+<li>Verbatim copies may be copied and distributed.</li>
+<li>Changing the text is not allowed.</li>
+<li>Use in websites and applications is permitted with clear source attribution and a link to Tanzil.</li>
+<li>The copyright notice must accompany verbatim copies and be reproduced appropriately in files derived from or containing a substantial portion of the text.</li>
+<li>Users should check updates and link to Tanzil so users can track changes.</li>
+</ul>
+<p>The explicit no-change condition is important. QuranKit must not silently normalize, rewrite, strip marks from, or otherwise alter the canonical stored source text and then describe that altered copy as the original Tanzil text.</p>
+<p><strong>Assessment</strong></p>
+<ul>
+<li>Coverage: full Qur'an.</li>
+<li>Technical suitability: high; machine-readable downloads and separate metadata.</li>
+<li>Structural metadata: useful for navigation and research segmentation.</li>
+<li>Accuracy: Tanzil describes the text as carefully produced, verified, and monitored. QuranKit should still perform independent integrity checks and retain source checksums.</li>
+<li>Offline use: potentially suitable for a bundled source pack, subject to exact terms and preservation.</li>
+<li>Main risk: confusing an analytical/search representation with a permitted modified copy of the source text.</li>
+</ul>
+<p><strong>Recommendation: ADOPT AS A CANDIDATE BASELINE, WITH STRICT SOURCE PRESERVATION.</strong></p>
+<p>Implementation requirements:</p>
+<ol>
+<li>Store the downloaded original bytes as an immutable source artifact.</li>
+<li>Record exact release/version, download URL, retrieval timestamp, SHA-256, and attribution notice.</li>
+<li>Preserve original ayah strings exactly in the source layer.</li>
+<li>Put normalized search strings in separately generated fields, never overwrite source text.</li>
+<li>Link visibly to Tanzil in documentation and any user-facing application using the data.</li>
+<li>Re-check the source's update page and terms before each dataset release.</li>
+<li>Keep the text and metadata as separately registered assets, each with its own provenance and license record.</li>
+</ol>
+<h3 id="42-tanzil-quran-metadata">4.2 Tanzil Quran Metadata<a class="headerlink" href="#42-tanzil-quran-metadata" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Candidate structural metadata provider.</p>
+<p>Official pages:</p>
+<ul>
+<li>Metadata description: https://tanzil.net/docs/Quran_Metadata</li>
+<li>Metadata change history: https://tanzil.net/docs/metadata_updates</li>
+</ul>
+<p>The metadata page lists:</p>
+<ul>
+<li>Surah number, ayah count, revelation order, start line, ruku count, and names</li>
+<li>Juz</li>
+<li>Hizb and hizb quarters</li>
+<li>Manzil</li>
+<li>Ruku</li>
+<li>Medina Mushaf page</li>
+<li>Sajdah location and type</li>
+</ul>
+<p>The metadata change history identifies version 1.0 and a release date of 28 February 2008, with historical updates including revelation order, sajdah, ruku, and hizb-quarter information.</p>
+<p><strong>Assessment</strong></p>
+<p>This is highly useful for QuranKit's structural model. However, metadata should not be treated as timeless or universally edition-independent. Page numbers, for example, are tied to a particular Mushaf layout. Revelation order and other historical metadata may have scholarly conventions or disagreements.</p>
+<p><strong>Recommendation: ADOPT AS A VERSIONED METADATA PROVIDER, NOT AS UNQUALIFIED UNIVERSAL TRUTH.</strong></p>
+<p>Implementation requirements:</p>
+<ul>
+<li>Store the provider's original field values and identifiers.</li>
+<li>Label page numbers with the Mushaf/layout convention.</li>
+<li>Preserve source/version and retrieval information.</li>
+<li>Do not infer missing metadata.</li>
+<li>Allow multiple providers or scholarly views for fields where disagreement exists.</li>
+<li>Cite Tanzil as the source in generated metadata documentation.</li>
+</ul>
+<h3 id="43-quranic-arabic-corpus-qac">4.3 Quranic Arabic Corpus (QAC)<a class="headerlink" href="#43-quranic-arabic-corpus-qac" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Optional morphology, syntax, and linguistic annotation provider.</p>
+<p>Official pages:</p>
+<ul>
+<li>Download: https://corpus.quran.com/download/</li>
+<li>FAQ: https://corpus.quran.com/faq.jsp</li>
+<li>License: https://corpus.quran.com/license.jsp</li>
+</ul>
+<p><strong>What it provides</strong></p>
+<p>The download page identifies version 0.4 of the morphological data and describes syntactic and morphological annotation of the Qur'an. It states that the corpus builds on verified Arabic text distributed by Tanzil. The site also provides word-by-word, dictionary, syntactic treebank, ontology, and grammar resources.</p>
+<p><strong>Terms requiring special care</strong></p>
+<p>The download page labels the data GNU General Public License and says:</p>
+<ul>
+<li>Verbatim copies may be copied and distributed.</li>
+<li>Changing the file is not allowed.</li>
+<li>Use in websites or applications requires clear source attribution and a link to the corpus.</li>
+<li>Copyright notices must be retained in verbatim copies and substantial derived works.</li>
+</ul>
+<p>The FAQ separately says research data is made available for research purposes, should not be used commercially, and requires citation in research publications. It also notes that annotation is still undergoing correction.</p>
+<p>These statements should not be collapsed into a simplistic claim that all QAC material is freely modifiable for all commercial purposes. The exact version, asset, license text, and any additional conditions need review. If commercial use is planned, obtain written clarification from the maintainers or legal review before integrating the data into a commercial distribution.</p>
+<p><strong>Assessment</strong></p>
+<ul>
+<li>Linguistic value: high.</li>
+<li>Annotation scope: useful for morphology and syntax.</li>
+<li>Maturity: valuable but the FAQ explicitly notes ongoing correction.</li>
+<li>Technical suitability: promising, subject to schema mapping and stable token alignment.</li>
+<li>Redistribution/modification: constrained and requires legal review.</li>
+<li>Research quality: must preserve annotation as a sourced scholarly/computational layer, not an unquestionable ground truth.</li>
+</ul>
+<p><strong>Recommendation: SUPPORT THROUGH AN OPTIONAL ADAPTER; DO NOT MAKE IT A REQUIRED OR DEFAULT REDISTRIBUTED DATASET.</strong></p>
+<p>Implementation requirements:</p>
+<ol>
+<li>Preserve original downloaded files unchanged if local storage is permitted.</li>
+<li>Record version, checksum, citation, exact license text, and retrieval date.</li>
+<li>Map QAC records to QuranKit identifiers without rewriting the source annotation.</li>
+<li>Keep QuranKit's internal schema separate from the provider's schema.</li>
+<li>Do not publish modified QAC files as though they were official QAC data.</li>
+<li>Record annotation uncertainty and source corrections.</li>
+<li>Obtain written clarification before commercial distribution or transformation.</li>
+</ol>
+<h3 id="44-quran-foundation-apis">4.4 Quran Foundation APIs<a class="headerlink" href="#44-quran-foundation-apis" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Optional live API integration for applications.</p>
+<p>Official pages:</p>
+<ul>
+<li>Developer terms: https://api-docs.quran.com/legal/developer-terms/</li>
+<li>FAQ: https://api-docs.quran.foundation/docs/tutorials/faq/</li>
+</ul>
+<p><strong>What it provides</strong></p>
+<p>Quran Foundation's APIs cover Quran text, translations, metadata, audio, reflections, and other content. This can be useful for application developers who need provider-managed access and content synchronization.</p>
+<p><strong>Terms observed</strong></p>
+<p>The developer terms, last updated 11 October 2026 on the page reviewed, distinguish between displaying content to end users and redistributing raw content as data.</p>
+<p>The terms permit qualifying applications to charge for subscriptions, in-app purchases, advertising, donations, or freemium access, provided the content is displayed within the application experience and the other terms are followed.</p>
+<p>They restrict selling, sublicensing, or redistributing QF content/raw API data. A separate signed commercial license is required before distributing it as a dataset, feed, API, download, or content package. The terms also specify caching limits and require Content Sync APIs as the permitted path for maintaining certain offline copies.</p>
+<p><strong>Assessment</strong></p>
+<ul>
+<li>Application integration: useful.</li>
+<li>Dataset mirroring: not an assumed permitted use.</li>
+<li>Offline behavior: must follow the exact Content Sync rules.</li>
+<li>Redistribution: requires separate permission where specified.</li>
+<li>Long-term reproducibility: API content can change; store provider identifiers and retrieval metadata where permitted.</li>
+</ul>
+<p><strong>Recommendation: OPTIONAL API CONNECTOR ONLY. DO NOT USE AS THE DEFAULT SOURCE FOR A REDISTRIBUTABLE DATA PACK.</strong></p>
+<p>Implementation requirements:</p>
+<ul>
+<li>Make API use opt-in and provider-specific.</li>
+<li>Follow rate limits, caching limits, privacy requirements, and Content Sync rules.</li>
+<li>Never scrape or bulk-extract outside authorized API responses.</li>
+<li>Do not expose raw QF data through QuranKit's own dataset downloads or API unless separately licensed.</li>
+<li>Clearly label provider content in results.</li>
+<li>Keep API credentials outside source control.</li>
+<li>Do not assume all QF content assets share identical rights.</li>
+</ul>
+<h3 id="45-openiti-corpus">4.5 OpenITI Corpus<a class="headerlink" href="#45-openiti-corpus" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Later historical Arabic and Islamicate text research extension.</p>
+<p>Official pages:</p>
+<ul>
+<li>Corpus overview: https://openiti.org/projects/OpenITI%20Corpus.html</li>
+<li>Terms of use: https://openiti.org/docs/Terms%20of%20Use.html</li>
+<li>Documentation: https://openiti.org/documentation/</li>
+<li>Releases: https://github.com/OpenITI/RELEASE</li>
+</ul>
+<p><strong>What it provides</strong></p>
+<p>OpenITI is a machine-actionable collection of Arabic and Persian Islamicate texts. It can support historical language research, text reuse, source comparison, author/book metadata, and broader context around scholarly works.</p>
+<p><strong>License and quality considerations</strong></p>
+<p>OpenITI documentation describes corpus releases under CC BY-NC-SA 4.0. The currently surfaced terms page also describes non-commercial Creative Material under CC BY-SA wording and distinguishes third-party material. These pages and the applicable release/contributor terms must be reconciled for the exact item being used. Do not assume one license covers every text, scan, image, edition, or third-party component in the ecosystem.</p>
+<p>OpenITI itself notes that its texts come from different sources and have varying fidelity to print editions, including manual transcription and OCR errors. Its documentation recommends citing individual file URIs and the relevant release.</p>
+<p><strong>Assessment</strong></p>
+<ul>
+<li>Research value: high for historical context and text reuse.</li>
+<li>Direct Quran text authority: not appropriate as the canonical Qur'an source.</li>
+<li>Quality: heterogeneous; each text requires source-level evaluation.</li>
+<li>License: non-commercial and share-alike constraints make it unsuitable for an assumed unrestricted commercial dataset.</li>
+<li>Technical suitability: strong potential for a later adapter.</li>
+</ul>
+<p><strong>Recommendation: LATER OPTIONAL HISTORICAL-CORPUS CONNECTOR; NOT PART OF THE CORE MVP.</strong></p>
+<p>Implementation requirements:</p>
+<ul>
+<li>Identify the exact OpenITI release and file URI.</li>
+<li>Retain edition and source metadata.</li>
+<li>Check the applicable license for each asset and any third-party content.</li>
+<li>Preserve OCR/transcription quality warnings.</li>
+<li>Do not imply that corpus inclusion means scholarly verification.</li>
+<li>Keep this data outside the core Quran text package.</li>
+</ul>
+<h3 id="46-classical-arabic-dictionaries-and-lexical-resources">4.6 Classical Arabic dictionaries and lexical resources<a class="headerlink" href="#46-classical-arabic-dictionaries-and-lexical-resources" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Root, lemma, lexical sense, definition, and historical usage research.</p>
+<p>A relevant candidate identified in the initial survey is the Linguistic Data Consortium's <strong>Classical Arabic Dictionary (LDC2021L01)</strong>:</p>
+<ul>
+<li>Catalog: https://catalog.ldc.upenn.edu/LDC2021L01</li>
+</ul>
+<p>The catalog describes a large collection of Arabic material from texts dating between 431 and 1104 CE, including word occurrences, source documents, and metadata. It is distributed under an LDC User Agreement, with access and fees depending on membership.</p>
+<p><strong>Assessment</strong></p>
+<p>This resource may be valuable for historical lexical research, but it is not a freely redistributable dictionary pack. Access is governed by the LDC agreement. It also represents a corpus-derived resource rather than a simple replacement for individual classical lexicons.</p>
+<p>For named classical works (for example, Lisān al-ʿArab, Maqāyīs al-Lughah, al-Mufradāt, or al-Ṣiḥāḥ), QuranKit must distinguish:</p>
+<ul>
+<li>The public-domain status of an old authored work, where applicable</li>
+<li>Copyright in a modern edited edition, introduction, notes, and critical apparatus</li>
+<li>Copyright and terms of a digital transcription or database</li>
+<li>The source and reliability of any extracted lexical records</li>
+</ul>
+<p><strong>Recommendation: BUILD A PROVIDER-NEUTRAL LEXICON SCHEMA FIRST. ADD ONLY RESOURCE PACKS WITH VERIFIED ITEM-LEVEL RIGHTS.</strong></p>
+<p>Do not scrape online dictionary websites or copy modern editions merely because the underlying classical author died centuries ago.</p>
+<h3 id="47-translations-and-tafsir">4.7 Translations and tafsir<a class="headerlink" href="#47-translations-and-tafsir" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Contextual interpretation, comparative translation, and scholarly commentary.</p>
+<p>No general blanket license should be assumed for translations or tafsir. A translation is an authored work; a modern edition of a classical tafsir may include editorial material, notes, and other protected contributions. A provider's API permission may also differ from permission to redistribute a local data package.</p>
+<p><strong>Recommendation: KEEP THESE AS SEPARATE EDITION-SPECIFIC PLUGINS.</strong></p>
+<p>For every translation or tafsir edition, record:</p>
+<ul>
+<li>Original title and language</li>
+<li>Author/translator and editor</li>
+<li>Publisher and edition</li>
+<li>Publication date</li>
+<li>Source URL or catalog identifier</li>
+<li>Exact license or written permission</li>
+<li>Allowed use: display, research, commercial, offline, modification, redistribution</li>
+<li>Required attribution</li>
+<li>Whether excerpts or derived indexes are permitted</li>
+</ul>
+<p>Do not merge translation or tafsir text into the canonical Arabic text record.</p>
+<h3 id="48-hadith-collections-and-scholarly-works">4.8 Hadith collections and scholarly works<a class="headerlink" href="#48-hadith-collections-and-scholarly-works" title="Permanent link">&para;</a></h3>
+<p><strong>Role:</strong> Later research linking ayahs to narrations, explanations, and scholarly discussions.</p>
+<p>A hadith work may be old while a modern edition, translation, numbering system, grading, commentary, or database is not. Numbering can differ by edition and publisher. Online accessibility does not establish permission to download, transform, or redistribute.</p>
+<p><strong>Recommendation: DEFER DATA INGESTION. DESIGN THE SOURCE AND CITATION MODEL NOW.</strong></p>
+<p>Each record should identify the collection, book/chapter, hadith number as used by a named edition, edition/publisher, narrator chain where available, grading source, and exact citation locator. Do not combine variant numbering systems into one supposedly universal ID.</p>
+<h2 id="5-source-comparison-matrix">5. Source comparison matrix<a class="headerlink" href="#5-source-comparison-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Primary value</th>
+<th>Coverage</th>
+<th>Rights posture observed</th>
+<th>MVP decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tanzil text</td>
+<td>Arabic Qur'an text</td>
+<td>Full Qur'an</td>
+<td>Verbatim distribution; no text changes; attribution/link</td>
+<td>Candidate baseline</td>
+</tr>
+<tr>
+<td>Tanzil metadata</td>
+<td>Surah and structural metadata</td>
+<td>Full Qur'an structure</td>
+<td>Source attribution; verify metadata-specific terms</td>
+<td>Candidate baseline</td>
+</tr>
+<tr>
+<td>QAC</td>
+<td>Morphology and syntax</td>
+<td>Qur'an annotation</td>
+<td>GPL wording plus FAQ non-commercial research limitation; no changes stated</td>
+<td>Optional adapter; legal review</td>
+</tr>
+<tr>
+<td>Quran Foundation</td>
+<td>API content and sync</td>
+<td>Broad API content</td>
+<td>Display permitted under conditions; raw redistribution requires separate license</td>
+<td>Optional API connector</td>
+</tr>
+<tr>
+<td>OpenITI</td>
+<td>Historical Arabic/Persian corpus</td>
+<td>Large, heterogeneous corpus</td>
+<td>Non-commercial/share-alike terms; check item-level third-party rights</td>
+<td>Later extension</td>
+</tr>
+<tr>
+<td>LDC Classical Arabic Dictionary</td>
+<td>Historical Arabic corpus/lexical data</td>
+<td>Large historical corpus</td>
+<td>LDC agreement and access terms</td>
+<td>Optional licensed provider</td>
+</tr>
+<tr>
+<td>Translation/tafsir editions</td>
+<td>Interpretation and translation</td>
+<td>Edition-specific</td>
+<td>Must verify per edition</td>
+<td>Later plugins</td>
+</tr>
+<tr>
+<td>Hadith datasets</td>
+<td>Narrations and references</td>
+<td>Collection-specific</td>
+<td>Must verify per edition/database</td>
+<td>Later plugins</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-qurankit-data-governance-requirements">6. QuranKit data governance requirements<a class="headerlink" href="#6-qurankit-data-governance-requirements" title="Permanent link">&para;</a></h2>
+<p>Every source asset must have a manifest. Suggested fields:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">dataset_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tanzil.quran_text.uthmani</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tanzil Project</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">asset_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Quran Text - Uthmani</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"1.1"</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">release_date</span><span class="p">:</span><span class="w"> </span><span class="s">"2021-02"</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">retrieved_at</span><span class="p">:</span><span class="w"> </span><span class="s">"YYYY-MM-DD"</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">source_url</span><span class="p">:</span><span class="w"> </span><span class="s">"https://tanzil.net/download/"</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">license_name</span><span class="p">:</span><span class="w"> </span><span class="s">"CC</span><span class="nv"> </span><span class="s">BY</span><span class="nv"> </span><span class="s">3.0</span><span class="nv"> </span><span class="s">(with</span><span class="nv"> </span><span class="s">source-specific</span><span class="nv"> </span><span class="s">terms)"</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nt">license_url</span><span class="p">:</span><span class="w"> </span><span class="s">"https://tanzil.net/docs/Text_License"</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nt">redistribution</span><span class="p">:</span><span class="w"> </span><span class="s">"verbatim_only"</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nt">modification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nt">commercial_use</span><span class="p">:</span><span class="w"> </span><span class="s">"verify_scope_and_terms"</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">attribution_required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nt">attribution_text</span><span class="p">:</span><span class="w"> </span><span class="s">"Tanzil</span><span class="nv"> </span><span class="s">Quran</span><span class="nv"> </span><span class="s">Text</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">Tanzil</span><span class="nv"> </span><span class="s">Project</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">https://tanzil.net"</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nt">source_checksum_sha256</span><span class="p">:</span><span class="w"> </span><span class="s">"&lt;computed-at-ingestion&gt;"</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">"provider-original-format"</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="s">"ar"</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="s">"uthmani"</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="nt">notes</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Keep</span><span class="nv"> </span><span class="s">original</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">bytes</span><span class="nv"> </span><span class="s">unchanged."</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Generated</span><span class="nv"> </span><span class="s">search</span><span class="nv"> </span><span class="s">forms</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">fields."</span>
+</span></code></pre></div>
+<p>The example is illustrative. The ingestion pipeline must fill in actual retrieval dates, checksums, format, and exact attribution text from the downloaded source. Never ship placeholder values in a released manifest.</p>
+<h3 id="required-provenance-fields">Required provenance fields<a class="headerlink" href="#required-provenance-fields" title="Permanent link">&para;</a></h3>
+<p>At minimum, each dataset and record should be traceable to:</p>
+<ul>
+<li><code>provider_id</code></li>
+<li><code>dataset_id</code></li>
+<li><code>dataset_version</code></li>
+<li><code>source_record_id</code></li>
+<li><code>source_uri</code></li>
+<li><code>license_id</code></li>
+<li><code>retrieved_at</code></li>
+<li><code>source_checksum</code></li>
+<li><code>ingestion_pipeline_version</code></li>
+<li><code>transformation_id</code></li>
+<li><code>review_status</code></li>
+</ul>
+<p>For scholarly annotations, add:</p>
+<ul>
+<li>annotator/author</li>
+<li>editor/reviewer</li>
+<li>edition</li>
+<li>method</li>
+<li>confidence or uncertainty, if supplied</li>
+<li>correction history</li>
+<li>disagreement/variant information</li>
+</ul>
+<h3 id="separation-of-layers">Separation of layers<a class="headerlink" href="#separation-of-layers" title="Permanent link">&para;</a></h3>
+<p>QuranKit should keep the following distinct:</p>
+<ol>
+<li><strong>Source artifact</strong> — the exact downloaded file, preserved when permitted.</li>
+<li><strong>Canonical source record</strong> — structured representation linked to the source artifact.</li>
+<li><strong>Derived index</strong> — search normalization, token lookup, FTS index, embeddings, and other generated structures.</li>
+<li><strong>Scholarly annotation</strong> — sourced morphology, syntax, lexical, semantic, or interpretive statements.</li>
+<li><strong>Research result</strong> — output of a reproducible algorithm with its inputs and method.</li>
+<li><strong>User annotation</strong> — a user's own notes, hypotheses, and corrections.</li>
+</ol>
+<p>A derived index must never be presented as if it were the original source text or the source provider's official annotation.</p>
+<h2 id="7-dataset-ingestion-and-release-workflow">7. Dataset ingestion and release workflow<a class="headerlink" href="#7-dataset-ingestion-and-release-workflow" title="Permanent link">&para;</a></h2>
+<p>Recommended lifecycle:</p>
+<ol>
+<li><strong>Discover</strong> — identify the provider and exact asset.</li>
+<li><strong>Review rights</strong> — record license, terms, attribution, redistribution, modification, commercial use, and caching conditions.</li>
+<li><strong>Acquire</strong> — use the official download or authorized API.</li>
+<li><strong>Freeze source</strong> — preserve original bytes if permitted; compute SHA-256.</li>
+<li><strong>Validate</strong> — check encoding, record counts, identifiers, expected coverage, and schema.</li>
+<li><strong>Map</strong> — map provider identifiers into QuranKit identifiers without discarding provider IDs.</li>
+<li><strong>Transform</strong> — produce derived indexes in a separate, versioned pipeline.</li>
+<li><strong>Review</strong> — run integrity tests and, for scholarly annotation, expert review where possible.</li>
+<li><strong>Package</strong> — include manifests, notices, citations, and checksums.</li>
+<li><strong>Publish</strong> — publish code and data as separate artifacts with separate licenses.</li>
+<li><strong>Monitor</strong> — track source updates, corrections, and license changes.</li>
+</ol>
+<p>If a source prohibits modification, do not modify the source artifact. If a source prohibits redistribution, do not put its data into a downloadable package. If terms are ambiguous, pause publication and seek clarification.</p>
+<h2 id="8-validation-and-quality-checks">8. Validation and quality checks<a class="headerlink" href="#8-validation-and-quality-checks" title="Permanent link">&para;</a></h2>
+<h3 id="text-integrity">Text integrity<a class="headerlink" href="#text-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify surah count and expected ayah counts against the chosen edition.</li>
+<li>Verify stable surah/ayah identifiers.</li>
+<li>Compare the imported source against the original source artifact.</li>
+<li>Ensure Unicode normalization never overwrites the source string.</li>
+<li>Keep Uthmani and Imlai editions distinct.</li>
+<li>Detect missing, duplicated, reordered, or unexpectedly altered ayahs.</li>
+<li>Record all validation results in a machine-readable report.</li>
+</ul>
+<h3 id="metadata-integrity">Metadata integrity<a class="headerlink" href="#metadata-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate all surah references.</li>
+<li>Validate Juz/hizb/ruku/page ranges.</li>
+<li>Label page numbering by Mushaf convention.</li>
+<li>Preserve provider values and do not fill gaps by guessing.</li>
+<li>Allow multiple sourced values when scholarly conventions differ.</li>
+</ul>
+<h3 id="linguistic-annotation-integrity">Linguistic annotation integrity<a class="headerlink" href="#linguistic-annotation-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate token alignment against the exact text edition used by the annotation.</li>
+<li>Do not assume one provider's tokenization matches another's.</li>
+<li>Keep morphological segmentation separate from orthographic word tokens.</li>
+<li>Preserve provider labels and original annotation IDs.</li>
+<li>Track annotation corrections and unresolved ambiguity.</li>
+<li>Do not infer roots or lemmas from string similarity alone.</li>
+</ul>
+<h3 id="licensing-integrity">Licensing integrity<a class="headerlink" href="#licensing-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ensure each packaged asset has a manifest and notice.</li>
+<li>Fail release checks if an asset has unknown rights status.</li>
+<li>Prevent restricted assets from entering public data packages.</li>
+<li>Verify all required attribution links and license copies.</li>
+<li>Keep third-party assets separate from QuranKit's own code license.</li>
+</ul>
+<h2 id="9-proposed-package-layout">9. Proposed package layout<a class="headerlink" href="#9-proposed-package-layout" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>qurankit/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   └── qurankit/
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│       ├── datasets/
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│       │   ├── manifest.py
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│       │   ├── registry.py
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│       │   ├── provenance.py
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│       │   └── validation.py
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│       ├── providers/
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│       │   ├── tanzil/
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│       │   ├── qac/
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│       │   ├── quran_foundation/
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│       │   ├── openiti/
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│       │   └── lexicons/
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│       └── ...
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>├── data/
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── manifests/
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│       ├── tanzil-quran-text.yaml
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│       └── tanzil-quran-metadata.yaml
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>├── licenses/
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   └── third_party/
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── docs/
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── data-model.md
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── arabic-text-standard.md
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   └── datasets.md
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>└── tests/
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    └── datasets/
+</span></code></pre></div>
+<p>The actual third-party data files should be stored separately from source code wherever licensing, repository size, or release cadence makes that preferable.</p>
+<h2 id="10-prioritized-implementation-plan">10. Prioritized implementation plan<a class="headerlink" href="#10-prioritized-implementation-plan" title="Permanent link">&para;</a></h2>
+<h3 id="phase-a-source-governance-first">Phase A — source governance (first)<a class="headerlink" href="#phase-a-source-governance-first" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement <code>DatasetManifest</code>.</li>
+<li>Implement a dataset registry.</li>
+<li>Implement SHA-256 and source artifact metadata.</li>
+<li>Implement license/rights status values: <code>approved</code>, <code>restricted</code>, <code>permission_required</code>, <code>unknown</code>, <code>rejected</code>.</li>
+<li>Make release packaging fail for <code>unknown</code> or <code>permission_required</code> assets.</li>
+</ul>
+<h3 id="phase-b-text-and-metadata-baseline">Phase B — text and metadata baseline<a class="headerlink" href="#phase-b-text-and-metadata-baseline" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Evaluate and ingest Tanzil text under its exact terms.</li>
+<li>Evaluate and ingest Tanzil metadata.</li>
+<li>Preserve original source artifacts.</li>
+<li>Generate independent QuranKit indexes and structural records.</li>
+<li>Add ayah count, ordering, and checksum tests.</li>
+</ul>
+<h3 id="phase-c-linguistic-adapters">Phase C — linguistic adapters<a class="headerlink" href="#phase-c-linguistic-adapters" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Define provider-neutral morphology and syntax schemas.</li>
+<li>Prototype QAC mapping in a local, non-redistributed development environment if permitted.</li>
+<li>Resolve the QAC license/FAQ ambiguity before publishing any integrated data.</li>
+<li>Add adapter conformance tests.</li>
+</ul>
+<h3 id="phase-d-research-extensions">Phase D — research extensions<a class="headerlink" href="#phase-d-research-extensions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add lexicon provider interfaces.</li>
+<li>Add edition-specific translation and tafsir providers.</li>
+<li>Add OpenITI historical-text adapter.</li>
+<li>Add hadith and scholarly-reference models.</li>
+<li>Review every source independently.</li>
+</ul>
+<h2 id="11-open-questions-before-the-first-public-data-release">11. Open questions before the first public data release<a class="headerlink" href="#11-open-questions-before-the-first-public-data-release" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Which exact Tanzil text form should be the default: Uthmani, simple, or another offered form?</li>
+<li>Will QuranKit distribute a Tanzil-derived data pack, or require users to download it directly?</li>
+<li>Does the intended distribution include commercial use?</li>
+<li>Can QAC maintainers clarify in writing the scope of the GPL statement, no-change clause, and non-commercial FAQ?</li>
+<li>Which lexicon edition(s) can be legally redistributed in structured form?</li>
+<li>Which translation/tafsir editions have explicit licenses?</li>
+<li>Which Mushaf convention should be used for page metadata?</li>
+<li>How should QuranKit represent disagreements in revelation-order, Makki/Madani, and other scholarly metadata?</li>
+</ol>
+<h2 id="12-source-references">12. Source references<a class="headerlink" href="#12-source-references" title="Permanent link">&para;</a></h2>
+<p>Primary sources reviewed for this initial assessment:</p>
+<ul>
+<li>Tanzil Text License — https://tanzil.net/docs/Text_License</li>
+<li>Tanzil Download — https://tanzil.net/download/</li>
+<li>Tanzil Quran Metadata — https://tanzil.net/docs/Quran_Metadata</li>
+<li>Tanzil Metadata Updates — https://tanzil.net/docs/metadata_updates</li>
+<li>Quranic Arabic Corpus Download — https://corpus.quran.com/download/</li>
+<li>Quranic Arabic Corpus FAQ — https://corpus.quran.com/faq.jsp</li>
+<li>Quranic Arabic Corpus License — https://corpus.quran.com/license.jsp</li>
+<li>Quran Foundation Developer Terms — https://api-docs.quran.com/legal/developer-terms/</li>
+<li>Quran Foundation FAQ — https://api-docs.quran.foundation/docs/tutorials/faq/</li>
+<li>OpenITI Corpus — https://openiti.org/projects/OpenITI%20Corpus.html</li>
+<li>OpenITI Terms of Use — https://openiti.org/docs/Terms%20of%20Use.html</li>
+<li>OpenITI Documentation — https://openiti.org/documentation/</li>
+<li>OpenITI Releases — https://github.com/OpenITI/RELEASE</li>
+<li>LDC Classical Arabic Dictionary — https://catalog.ldc.upenn.edu/LDC2021L01</li>
+</ul>
+<h2 id="13-final-position">13. Final position<a class="headerlink" href="#13-final-position" title="Permanent link">&para;</a></h2>
+<p>QuranKit should not aim to own or repackage every available Islamic text resource. It should provide a trustworthy framework for connecting, validating, indexing, comparing, and citing sources under their actual terms.</p>
+<p>The strongest initial architecture is:</p>
+<ul>
+<li>a carefully sourced Qur'anic text layer;</li>
+<li>a versioned structural metadata layer;</li>
+<li>a provider-neutral linguistic annotation layer;</li>
+<li>a provenance and licensing registry;</li>
+<li>deterministic Python research tools;</li>
+<li>optional adapters for external scholarly resources.</li>
+</ul>
+<p>This approach keeps QuranKit useful to researchers and AI agents without confusing computational convenience with textual authority, scholarly consensus, or permission to redistribute data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 QuranKit Contributors — MIT License
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AdakHaddad/qurankit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/qurankit-core/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+</body>
+</html>

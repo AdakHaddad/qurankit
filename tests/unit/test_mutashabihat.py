@@ -5,15 +5,14 @@ from pathlib import Path
 
 import pytest
 
+from qurankit.analysis import (
+    MatchCategory,
+    MatchMethod,
+    MutashabihatEngine,
+)
 from qurankit.providers.tanzil import TanzilProvider
 from qurankit.storage import Database
 from qurankit.storage.access import DataAccess
-from qurankit.analysis import (
-    MutashabihatEngine,
-    PhraseMatch,
-    MatchMethod,
-    MatchCategory,
-)
 
 
 @pytest.fixture
