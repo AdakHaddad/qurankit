@@ -5,7 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/qurankit-core.svg)](https://pypi.org/project/qurankit-core/)
 [![Python versions](https://img.shields.io/pypi/pyversions/qurankit-core.svg)](https://pypi.org/project/qurankit-core/)
 [![License](https://img.shields.io/github/license/AdakHaddad/qurankit.svg)](https://github.com/AdakHaddad/qurankit/blob/main/LICENSE)
-[![Tests](https://github.com/AdakHaddad/qurankit/actions/workflows/tests.yml/badge.svg)](https://github.com/AdakHaddad/qurankit/actions/workflows/tests.yml)
+[![Tests](https://github.com/AdakHaddad/qurankit/actions/workflows/test.yml/badge.svg)](https://github.com/AdakHaddad/qurankit/actions/workflows/test.yml)
 
 ---
 
@@ -41,7 +41,7 @@ quran = Quran.load()
 
 # Access surahs and ayahs
 surah = quran.surah(1)  # Al-Fatihah
-ayah = quran.ayah(1, 1)  # 1:1
+ayah = quran.ayah_text(1, 1)  # 1:1
 
 print(f"Surah: {surah.name_arabic}")
 print(f"Ayah: {ayah.text_original}")
@@ -81,11 +81,11 @@ print(vocab.get_root_frequency_list(limit=10))
 
 ### User Guide
 - [Text Access](user-guide/text-access.md)
-- [Arabic Text Processing](user-guide/arabic-text.md)
-- [Search](user-guide/search.md)
-- [Vocabulary Analysis](user-guide/vocabulary.md)
-- [Mutashabihat](user-guide/mutashabihat.md)
-- [Research Workflows](user-guide/research.md)
+- [Arabic Text Processing](user-guide/arabic-text-processing.md)
+- [Search & Normalization](user-guide/search.md)
+- [Vocabulary & Lexicon](user-guide/vocabulary.md)
+- [Mutashabihat Analysis](user-guide/mutashabihat.md)
+- [Computational Research](user-guide/research.md)
 - [Dataset Management](user-guide/datasets.md)
 
 ### Extension Development
@@ -97,6 +97,7 @@ print(vocab.get_root_frequency_list(limit=10))
 - [Arabic Text Standard](reference/arabic-text-standard.md)
 - [Dataset Evaluation](reference/datasets.md)
 - [API Reference](reference/api.md)
+- [CLI Reference](reference/cli.md)
 
 ### Development
 - [Contributing](development/contributing.md)
@@ -105,11 +106,15 @@ print(vocab.get_root_frequency_list(limit=10))
 
 ### Examples
 - [Basic Usage](examples/basic_usage.md)
-- [Vocabulary Analysis](examples/vocabulary_analysis.md)
-- [Mutashabihat Detection](examples/mutashabihat.md)
+- [Dataset Management](examples/dataset_management.md)
 - [Search Examples](examples/search_examples.md)
-- [Research Workflows](examples/research_workflows.md)
-- [Tafsir & Hadith](examples/tafsir_hadith.md)
+- [Mutashabihat Analysis](examples/mutashabihat_analysis.md)
+- [Reports](examples/reports_example.md)
+- [MCP Client](examples/mcp_client_example.md)
+- [Research Workflows (Notebook)](notebooks/research_workflows.ipynb)
+- [Extension Adapters (Notebook)](notebooks/extension_adapters.ipynb)
+- [Search Examples (Notebook)](notebooks/search_examples.ipynb)
+- [Mutashabihat Analysis (Notebook)](notebooks/mutashabihat_analysis.ipynb)
 
 ## Project Status
 

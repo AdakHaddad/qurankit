@@ -36,6 +36,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Interactive Demo: interactive.md
   - Getting Started:
     - Installation: getting-started/installation.md
     - Quick Start: getting-started/quickstart.md

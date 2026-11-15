@@ -1,0 +1,27 @@
+{
+  "jupyter-config-data": {
+    "disabledExtensions": [],
+    "disabledExtensionsInDevMode": []
+  },
+  "jupyter-lite-schema-version": 0,
+  "apps": ["lab", "repl", "tree"],
+  "contents": {
+    "files": [
+      {
+        "path": "files",
+        "target": "files"
+      }
+    ]
+  },
+  "settingsOverrides": {
+    "@jupyterlab/shortcuts-extension:shortcuts": {
+      "shortcuts": []
+    }
+  },
+  "pipliteUrls": [
+    "https://pypi.org/simple"
+  ],
+  "piplitePackages": {
+    "qurankit-core": "https://files.pythonhosted.org/packages/source/q/qurankit-core/qurankit_core-0.3.0-py3-none-any.whl"
+  }
+}
