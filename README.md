@@ -68,3 +68,4 @@ print(f"Ayah: {ayah.text_original}")
 MIT License — see [LICENSE](LICENSE) for details.
 
 Third-party datasets have their own licenses. See [docs/datasets.md](docs/datasets.md) for details.
+# Trigger CI
