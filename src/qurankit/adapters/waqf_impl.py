@@ -69,6 +69,7 @@ class FileBasedWaqfAdapter(WaqfAdapter):
             default_paths = [
                 Path("data/waqf"),
                 Path("~/.qurankit/data/waqf").expanduser(),
+                Path(__file__).parent.parent.parent / "data" / "waqf",
             ]
             for path in default_paths:
                 if path.exists() and any(path.glob("*.jsonl")):

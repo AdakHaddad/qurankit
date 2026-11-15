@@ -94,6 +94,7 @@ class FileBasedQiraatAdapter(QiraatAdapter):
             default_paths = [
                 Path("data/qiraat"),
                 Path("~/.qurankit/data/qiraat").expanduser(),
+                Path(__file__).parent.parent.parent / "data" / "qiraat",
             ]
             for path in default_paths:
                 if path.exists() and any(path.glob("*.jsonl")):

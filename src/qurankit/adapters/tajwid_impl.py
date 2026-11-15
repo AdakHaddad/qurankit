@@ -81,6 +81,7 @@ class FileBasedTajwidAdapter(TajwidAdapter):
             default_paths = [
                 Path("data/tajwid"),
                 Path("~/.qurankit/data/tajwid").expanduser(),
+                Path(__file__).parent.parent.parent / "data" / "tajwid",
             ]
             for path in default_paths:
                 if path.exists() and any(path.glob("*.jsonl")):

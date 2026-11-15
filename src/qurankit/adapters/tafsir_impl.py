@@ -77,10 +77,11 @@ class FileBasedTafsirAdapter(TafsirAdapter):
             return
 
         if not self.data_path:
-            # Try default paths
+            # Try default paths including package data
             default_paths = [
                 Path("data/tafsir"),
                 Path("~/.qurankit/data/tafsir").expanduser(),
+                Path(__file__).parent.parent.parent / "data" / "tafsir",  # package data
             ]
             for path in default_paths:
                 if path.exists() and any(path.glob("*.jsonl")):

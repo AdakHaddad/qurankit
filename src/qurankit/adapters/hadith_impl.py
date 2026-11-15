@@ -101,6 +101,7 @@ class FileBasedHadithAdapter(HadithAdapter):
             default_paths = [
                 Path("data/hadith"),
                 Path("~/.qurankit/data/hadith").expanduser(),
+                Path(__file__).parent.parent.parent / "data" / "hadith",
             ]
             for path in default_paths:
                 if path.exists() and any(path.glob("*.jsonl")):
@@ -200,7 +201,6 @@ class FileBasedHadithAdapter(HadithAdapter):
         if not hadith or not hadith.isnad:
             return None
 
-        # Return cached or create new
         if hadith_id in self._isnad_chains:
             return self._isnad_chains[hadith_id]
 
